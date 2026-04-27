@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Traviata · Marchese d'Obigny · Liste des surlignages à faire</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, "Segoe UI", Arial, sans-serif;
+    background: #fafaf7;
+    color: #222;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  h1 {
+    color: #8b1538;
+    font-size: 26px;
+    margin-bottom: 4px;
+  }
+  .subtitle { color: #666; margin-bottom: 24px; font-size: 14px; }
+
+  h2 {
+    background: #8b1538;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 18px;
+    margin: 24px 0 12px;
+  }
+
+  .legend {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    padding: 14px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+
+  .legend span {
+    font-size: 13px;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-weight: 600;
+    border: 1px solid rgba(0,0,0,0.1);
+  }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .stat {
+    background: white;
+    border: 1px solid #ddd;
+    padding: 12px 16px;
+    border-radius: 8px;
+    text-align: center;
+  }
+  .stat-n { font-size: 26px; font-weight: 700; color: #8b1538; }
+  .stat-l { font-size: 11px; text-transform: uppercase; color: #666; letter-spacing: 0.5px; }
+
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    margin-bottom: 24px;
+  }
+
+  th {
+    background: #f3f0e8;
+    padding: 10px 12px;
+    text-align: left;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #555;
+    border-bottom: 2px solid #ddd;
+  }
+
+  td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+    vertical-align: middle;
+  }
+
+  tr:hover { background: #fafaf0; }
+  tr.done { opacity: 0.45; text-decoration: line-through; }
+
+  /* Pastilles couleur */
+  .pdf-page {
+    display: inline-block;
+    background: #ffb6c1;
+    color: #6a0028;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-family: "SF Mono", Menlo, monospace;
+    min-width: 42px;
+    text-align: center;
+  }
+  .part-page {
+    display: inline-block;
+    background: #90ee90;
+    color: #1a5c1a;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-family: "SF Mono", Menlo, monospace;
+    min-width: 42px;
+    text-align: center;
+  }
+
+  .type {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .type-jaune {
+    background: #fff3a3;
+    color: #6b4c00;
+    border: 1px solid #d4a017;
+  }
+  .type-bleu {
+    background: #cfe4f7;
+    color: #1a4270;
+    border: 1px solid #2b6cb0;
+  }
+
+  .texte { color: #222; font-style: italic; }
+  .texte.important { font-weight: 700; color: #8b1538; font-style: normal; }
+
+  .check {
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+    accent-color: #8b1538;
+  }
+
+  .star { color: #d4a017; font-size: 18px; }
+
+  .actions {
+    position: sticky;
+    top: 10px;
+    background: #8b1538;
+    padding: 10px 16px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+    z-index: 100;
+  }
+  .actions button {
+    background: white;
+    color: #8b1538;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 13px;
+  }
+  .actions button:hover { background: #ffe0e8; }
+  .progress-text { font-weight: 700; font-size: 14px; }
+
+  /* Impression */
+  @media print {
+    .actions, .check { display: none; }
+    body { background: white; padding: 0; }
+    table { box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+
+<h1>♪ La Traviata · Marchese d'Obigny</h1>
+<div class="subtitle">Liste complète - Pages PDF mises à jour (+1 à cause de la nav page au début)</div>
+
+<div class="legend">
+  <span class="pdf-page">10</span><span style="padding:4px 0;">= Page dans le PDF sur tablette</span>
+  <span class="part-page">6</span><span style="padding:4px 0;">= Page imprimée en bas de la partition</span>
+  <span class="type type-jaune">JAUNE</span><span style="padding:4px 0;">= Solo (vous chantez seul)</span>
+  <span class="type type-bleu">BLEU</span><span style="padding:4px 0;">= Ensemble (avec d'autres)</span>
+</div>
+
+<div class="stats">
+  <div class="stat"><div class="stat-n">87</div><div class="stat-l">Pages totales</div></div>
+  <div class="stat"><div class="stat-n">5</div><div class="stat-l">Solos (jaune)</div></div>
+  <div class="stat"><div class="stat-n">82</div><div class="stat-l">Ensembles (bleu)</div></div>
+  <div class="stat"><div class="stat-n" id="done-count">0</div><div class="stat-l">Complétées</div></div>
+</div>
+
+<div class="actions">
+  <div class="progress-text">Progression : <span id="progress">0 / 87</span></div>
+  <button onclick="resetAll()">Reset</button>
+  <button onclick="window.print()">Imprimer</button>
+</div>
+
+<h2>ACTE I — Fête chez Violetta (40 pages)</h2>
+<table>
+  <thead>
+    <tr>
+      <th style="width:40px;">✓</th>
+      <th>PDF</th>
+      <th>Partition</th>
+      <th>Couleur</th>
+      <th>Texte à surligner</th>
+    </tr>
+  </thead>
+  <tbody id="acte1"></tbody>
+</table>
+
+<h2>ACTE II scène 2 — Fête chez Flora (47 pages)</h2>
+<table>
+  <thead>
+    <tr>
+      <th style="width:40px;">✓</th>
+      <th>PDF</th>
+      <th>Partition</th>
+      <th>Couleur</th>
+      <th>Texte à surligner</th>
+    </tr>
+  </thead>
+  <tbody id="acte2"></tbody>
+</table>
+
+<script>
+const ACTE1 = [
+  [11, 6, 'bleu', '"E goder voi potrete?" (avec Flora)'],
+  [12, 7, 'bleu', '"Sì, la vita s\'addoppia al gioir"'],
+  [13, 8, 'bleu', 'Ensemble (Gastone, Barone, Dottore)'],
+  [15, 10, 'jaune', '"Caro Alfredo!"', true],
+  [16, 11, 'bleu', '"Ben diceste... le cure segrete fuga sempre l\'amico licor"'],
+  [17, 12, 'bleu', '"È al convito che s\'apre ogni cor"'],
+  [20, 15, 'jaune', '"È a madama che scuoterlo tocca"', true],
+  [21, 16, 'bleu', '"Beviamo"'],
+  [22, 17, 'bleu', '"...viamo, beviam"'],
+  [23, 18, 'bleu', '"Sì, sì, un brindisi"'],
+  [24, 19, 'jaune', '"Dunque attenti..."', true],
+  [27, 22, 'bleu', 'Brindisi — "Ah! libiam, amor fra\' calici..."'],
+  [28, 23, 'bleu', '"...caldi baci avrà"'],
+  [30, 25, 'bleu', '"Ah! godiamo la tazza..."'],
+  [31, 26, 'bleu', 'Brindisi — continuation'],
+  [32, 27, 'bleu', 'Brindisi — continuation'],
+  [33, 28, 'bleu', '"Ah sì godiamo la tazza e il cantico"'],
+  [34, 29, 'bleu', 'Brindisi — continuation'],
+  [35, 30, 'bleu', 'Brindisi — continuation'],
+  [36, 31, 'bleu', 'Brindisi — continuation'],
+  [37, 32, 'bleu', '"...ne scopra il nuovo dì"'],
+  [38, 33, 'bleu', '"Che è ciò?" (Valzer)'],
+  [39, 34, 'bleu', '"Oh il gentil pensier!... Tutti accettiamo"'],
+  [40, 35, 'bleu', '"Che avete?"'],
+  [41, 36, 'bleu', '"Che mai v\'arresta?"'],
+  [42, 37, 'bleu', '"Ancora! Oh ciel! ch\'è questo?"'],
+  [43, 38, 'bleu', '"Come bramate" + SORTIE'],
+  [57, 52, 'bleu', 'Stretta — "Si ridesta in ciel l\'aurora..."'],
+  [58, 53, 'bleu', '"...mercè a voi, gentil signora..."'],
+  [59, 54, 'bleu', 'Stretta — continuation'],
+  [60, 55, 'bleu', 'Stretta — continuation'],
+  [61, 56, 'bleu', '"di sì splendido gioir"'],
+  [62, 57, 'bleu', '"La città di feste è piena..."'],
+  [63, 58, 'bleu', '"nel riposo ancor la lena..."'],
+  [64, 59, 'bleu', 'Stretta — continuation'],
+  [65, 60, 'bleu', 'Stretta — continuation'],
+  [66, 61, 'bleu', 'Stretta — continuation'],
+  [67, 62, 'bleu', 'Stretta — continuation'],
+  [68, 63, 'bleu', 'Stretta — continuation'],
+  [69, 64, 'bleu', 'Dernière note + SORTIE FINALE'],
+];
+
+const ACTE2 = [
+  [144, 139, 'jaune', '"La novità ignorate? Violetta e Germont sono disgiunti" + "Ella verrà qui col Barone"', true, true],
+  [145, 140, 'bleu', '"Giungono gli amici"'],
+  [148, 143, 'jaune', '"Che diancin vi pensate? L\'accusa è falsità!"', true],
+  [150, 145, 'bleu', '"Su via, si stenda un velo sui fatti del passato..."'],
+  [151, 146, 'bleu', '"...già quel ch\'è stato è stato..."'],
+  [152, 147, 'bleu', '"...badiamo all\'avvenir"'],
+  [154, 149, 'bleu', '"Sì, sì, bravi, narrate, narrate, con piacere l\'udremo"'],
+  [158, 153, 'bleu', '"Bravo, bravo il mattadore, ben gagliardo..."'],
+  [159, 154, 'bleu', 'Mattadori — continuation'],
+  [160, 155, 'bleu', '"Con tal prove i mattadori san le belle conquistar"'],
+  [161, 156, 'bleu', '"Sì, allegria pria tentiamo..."'],
+  [162, 157, 'bleu', 'Ensemble — suite'],
+  [163, 158, 'bleu', 'Mattadori — continuation'],
+  [164, 159, 'bleu', '"...diamo ai giuocator"'],
+  [165, 160, 'bleu', '"Alfredo!... Voi!..."'],
+  [166, 161, 'bleu', '"Ben disinvolto!... bravo!"'],
+  [167, 162, 'bleu', '"...via, giuocar si può"'],
+  [170, 165, 'bleu', '"È sempre vincitore!"'],
+  [173, 168, 'bleu', '"Ancora!"'],
+  [174, 169, 'bleu', '"Bravo davver!... la sorte è tutta per Alfredo!"'],
+  [175, 170, 'bleu', '"Andiamo. Andiam."'],
+  [183, 178, 'bleu', '"Ne appellaste? che volete?"'],
+  [184, 179, 'bleu', '"Chi? Violetta?... No"'],
+  [186, 181, 'bleu', 'Bloc A — "Oh, infamia orribile..."'],
+  [187, 182, 'bleu', '"Di donne ignobile insultatore..."'],
+  [188, 183, 'bleu', 'Ensemble — continuation'],
+  [189, 184, 'bleu', '"...ne dest\'orror..."'],
+  [192, 187, 'bleu', 'Bloc B — "Oh quanto peni! ma pur fa cor..."'],
+  [193, 188, 'bleu', '"...cor, qui soffre ognuno del tuo dolor..."'],
+  [194, 189, 'bleu', '"fra cari amici qui sei soltanto..."'],
+  [195, 190, 'bleu', 'Fin d\'ensemble'],
+  [196, 191, 'bleu', '"Quanto peni! fa cor!"'],
+  [197, 192, 'bleu', 'Ensemble — continuation'],
+  [198, 193, 'bleu', 'Ensemble — continuation'],
+  [199, 194, 'bleu', 'Ensemble — continuation'],
+  [200, 195, 'bleu', 'Ensemble — continuation'],
+  [201, 196, 'bleu', 'Ensemble — continuation'],
+  [202, 197, 'bleu', 'Ensemble — continuation'],
+  [203, 198, 'bleu', 'Ensemble — continuation'],
+  [204, 199, 'bleu', 'Ensemble — continuation'],
+  [205, 200, 'bleu', 'Ensemble — continuation'],
+  [206, 201, 'bleu', 'Ensemble — continuation'],
+  [207, 202, 'bleu', 'Ensemble — continuation'],
+  [208, 203, 'bleu', 'Ensemble — continuation'],
+  [209, 204, 'bleu', 'Ensemble — continuation'],
+  [210, 205, 'bleu', 'Ensemble — continuation'],
+  [211, 206, 'bleu', 'Dernière note + "Fine dell\'Atto Secondo"'],
+];
+
+function renderRow(row) {
+  const [pdf, part, type, texte, important, star] = row;
+  const id = 'p' + pdf;
+  const typeClass = type === 'jaune' ? 'type-jaune' : 'type-bleu';
+  const typeLabel = type === 'jaune' ? 'JAUNE' : 'BLEU';
+  const texteClass = important ? 'texte important' : 'texte';
+  const starHtml = star ? ' <span class="star">★</span>' : '';
+  return `
+    <tr data-id="${id}">
+      <td><input type="checkbox" class="check" data-id="${id}"></td>
+      <td><span class="pdf-page">${pdf}</span></td>
+      <td><span class="part-page">${part}</span></td>
+      <td><span class="type ${typeClass}">${typeLabel}</span></td>
+      <td><span class="${texteClass}">${texte}</span>${starHtml}</td>
+    </tr>
+  `;
+}
+
+document.getElementById('acte1').innerHTML = ACTE1.map(renderRow).join('');
+document.getElementById('acte2').innerHTML = ACTE2.map(renderRow).join('');
+
+function loadState() {
+  return JSON.parse(localStorage.getItem('surlignages-state') || '{}');
+}
+function saveState(s) {
+  localStorage.setItem('surlignages-state', JSON.stringify(s));
+}
+let state = loadState();
+
+function updateProgress() {
+  const total = 87;
+  const done = Object.values(state).filter(v => v).length;
+  document.getElementById('progress').textContent = done + ' / ' + total;
+  document.getElementById('done-count').textContent = done;
+}
+
+document.querySelectorAll('.check').forEach(cb => {
+  const id = cb.dataset.id;
+  if (state[id]) {
+    cb.checked = true;
+    cb.closest('tr').classList.add('done');
+  }
+  cb.addEventListener('change', () => {
+    state[id] = cb.checked;
+    cb.closest('tr').classList.toggle('done', cb.checked);
+    saveState(state);
+    updateProgress();
+  });
+});
+
+function resetAll() {
+  if (!confirm('Réinitialiser toutes les cases ?')) return;
+  state = {};
+  saveState(state);
+  document.querySelectorAll('.check').forEach(cb => {
+    cb.checked = false;
+    cb.closest('tr').classList.remove('done');
+  });
+  updateProgress();
+}
+
+updateProgress();
+</script>
+
+</body>
+</html>

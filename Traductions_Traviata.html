@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Traviata — Traductions & Contexte · Marchese d'Obigny</title>
+<style>
+  :root {
+    --bg: #0d0d18;
+    --bg-card: #1a1a2e;
+    --bg-card-2: #1f1f33;
+    --gold: #d4af37;
+    --gold-light: #f4d03f;
+    --pink: #c9a8b8;
+    --marchese: #f39c12;         /* orange doré : Marchese seul (SOLO) */
+    --ensemble: #2ecc71;          /* vert : ensemble avec Marchese */
+    --autres: #5dade2;            /* bleu : contexte/autres personnages */
+    --pianiste: #9b59b6;          /* violet : intro piano seul */
+    --text: #f0f0f5;
+    --text-soft: #c9a8b8;
+    --text-mute: #8a8a9a;
+    --italic: #d4af37;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(180deg, #0a0a15 0%, #0d0d18 50%, #100c18 100%);
+    color: var(--text);
+    font-family: 'Lora', 'Georgia', serif;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  header {
+    padding: 40px 30px 30px;
+    text-align: center;
+    background: rgba(0,0,0,0.5);
+    border-bottom: 2px solid var(--gold);
+  }
+  h1 {
+    font-family: 'Playfair Display', 'Georgia', serif;
+    color: var(--gold);
+    font-size: 2.5em;
+    margin: 0 0 6px;
+    font-weight: 400;
+    letter-spacing: 1px;
+  }
+  h1 .op { font-size: 0.6em; color: var(--pink); font-style: italic; }
+  .subtitle {
+    color: var(--pink);
+    font-size: 1.1em;
+    margin: 4px 0 0;
+    font-style: italic;
+  }
+  .meta {
+    color: var(--text-mute);
+    font-size: 0.85em;
+    margin-top: 14px;
+  }
+
+  /* ============ LÉGENDE ============ */
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px auto 0;
+    max-width: 900px;
+  }
+  .legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    background: rgba(255,255,255,0.05);
+  }
+  .legend-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+  }
+
+  main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 30px 20px 60px;
+  }
+
+  /* ============ ACTES ============ */
+  .acte {
+    margin-bottom: 60px;
+  }
+  .acte h2 {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold);
+    font-size: 1.8em;
+    border-bottom: 1px solid var(--gold);
+    padding-bottom: 8px;
+    margin: 40px 0 12px;
+  }
+  .acte-intro {
+    color: var(--text-soft);
+    font-style: italic;
+    padding: 14px 18px;
+    background: rgba(212,175,55,0.08);
+    border-left: 3px solid var(--gold);
+    border-radius: 4px;
+    margin-bottom: 30px;
+  }
+
+  /* ============ SCÈNES / BLOCS ============ */
+  .scene {
+    margin-bottom: 30px;
+  }
+  .scene h3 {
+    color: var(--gold-light);
+    font-size: 1.2em;
+    font-family: 'Playfair Display', serif;
+    margin: 28px 0 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .scene h3::before {
+    content: '';
+    display: inline-block;
+    width: 6px; height: 20px;
+    background: var(--gold);
+    border-radius: 2px;
+  }
+
+  /* ============ CARTE DE PAGE ============ */
+  .card {
+    background: var(--bg-card);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    border-left: 4px solid;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .card:hover {
+    transform: translateX(2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  }
+  .card.marchese   { border-left-color: var(--marchese); background: linear-gradient(90deg, rgba(243,156,18,0.12), var(--bg-card)); }
+  .card.ensemble   { border-left-color: var(--ensemble); background: linear-gradient(90deg, rgba(46,204,113,0.08), var(--bg-card)); }
+  .card.autres     { border-left-color: var(--autres);   background: linear-gradient(90deg, rgba(93,173,226,0.10), var(--bg-card)); }
+  .card.pianiste   { border-left-color: var(--pianiste); background: rgba(155,89,182,0.05); }
+
+  .card-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    font-size: 0.85em;
+    margin-bottom: 8px;
+  }
+  .badge {
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.75em;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+  }
+  .badge.marchese   { background: var(--marchese); color: black; }
+  .badge.ensemble   { background: var(--ensemble); color: black; }
+  .badge.autres     { background: var(--autres); color: black; }
+  .badge.pianiste   { background: var(--pianiste); color: white; }
+
+  .page-num {
+    color: var(--text-mute);
+    font-family: monospace;
+  }
+  .character {
+    color: var(--gold-light);
+    font-weight: bold;
+    font-size: 0.9em;
+  }
+
+  .italian {
+    color: var(--italic);
+    font-style: italic;
+    font-size: 1.05em;
+    margin: 10px 0 6px;
+    padding-left: 12px;
+    border-left: 2px solid rgba(212,175,55,0.3);
+  }
+  .french {
+    color: var(--text);
+    margin: 4px 0 8px;
+    font-size: 1em;
+  }
+  .context {
+    color: var(--text-soft);
+    font-size: 0.88em;
+    font-style: italic;
+    margin-top: 6px;
+    padding: 8px 12px;
+    background: rgba(0,0,0,0.3);
+    border-radius: 4px;
+  }
+  .context::before {
+    content: '📖 ';
+  }
+
+  /* ============ POINTS CLÉS ============ */
+  .key-moments {
+    background: linear-gradient(135deg, rgba(243,156,18,0.15), rgba(212,175,55,0.08));
+    border: 1px solid var(--marchese);
+    border-radius: 8px;
+    padding: 14px 20px;
+    margin: 20px 0;
+  }
+  .key-moments h4 {
+    color: var(--marchese);
+    margin: 0 0 8px;
+    font-family: 'Playfair Display', serif;
+  }
+  .key-moments ul { margin: 0; padding-left: 20px; }
+  .key-moments li { margin-bottom: 4px; }
+
+  /* ============ NAVIGATION ============ */
+  .toc {
+    position: sticky;
+    top: 10px;
+    background: rgba(0,0,0,0.9);
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--gold);
+    margin-bottom: 20px;
+    z-index: 10;
+    font-size: 0.9em;
+  }
+  .toc a {
+    color: var(--gold-light);
+    text-decoration: none;
+    margin-right: 14px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    background: rgba(212,175,55,0.1);
+    transition: background 0.15s;
+  }
+  .toc a:hover {
+    background: rgba(212,175,55,0.3);
+  }
+
+  @media (max-width: 600px) {
+    h1 { font-size: 1.8em; }
+    .card { padding: 12px 14px; }
+    .toc a { display: inline-block; margin-bottom: 6px; font-size: 0.85em; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>La Traviata <span class="op">— Giuseppe Verdi (1853)</span></h1>
+  <p class="subtitle">Traductions annotées du rôle du Marchese d'Obigny & contexte dramatique</p>
+  <div class="meta">Document de travail pour la préparation du rôle</div>
+
+  <div class="legend">
+    <span class="legend-item"><span class="legend-dot" style="background:var(--marchese);"></span> Solo Marchese</span>
+    <span class="legend-item"><span class="legend-dot" style="background:var(--ensemble);"></span> Ensemble (Marchese chante)</span>
+    <span class="legend-item"><span class="legend-dot" style="background:var(--autres);"></span> Autres personnages (contexte)</span>
+    <span class="legend-item"><span class="legend-dot" style="background:var(--pianiste);"></span> Intro piano seul</span>
+  </div>
+</header>
+
+<main>
+
+<nav class="toc">
+  <a href="#acte1">Acte I</a>
+  <a href="#acte2">Acte II – Fête chez Flora</a>
+  <a href="#personnages">Personnages</a>
+</nav>
+
+<!-- ============ PRÉSENTATION DES PERSONNAGES ============ -->
+<section id="personnages">
+  <h2>Les personnages en présence</h2>
+  <div class="card autres">
+    <p><strong style="color:var(--marchese);">Le Marchese d'Obigny</strong> (baryton-basse, comprimario) : ami du Baron Douphol, habitué des fêtes parisiennes, protecteur de Flora Bervoix. Personnage mondain, parfois légèrement ridicule (Flora le tance à l'Acte II), témoin de l'intrigue.</p>
+    <p><strong>Violetta Valéry</strong> (soprano) : courtisane célèbre, maîtresse de maison. Atteinte de tuberculose. Tombera amoureuse d'Alfredo.</p>
+    <p><strong>Alfredo Germont</strong> (ténor) : jeune bourgeois épris de Violetta.</p>
+    <p><strong>Giorgio Germont</strong> (baryton) : père d'Alfredo. Il apparaît à l'Acte II scène 2 pour gronder son fils.</p>
+    <p><strong>Flora Bervoix</strong> (mezzo) : amie de Violetta, courtisane elle aussi. C'est chez elle que se passe l'Acte II scène 2.</p>
+    <p><strong>Baron Douphol</strong> (baryton) : amant de Violetta après sa séparation d'avec Alfredo. Rivalise avec ce dernier.</p>
+    <p><strong>Gastone</strong> (ténor) : ami d'Alfredo qui l'introduit chez Violetta.</p>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- ================= ACTE I ==================================== -->
+<!-- ============================================================ -->
+<section class="acte" id="acte1">
+  <h2>Acte I — Salon de Violetta à Paris</h2>
+  <div class="acte-intro">
+    <strong>La situation :</strong> Violetta Valéry, courtisane parisienne célèbre, donne une grande réception dans son appartement. Les invités arrivent les uns après les autres. Le Marchese d'Obigny est là avec ses amis — Baron Douphol, Flora Bervoix, Gastone de Letorières. Gastone présente à Violetta son ami Alfredo Germont, qui lui avoue être secrètement amoureux d'elle depuis un an. Au cours de la soirée, Violetta fait un malaise (sa maladie, la tuberculose). Alfredo reste pour s'occuper d'elle.
+  </div>
+
+  <div class="key-moments">
+    <h4>📍 Les interventions du Marchese dans cet acte</h4>
+    <ul>
+      <li><strong>p.10</strong> — Entrée : "E goder voi potrete?" (ensemble d'arrivée)</li>
+      <li><strong>p.14</strong> — Solo : "Caro Alfredo!" (accueil d'Alfredo)</li>
+      <li><strong>p.19</strong> — Solo : "E a madama che scuoterlo tocca" (taquinerie sur Violetta)</li>
+      <li><strong>p.23</strong> — Solo : "Dunque attenti..." (annonce le Brindisi)</li>
+      <li><strong>Pages 26-42</strong> — Brindisi + intrigue du malaise (ensemble)</li>
+      <li><strong>Pages 56-68</strong> — Stretta finale (sortie des invités)</li>
+    </ul>
+  </div>
+
+  <!-- Introduction / Entrée Marchese -->
+  <div class="scene">
+    <h3>Entrée du Marchese (p. 10-12)</h3>
+
+    <div class="card ensemble">
+      <div class="card-head">
+        <span class="badge ensemble">ENSEMBLE</span>
+        <span class="page-num">Page 10</span>
+        <span class="character">Marchese & Flora</span>
+      </div>
+      <div class="italian">E goder voi potrete?</div>
+      <div class="french">Et vous pourrez en profiter ?</div>
+      <div class="context">Le Marchese parle à Flora, en arrivant à la fête. Il l'interroge sur sa capacité à apprécier la soirée (elle est en pleine forme, visiblement). C'est un court échange mondain d'ouverture.</div>
+    </div>
+
+    <div class="card ensemble">
+      <div class="card-head">
+        <span class="badge ensemble">ENSEMBLE</span>
+        <span class="page-num">Pages 11-12</span>
+        <span class="character">Les invités (TUTTI)</span>
+      </div>
+      <div class="italian">Sì, la vita s'addoppia al gioir.</div>
+      <div class="french">Oui, la vie se double par le plaisir.</div>
+      <div class="context">Tous les invités confirment en chœur. L'ambiance est festive, joyeuse. C'est le crédo de cette société parisienne : vivre intensément à travers le plaisir. Chœur homorythmique, tous ensemble.</div>
+    </div>
+  </div>
+
+  <!-- Caro Alfredo -->
+  <div class="scene">
+    <h3>Arrivée d'Alfredo — "Caro Alfredo!" (p. 14-16)</h3>
+
+    <div class="card pianiste">
+      <div class="card-head">
+        <span class="badge pianiste">INTRO PIANO</span>
+        <span class="page-num">Page 13</span>
+      </div>
+      <div class="context">Quelques mesures de transition au piano. Gastone introduit Alfredo à Violetta.</div>
+    </div>
+
+    <div class="card marchese">
+      <div class="card-head">
+        <span class="badge marchese">SOLO MARCHESE</span>
+        <span class="page-num">Page 14</span>
+        <span class="character">MARCHESE</span>
+      </div>
+      <div class="italian">Caro Alfredo!</div>
+      <div class="french">Cher Alfredo !</div>
+      <div class="context">Salutation chaleureuse du Marchese à Alfredo. C'est une petite exclamation solo, mais <strong>très exposée</strong> — tout le monde se tait et te regarde. Il faut la dire claire, chaleureuse, comme un vrai ami qui salue un familier.</div>
+    </div>
+
+    <div class="card ensemble">
+      <div class="card-head">
+        <span class="badge ensemble">ENSEMBLE</span>
+        <span class="page-num">Page 15</span>
+        <span class="character">Les invités</span>
+      </div>
+      <div class="italian">Ben diceste... le cure segrete fuga sempre l'amico licor.</div>
+      <div class="french">Bien dit... les soucis secrets, l'alcool ami les chasse toujours.</div>
+      <div class="context">Les invités approuvent ensemble : le vin est le meilleur ami pour oublier les soucis. Philosophie hédoniste typique de cette société.</div>
+    </div>
+
+    <div class="card ensemble">
+      <div class="card-head">
+        <span class="badge ensemble">ENSEMBLE</span>
+        <span class="page-num">Page 16</span>
+        <span class="character">Les invités</span>
+      </div>
+      <div class="italian">E al convito che s'apre ogni cor.</div>
+      <div class="french">C'est au banquet que s'ouvre chaque cœur.</div>
+      <div class="context">Suite de la même idée : au banquet, les cœurs s'ouvrent, les conversations se libèrent. Transition vers le Brindisi.</div>
+    </div>
+  </div>
+
+  <!-- E a madama -->
+  <div class="scene">
+    <h3>"E a madama che scuoterlo tocca" (p. 19)</h3>
+
+    <div class="card pianiste">
+      <div class="card-head">
+        <span class="badge pianiste">INTRO PIANO</span>
+        <span class="page-num">Page 18</span>
+      </div>
+      <div class="context">Violetta remarque qu'Alfredo est réservé. Transition piano.</div>
+    </div>
+
+    <div class="card marchese">
+      <div class="card-head">
+        <span class="badge marchese">SOLO MARCHESE</span>
+        <span class="page-num">Page 19</span>
+        <span class="character">MARCHESE</span>
+      </div>
+      <div class="italian">E a madama che scuoterlo tocca.</div>
+      <div class="french">C'est à madame qu'il revient de le réveiller.</div>
+      <div class="context">Le Marchese taquine : puisque Alfredo est trop timide, c'est à Violetta de le "secouer" pour le rendre plus gai. Ton léger, amical, presque entremetteur. Intervention solo courte mais importante dramatiquement : c'est elle qui pousse la suite de la scène (rapprochement Violetta-Alfredo).</div>
+    </div>
+  </div>
+
+  <!-- Préparation du Brindisi -->
+  <div class="scene">
+    <h3>Préparation du Brindisi (p. 20-23)</h3>
+
+    <div class="card ensemble">
+      <div class="card-head">
+        <span class="badge ensemble">ENSEMBLE</span>
+        <span class="page-num">Page 20</span>
+        <span class="character">Les invités</span>
+      </div>
+      <div class="italian">Beviamo!</div>
+      <div class="french">Buvons !</div>
+      <div class="context">Cri collectif pour l'appel à lever les verres.</div>
+    </div>
+
+    <div class="card ensemble">
+      <div class="card-head">
+        <span class="badge ensemble">ENSEMBLE</span>
+        <span class="page-num">Page 21</span>
+        <span class="character">Les invités</span>
+      </div>
+      <div class="italian">...viamo, beviam!</div>
+      <div class="french">...vons, buvons !</div>
+      <div class="context">Écho collectif de "Beviamo". Les invités sont excités, prêts pour le toast.</div>
+    </div>
+
+    <div class="card ensemble">
+      <div class="card-head">
+        <span class="badge ensemble">ENSEMBLE</span>
+        <span class="page-num">Page 22</span>
+        <span class="character">Gastone & les invités</span>
+      </div>
+      <div class="italian">Sì, sì, un brindisi!</div>
+      <div class="french">Oui, oui, un chant à boire !</div>
+      <div class="context">Tous demandent à Alfredo de chanter un brindisi (chant à boire). C'est le moment où Alfredo va faire son fameux "Libiamo ne' lieti calici".</div>
+    </div>
+
+    <div class="card marchese">
+      <div class="card-head">
+        <span class="badge marchese">SOLO MARCHESE</span>
+        <span class="page-num">Page 23</span>
+        <span class="character">MARCHESE</span>
+      </div>
+      <div class="italian">Dunque attenti...</div>
+      <div class="french">Alors attention...</div>
+      <div class="context">Le Marchese demande silence aux invités : Alfredo va chanter. Petit rôle d'animateur. Les autres répondent en ensemble : <em>"Sì, attenti al cantor!"</em> (Oui, attention au chanteur !).</div>
+    </div>
+  </div>
+
+  <!-- BRINDISI -->
+  <div class="scene">
+    <h3>Le Brindisi — "Libiamo ne' lieti calici" (p. 26-36)</h3>
+    <div class="acte-intro" style="margin-bottom:14px;">
+      <strong>Le moment-clé musicalement.</strong> Alfredo lève son verre et chante le célèbre "Libiamo" (Buvons). Violetta lui répond. Puis tous reprennent en chœur. C'est l'un des airs les plus connus de l'opéra. Le Marchese chante dans le chœur général (basse).
+    </div>
+
+    <div class="card ensemble">
+      <div class="card-head">
+        <span class="badge ensemble">ENSEMBLE</span>
+        <span class="page-num">Page 26</span>
+        <span class="character">Alfredo puis TUTTI</span>
+      </div>
+      <div class="italian">Libiamo, libiamo ne' lieti calici<br>
+      che la bellezza infiora,<br>
+      e la fuggevol ora s'inebri a voluttà.<br>
+      Libiam ne' dolci fremiti<br>
+      che suscita l'amore,<br>
+      poiché quell'occhio al core onnipotente va.<br>
+      Libiamo, amor fra i calici<br>
+      più caldi baci avrà.</div>
+      <div class="french">Buvons, buvons dans les joyeux calices<br>
+      que la beauté fleurit,<br>
+      et que l'heure fugitive s'enivre de volupté.<br>
+      Buvons aux doux frémissements<br>
+      que l'amour éveille,<br>
+      puisque cet œil au cœur va, tout-puissant.<br>
+      Buvons, l'amour parmi les coupes<br>
+      aura des baisers plus ardents.</div>
+      <div class="context">Alfredo chante ce couplet-solo. Puis tous reprennent "Ah, libiam..." en chœur. Ligne ENSEMBLE pour Marchese : se caler sur la basse du chœur.</div>
+    </div>
+
+    <div class="card ensemble">
+      <div class="card-head">
+        <span class="badge ensemble">ENSEMBLE</span>
+        <span class="page-num">Pages 27-32</span>
+        <span class="character">Violetta puis TUTTI</span>
+      </div>
+      <div class="italian">Tra voi, tra voi saprò dividere<br>
+      il tempo mio giocondo;<br>
+      tutto è follia, follia nel mondo<br>
+      ciò che non è piacer.<br>
+      Godiam, fugace e rapido<br>
+      è il gaudio dell'amore;<br>
+      è un fior che nasce e muore,<br>
+      né più si può goder.<br>
+      <em>TUTTI :</em> Godiam la tazza e il cantico<br>
+      la notte abbella e il riso;<br>
+      in questo paradiso<br>
+      ne scopra il nuovo dì.</div>
+      <div class="french">Parmi vous, je saurai partager<br>
+      mon temps joyeux ;<br>
+      tout ce qui n'est pas plaisir<br>
+      est folie dans ce monde.<br>
+      Jouissons, fugace et rapide<br>
+      est la joie de l'amour ;<br>
+      c'est une fleur qui naît et meurt,<br>
+      on ne peut en jouir deux fois.<br>
+      <em>TOUS :</em> Profitons — la coupe et le chant<br>
+      embellissent la nuit et le rire ;<br>
+      que le jour nouveau nous trouve<br>
+      dans ce paradis.</div>
+      <div class="context">Violetta répond à Alfredo par un couplet plus mélancolique ("il n'y a que le plaisir qui compte, car l'amour est une fleur qui meurt"). Puis le grand ensemble TUTTI reprend "Godiamo, la tazza e il cantico...". Marchese chante dans le TUTTI.</div>
+    </div>
+
+    <div class="card ensemble">
+      <div class="card-head">
+        <span class="badge ensemble">ENSEMBLE</span>
+        <span class="page-num">Pages 33-36</span>
+        <span class="character">TUTTI</span>
+      </div>
+      <div class="italian">Ah! Godiamo... ne scopra il nuovo dì.</div>
+      <div class="french">Ah ! Profitons... que le jour nouveau nous trouve (dans ce paradis).</div>
+      <div class="context">Reprise et conclusion du Brindisi. Répétitions successives en chœur.</div>
+    </div>
+  </div>
+
+  <!-- Malaise de Violetta -->
+  <div class="scene">
+    <h3>Le malaise de Violetta (p. 37-42)</h3>
+    <div class="acte-intro" style="margin-bottom:14px;">
+      <strong>Tournant dramatique.</strong> Une valse se fait entendre dans une autre pièce. Tous les invités veulent aller danser. Violetta se lève, titube : elle vient d'avoir une crise (sa tuberculose). Les invités s'inquiètent. Alfredo reste auprès d'elle, préoccupé.
+    </div>
+
+    <div class="card ensemble">
+      <div class="card-head">
+        <span class="badge ensemble">ENSEMBLE</span>
+        <span class="page-num">Page 37</span>
+        <span class="character">Les invités</span>
+      </div>
+      <div class="italian">Che è ciò?</div>
+      <div class="french">Qu'est-ce ?</div>
+      <div class="context">Les invités entendent une musique venir d'une autre salle. Question collective, ton curieux.</div>
+    </div>
+
+    <div class="card ensemble">
+      <div class="card-head">
+        <span class="badge ensemble">ENSEMBLE</span>
+        <span class="page-num">Page 38</span>
+        <span class="character">Les invités</span>
+      </div>
+      <div class="italian">Oh, il gentil pensier! Tutti accettiamo.</div>
+      <div class="french">Oh, la gentille idée ! Nous acceptons tous.</div>
+      <div class="context">Violetta propose d'aller danser. Les invités acceptent avec enthousiasme.</div>
+    </div>
+
+    <div class="card ensemble">
+      <div class="card-head">
+        <span class="badge ensemble">ENSEMBLE</span>
+        <span class="page-num">Page 39</span>
+        <span class="character">Les invités (inquiets)</span>
+      </div>
+      <div class="italian">Che avete?</div>
+      <div class="french">Qu'avez-vous ?</div>
+      <div class="context">Violetta s'arrête, chancelle. Les invités s'alarment. Ton inquiet, mais pas encore paniqué.</div>
+    </div>
+
+    <div class="card ensemble">
+      <div class="card-head">
+        <span class="badge ensemble">ENSEMBLE</span>
+        <span class="page-num">Page 40</span>
+        <span class="character">Les invités</span>
+      </div>
+      <div class="italian">Che mai v'arresta?</div>
+      <div class="french">Qu'est-ce qui vous arrête ?</div>
+      <div class="context">Violetta doit s'asseoir, se sent mal. Les invités répètent leur inquiétude.</div>
+    </div>
+
+    <div class="card ensemble">
+      <div class="card-head">
+        <span class="badge ensemble">ENSEMBLE</span>
+        <span class="page-num">Page 41</span>
+        <span class="character">Les invités</span>
+      </div>
+      <div class="italian">Ancora! Oh ciel! ch'è questo?</div>
+      <div class="french">Encore ! Oh ciel ! qu'est-ce ?</div>
+      <div class="context">Crise plus forte. Ton vraiment inquiet maintenant. Violetta les rassure et les envoie danser.</div>
+    </div>
+
+    <div class="card ensemble">
+      <div class="card-head">
+        <span class="badge ensemble">ENSEMBLE</span>
+        <span class="page-num">Page 42</span>
+        <span class="character">Les invités</span>
+      </div>
+      <div class="italian">Come bramate.</div>
+      <div class="french">Comme vous voudrez.</div>
+      <div class="context"><strong>SORTIE des invités.</strong> Ils acceptent de la laisser et partent danser dans l'autre pièce. Alfredo reste. Fin de l'intervention du Marchese dans cette scène — suit le grand duo Violetta-Alfredo "Un dì felice, eterea" (sans Marchese).</div>
+    </div>
+  </div>
+
+  <!-- STRETTA -->
+  <div class="scene">
+    <h3>La Stretta — Sortie finale (p. 55-68)</h3>
+    <div class="acte-intro" style="margin-bottom:14px;">
+      <strong>Fin de l'acte I.</strong> Après le duo entre Violetta et Alfredo dans un salon à part, les invités reviennent de la danse. L'aube pointe. Tout le monde prend congé. Stretta = finale rapide et choral, généralement <em>presto</em> et très dynamique.
+    </div>
+
+    <div class="card pianiste">
+      <div class="card-head">
+        <span class="badge pianiste">INTRO PIANO</span>
+        <span class="page-num">Page 55</span>
+      </div>
+      <div class="context">Transition rapide au piano vers la Stretta. Tempo vif.</div>
+    </div>
+
+    <div class="card ensemble">
+      <div class="card-head">
+        <span class="badge ensemble">ENSEMBLE</span>
+        <span class="page-num">Pages 56-60</span>
+        <span class="character">Les invités (chœur)</span>
+      </div>
+      <div class="italian">Sì, ridesta in ciel l'aurora,<br>
+      e n'è forza ripartir;<br>
+      mercé a voi, gentil signora,<br>
+      di sì splendido gioir.</div>
+      <div class="french">Oui, l'aurore se réveille au ciel,<br>
+      il nous faut repartir ;<br>
+      merci à vous, gentille dame,<br>
+      pour ce si splendide plaisir.</div>
+      <div class="context">Le chœur remercie Violetta en partant. Ton galant, courtois. Marchese chante ligne de basse.</div>
+    </div>
+
+    <div class="card ensemble">
+      <div class="card-head">
+        <span class="badge ensemble">ENSEMBLE</span>
+        <span class="page-num">Pages 61-62</span>
+        <span class="character">Les invités (chœur)</span>
+      </div>
+      <div class="italian">La città di feste è piena,<br>
+      volge il tempo dei piacer;<br>
+      nel riposo ancor la lena<br>
+      si ritempri per goder.</div>
+      <div class="french">La ville est pleine de fêtes,<br>
+      voici le temps des plaisirs ;<br>
+      dans le repos encore la force<br>
+      se retrempera pour jouir.</div>
+      <div class="context">Suite de la Stretta. Idée : nous allons nous reposer pour mieux jouir à la prochaine fête. Hymne à l'hédonisme parisien.</div>
+    </div>
+
+    <div class="card ensemble">
+      <div class="card-head">
+        <span class="badge ensemble">ENSEMBLE</span>
+        <span class="page-num">Pages 63-68</span>
+        <span class="character">Les invités (chœur)</span>
+      </div>
+      <div class="italian">(reprise du texte avec variations et enchevêtrements)</div>
+      <div class="french">Répétitions et superpositions des motifs précédents.</div>
+      <div class="context">Ensemble très riche musicalement, avec superpositions de voix. Fin sur un grand accord final. <strong>FIN DE L'ACTE I.</strong></div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ============================================================ -->
+<!-- ================= ACTE II scène 2 =========================== -->
+<!-- ============================================================ -->
+<section class="acte" id="acte2">
+  <h2>Acte II, scène 2 — Fête chez Flora</h2>
+  <div class="acte-intro">
+    <strong>La situation :</strong> Plusieurs mois ont passé. Violetta et Alfredo ont vécu heureux dans une maison de campagne, mais Violetta a rompu (forcée par le père d'Alfredo, Germont, qui lui a demandé de quitter son fils pour sauver l'honneur de la famille — cela s'est passé dans l'Acte II scène 1, <strong>où le Marchese n'apparaît pas</strong>). Violetta est retournée à Paris avec le Baron Douphol.<br><br>
+    Ici, fête masquée chez Flora. Les invités arrivent. Le Marchese est là. Flora annonce la rupture à tous. Arrivée d'Alfredo, puis de Violetta avec le Baron. Scène de jeu de cartes. Scandale public : Alfredo insulte Violetta en lui jetant l'argent gagné. Le père d'Alfredo arrive et gronde son fils. Grand ensemble final.
+  </div>
+
+  <div class="key-moments">
+    <h4>📍 Les interventions du Marchese dans cet acte</h4>
+    <ul>
+      <li><strong>p.143</strong> — Solo : "La novità ignorate? Violetta e Germont sono disgiunti..." (LA phrase-clé)</li>
+      <li><strong>p.144</strong> — Ensemble et réaction à la remontrance de Flora</li>
+      <li><strong>p.147</strong> — Solo : "L'accusa è falsità!" (réponse à Flora)</li>
+      <li><strong>Pages 153-174</strong> — Scènes de cartes et Mattadori (ensemble)</li>
+      <li><strong>Pages 182-210</strong> — Scandale et Finale de l'acte (ensemble)</li>
+    </ul>
+  </div>
+
+  <!-- Ouverture Acte II sc.2 -->
+  <div class="scene">
+    <h3>Ouverture de la fête — La nouvelle (p. 142-148)</h3>
+
+    <div class="card pianiste">
+      <div class="card-head">
+        <span class="badge pianiste">INTRO PIANO</span>
+        <span class="page-num">Page 142</span>
+      </div>
+      <div class="context">Introduction de l'acte, avec les invités qui arrivent chez Flora.</div>
+    </div>
+
+    <div class="card marchese">
+      <div class="card-head">
+        <span class="badge marchese">SOLO MARCHESE ⭐</span>
+        <span class="page-num">Page 143</span>
+        <span class="character">MARCHESE</span>
+      </div>
+      <div class="italian">La novità ignorate? Violetta e Germont sono disgiunti. Ella verrà qui col Barone.</div>
+      <div class="french">Vous ne connaissez pas la nouvelle ? Violetta et Germont (Alfredo) se sont séparés. Elle viendra ici avec le Baron.</div>
+      <div class="context"><strong>C'est LA phrase la plus importante du Marchese dans tout l'opéra.</strong> Il annonce le grand scoop : Violetta a quitté Alfredo pour retourner avec le Baron Douphol. Cette annonce déclenche toute la dynamique de l'acte. Ton : mondain, un peu cancanier, presque fier de tenir la primeur. À bien articuler — c'est l'information clé pour le public.</div>
+    </div>
+
+    <div class="card ensemble">
+      <div class="card-head">
+        <span class="badge ensemble">ENSEMBLE</span>
+        <span class="page-num">Page 144</span>
+        <span class="character">Flora et les invités</span>
+      </div>
+      <div class="italian">Giungono gli amici.</div>
+      <div class="french">Les amis arrivent.</div>
+      <div class="context">Transition : d'autres invités arrivent (en costumes de gitanes et matadors). Flora les introduit.</div>
+    </div>
+
+    <div class="card autres">
+      <div class="card-head">
+        <span class="badge autres">FLORA (ne pas chanter)</span>
+        <span class="page-num">Page 148</span>
+        <span class="character">FLORA au Marchese</span>
+      </div>
+      <div class="italian">(Flora gronde le Marchese qui essaie de la flatter)<br>
+      La volpe lascia il pelo, non il vizio... Marchese mio, giudizio, o vi farò pentir.</div>
+      <div class="french">Le renard perd son poil, mais pas son vice... Mon cher Marchese, soyez sage, ou je vous ferai regretter.</div>
+      <div class="context">Scène où Flora réprimande le Marchese qui la courtise (il est son "protecteur" mais elle lui reproche son comportement volage ou indiscret). Proverbe italien : on peut changer d'apparence mais pas de caractère. Le Marchese reçoit la remontrance — cela prépare sa protestation page 147.</div>
+    </div>
+
+    <div class="card marchese">
+      <div class="card-head">
+        <span class="badge marchese">SOLO MARCHESE ⭐</span>
+        <span class="page-num">Page 147</span>
+        <span class="character">MARCHESE</span>
+      </div>
+      <div class="italian">Che diancin vi pensate? L'accusa è falsità!</div>
+      <div class="french">Que diable pensez-vous ? L'accusation est fausse !</div>
+      <div class="context">Le Marchese proteste : il nie ce dont Flora l'accuse (probablement une infidélité ou une galanterie avec une autre). Ton indigné mais toujours mondain, pas vraiment sérieux. Deuxième moment solo important du Marchese à l'Acte II.</div>
+    </div>
+
+    <div class="card ensemble">
+      <div class="card-head">
+        <span class="badge ensemble">ENSEMBLE</span>
+        <span class="page-num">Pages 149-151</span>
+        <span class="character">Les invités</span>
+      </div>
+      <div class="italian">Su via, si stenda un velo sui fatti del passato;<br>
+      già quel che è stato è stato,<br>
+      badiamo all'avvenir.</div>
+      <div class="french">Allez, tirons un voile sur le passé ;<br>
+      ce qui est fait est fait,<br>
+      pensons à l'avenir.</div>
+      <div class="context">Les invités calment la dispute Flora-Marchese. "Oublions le passé, pensons à l'avenir." Transition vers le divertissement des Mattadori.</div>
+    </div>
+  </div>
+
+  <!-- MATTADORI -->
+  <div class="scene">
+    <h3>Les Mattadori et les Gitanes (p. 152-163)</h3>
+    <div class="acte-intro" style="margin-bottom:14px;">
+      <strong>Divertissement central.</strong> Les invités ont organisé un petit spectacle : certains sont déguisés en gitanes et disent la bonne aventure, d'autres en matadors espagnols et racontent des histoires de tauromachie et d'amour. Très coloré, très rythmique. Marchese chante dans le chœur général.
+    </div>
+
+    <div class="card autres">
+      <div class="card-head">
+        <span class="badge autres">MATTADORI (ne pas chanter)</span>
+        <span class="page-num">Page 152</span>
+        <span class="character">Les Mattadori (ténors)</span>
+      </div>
+      <div class="italian">Di Madride noi siam mattadori, siamo i prodi del circo dei tori. Testé giunti a godere del chiasso che a Parigi si fa pel bue grasso.</div>
+      <div class="french">De Madrid nous sommes matadors, nous sommes les braves du cirque des taureaux. À peine arrivés pour profiter du bruit qu'on fait à Paris pour le bœuf gras (Carnaval).</div>
+      <div class="context">Les Mattadori se présentent. Fièrement espagnols.</div>
+    </div>
+
+    <div class="card ensemble">
+      <div class="card-head">
+        <span class="badge ensemble">ENSEMBLE</span>
+        <span class="page-num">Page 153</span>
+        <span class="character">Les invités (dont Marchese)</span>
+      </div>
+      <div class="italian">Sì, sì, bravi, narrate, con piacere l'udremo.</div>
+      <div class="french">Oui, bravo, racontez, nous écouterons avec plaisir.</div>
+      <div class="context">Les invités encouragent les Mattadori à raconter leur histoire. Participation vive, amicale.</div>
+    </div>
+
+    <div class="card ensemble">
+      <div class="card-head">
+        <span class="badge ensemble">ENSEMBLE</span>
+        <span class="page-num">Pages 157-159</span>
+        <span class="character">Chœur (dont Marchese)</span>
+      </div>
+      <div class="italian">Bravo, invero, il mattadore,<br>
+      ben gagliardo si mostrò!<br>
+      Con tai prove i mattadori<br>
+      san le amanti conquistar!</div>
+      <div class="french">Bravo vraiment, le matador,<br>
+      il s'est montré bien vaillant !<br>
+      Avec de telles preuves, les matadors<br>
+      savent conquérir les amantes !</div>
+      <div class="context">Les invités applaudissent la fanfaronnade des matadors. Ton joyeux, moqueur, complice. Rythmique forte à souligner dans la basse.</div>
+    </div>
+
+    <div class="card ensemble">
+      <div class="card-head">
+        <span class="badge ensemble">ENSEMBLE</span>
+        <span class="page-num">Pages 160-163</span>
+        <span class="character">Chœur</span>
+      </div>
+      <div class="italian">Sì, allegri... Or pria tentiamo della sorte il vario umor;<br>
+      la palestra dischiudiamo agli audaci giocator.</div>
+      <div class="french">Oui, amusons-nous... Tentons d'abord l'humeur variable du sort ;<br>
+      ouvrons l'arène aux audacieux joueurs.</div>
+      <div class="context">Transition vers la scène de jeu. Les invités mettent en place les tables de cartes.</div>
+    </div>
+  </div>
+
+  <!-- Scène de jeu -->
+  <div class="scene">
+    <h3>Le jeu de cartes — Alfredo arrive (p. 164-174)</h3>
+    <div class="acte-intro" style="margin-bottom:14px;">
+      <strong>Arrivée d'Alfredo.</strong> Alors qu'on joue aux cartes, Alfredo entre — au grand étonnement général (tout le monde croyait qu'il resterait loin de Violetta). Il joue et gagne contre le Baron. Tension palpable.
+    </div>
+
+    <div class="card ensemble">
+      <div class="card-head">
+        <span class="badge ensemble">ENSEMBLE</span>
+        <span class="page-num">Page 164</span>
+        <span class="character">Les invités</span>
+      </div>
+      <div class="italian">Alfredo!... Voi!...</div>
+      <div class="french">Alfredo !... Vous !...</div>
+      <div class="context">Stupéfaction générale à l'arrivée d'Alfredo. Exclamations courtes.</div>
+    </div>
+
+    <div class="card ensemble">
+      <div class="card-head">
+        <span class="badge ensemble">ENSEMBLE</span>
+        <span class="page-num">Page 165</span>
+        <span class="character">Les invités</span>
+      </div>
+      <div class="italian">Ben disinvolto!... Bravo!</div>
+      <div class="french">Bien décontracté !... Bravo !</div>
+      <div class="context">Les invités notent qu'Alfredo fait comme si de rien n'était. Ton un peu sarcastique, moqueur.</div>
+    </div>
+
+    <div class="card ensemble">
+      <div class="card-head">
+        <span class="badge ensemble">ENSEMBLE</span>
+        <span class="page-num">Page 166</span>
+        <span class="character">Les invités</span>
+      </div>
+      <div class="italian">...via, giuocar si può.</div>
+      <div class="french">...allez, on peut jouer.</div>
+      <div class="context">On revient au jeu de cartes. Alfredo s'installe.</div>
+    </div>
+
+    <div class="card ensemble">
+      <div class="card-head">
+        <span class="badge ensemble">ENSEMBLE</span>
+        <span class="page-num">Pages 169-173</span>
+        <span class="character">Les invités (chœur)</span>
+      </div>
+      <div class="italian">È sempre vincitore! / Ancora! / Bravo davver! La sorte è tutta per Alfredo!</div>
+      <div class="french">Il gagne toujours ! / Encore ! / Bravo vraiment ! La chance est toute pour Alfredo !</div>
+      <div class="context">Alfredo gagne coup sur coup contre le Baron. Les invités commentent avec excitation. Tension dramatique qui monte.</div>
+    </div>
+
+    <div class="card ensemble">
+      <div class="card-head">
+        <span class="badge ensemble">ENSEMBLE</span>
+        <span class="page-num">Page 174</span>
+        <span class="character">Les invités</span>
+      </div>
+      <div class="italian">Andiamo.</div>
+      <div class="french">Allons-y.</div>
+      <div class="context">On passe à table pour le souper. Violetta demande à parler à Alfredo en privé.</div>
+    </div>
+  </div>
+
+  <!-- Scandale -->
+  <div class="scene">
+    <h3>Le scandale — Alfredo humilie Violetta (p. 181-190)</h3>
+    <div class="acte-intro" style="margin-bottom:14px;">
+      <strong>Le grand moment dramatique de l'Acte II.</strong> Violetta supplie Alfredo de partir — elle a peur que le Baron ne le provoque en duel. Alfredo, croyant qu'elle aime le Baron, perd tout contrôle. Il appelle les invités et, devant tout le monde, jette à Violetta l'argent qu'il vient de gagner au jeu, en prétendant la "payer" pour leurs nuits passées ensemble. Scandale absolu. Puis arrive son père, Germont.
+    </div>
+
+    <div class="card pianiste">
+      <div class="card-head">
+        <span class="badge pianiste">INTRO PIANO</span>
+        <span class="page-num">Page 181</span>
+      </div>
+      <div class="context">Transition tendue. Alfredo appelle les invités.</div>
+    </div>
+
+    <div class="card ensemble">
+      <div class="card-head">
+        <span class="badge ensemble">ENSEMBLE</span>
+        <span class="page-num">Page 182</span>
+        <span class="character">Les invités</span>
+      </div>
+      <div class="italian">Ne appellaste? Che volete?</div>
+      <div class="french">Vous nous avez appelés ? Que voulez-vous ?</div>
+      <div class="context">Les invités (dont Marchese) reviennent au salon, intrigués par les cris d'Alfredo.</div>
+    </div>
+
+    <div class="card ensemble">
+      <div class="card-head">
+        <span class="badge ensemble">ENSEMBLE</span>
+        <span class="page-num">Page 183</span>
+        <span class="character">Les invités</span>
+      </div>
+      <div class="italian">Chi? Violetta?</div>
+      <div class="french">Qui ? Violetta ?</div>
+      <div class="context">Les invités demandent de qui Alfredo veut parler.</div>
+    </div>
+
+    <div class="card autres">
+      <div class="card-head">
+        <span class="badge autres">ALFREDO (ne pas chanter)</span>
+        <span class="page-num">Page 184</span>
+        <span class="character">ALFREDO à tous</span>
+      </div>
+      <div class="italian">Ogni suo aver tal femmina per amor mio sperdea... Io cieco, vile, misero, tutto accettar potea! Ma è tempo ancora, tergermi da tanta macchia bramo. Qui testimoni vi chiamo che qui pagata io l'ho!</div>
+      <div class="french">Cette femme a dilapidé tout son avoir par amour pour moi... Moi, aveugle, vil, misérable, j'ai tout accepté ! Mais il est encore temps, je veux me laver de cette honte. Ici je vous prends à témoin, maintenant elle est payée !</div>
+      <div class="context"><strong>Moment capital.</strong> Alfredo jette une bourse de billets aux pieds de Violetta. Acte d'humiliation publique. Violetta s'évanouit. Le Marchese n'a rien à chanter ici mais doit <em>réagir</em> — visage horrifié.</div>
+    </div>
+
+    <div class="card ensemble">
+      <div class="card-head">
+        <span class="badge ensemble">ENSEMBLE</span>
+        <span class="page-num">Page 185</span>
+        <span class="character">Les invités (indignés)</span>
+      </div>
+      <div class="italian">Oh, infamia orribile tu commettesti! Un cor sensibile così uccidesti!</div>
+      <div class="french">Oh, quelle infamie horrible tu as commise ! Un cœur sensible, tu l'as ainsi tué !</div>
+      <div class="context">Les invités (dont Marchese) condamnent vivement le geste d'Alfredo. Ton d'indignation sincère. <strong>Marchese chante dans ce chœur indigné.</strong></div>
+    </div>
+
+    <div class="card ensemble">
+      <div class="card-head">
+        <span class="badge ensemble">ENSEMBLE</span>
+        <span class="page-num">Pages 186-188</span>
+        <span class="character">Les invités</span>
+      </div>
+      <div class="italian">Di donne ignobile insultator,<br>
+      di qua allontanati, ne desti orror!</div>
+      <div class="french">Ignoble insulteur de femmes,<br>
+      éloigne-toi d'ici, tu nous fais horreur !</div>
+      <div class="context">Le chœur chasse Alfredo : "Pars d'ici, tu nous fais honte." Montée dramatique forte.</div>
+    </div>
+
+    <div class="card autres">
+      <div class="card-head">
+        <span class="badge autres">GERMONT (ne pas chanter)</span>
+        <span class="page-num">Page 189</span>
+        <span class="character">GERMONT père (entre)</span>
+      </div>
+      <div class="italian">Di sprezzo degno se stesso rende chi pur nell'ira la donna offende. Dov'è mio figlio?... più non lo vedo; in te più Alfredo trovar non so.</div>
+      <div class="french">Se rend digne de mépris celui qui, même en colère, offense une femme. Où est mon fils ?... je ne le vois plus ; en toi, je ne retrouve plus Alfredo.</div>
+      <div class="context">Arrivée du père d'Alfredo. Il gronde son fils publiquement. Baryton noble.</div>
+    </div>
+
+    <div class="card autres">
+      <div class="card-head">
+        <span class="badge autres">ALFREDO (ne pas chanter)</span>
+        <span class="page-num">Page 190</span>
+        <span class="character">ALFREDO (à part, rongé par le remords)</span>
+      </div>
+      <div class="italian">Ah sì! che feci!... ne sento orrore!... Gelosa smania, deluso amore mi strazian l'alma... più non ragiono... Da lei perdono più non avrò.</div>
+      <div class="french">Ah oui ! qu'ai-je fait ! J'en ressens l'horreur ! Folie jalouse, amour déçu me déchirent l'âme... Je ne raisonne plus... Son pardon, je ne l'obtiendrai plus.</div>
+      <div class="context">Alfredo, sous le coup du choc, prend conscience de son acte. Aparté chanté.</div>
+    </div>
+  </div>
+
+  <!-- Finale -->
+  <div class="scene">
+    <h3>Finale de l'Acte II — "Quanto peni! Fa cor!" (p. 191-210)</h3>
+    <div class="acte-intro" style="margin-bottom:14px;">
+      <strong>Grand ensemble final.</strong> Tous réagissent au drame : Germont commente la douleur cachée de Violetta, Violetta pleure en secret (elle aime toujours Alfredo mais ne peut le lui dire à cause de sa promesse à Germont), Alfredo est rongé de remords, les invités essaient de consoler Violetta. Énorme morceau choral, très long, avec superpositions de voix. Le Marchese chante avec les invités ("Oh, quanto peni").
+    </div>
+
+    <div class="card ensemble">
+      <div class="card-head">
+        <span class="badge ensemble">ENSEMBLE</span>
+        <span class="page-num">Pages 191-195</span>
+        <span class="character">Les invités (hommes et femmes, dont Marchese)</span>
+      </div>
+      <div class="italian">Oh, quanto peni! Ma pur fa cor,<br>
+      qui soffre ognuno del tuo dolor;<br>
+      fra cari amici qui sei soltanto;<br>
+      rasciuga il pianto che t'inondò.</div>
+      <div class="french">Oh, combien tu souffres ! Mais prends courage,<br>
+      ici chacun souffre de ta douleur ;<br>
+      parmi de chers amis tu es seule ici ;<br>
+      essuie les larmes qui t'ont inondée.</div>
+      <div class="context">Les invités consolent Violetta. Texte doux, ligne mélodique noble. <strong>C'est le morceau choral le plus long de Marchese dans l'opéra.</strong> Il revient plusieurs fois, en variations. À bien connaître car c'est l'ancrage final.</div>
+    </div>
+
+    <div class="card ensemble">
+      <div class="card-head">
+        <span class="badge ensemble">ENSEMBLE</span>
+        <span class="page-num">Pages 196-210</span>
+        <span class="character">TUTTI (superposition des voix)</span>
+      </div>
+      <div class="italian">(Reprises et variations du "Oh, quanto peni! Ma pur fa cor..." avec toutes les voix qui se superposent : Germont commente, Alfredo se désole, Violetta chante sa vraie douleur, les invités continuent de consoler. Grande architecture chorale.)</div>
+      <div class="french">Grand ensemble choral final avec tous les personnages. Le Marchese reste dans la ligne des invités (consolation).</div>
+      <div class="context"><strong>Finale Acte II.</strong> L'un des passages les plus riches musicalement de tout l'opéra. Tous les personnages expriment leur état intérieur en même temps, mais musicalement tout s'harmonise. La note finale est tenue longuement. <strong>FIN DE L'ACTE II.</strong></div>
+    </div>
+
+  </div>
+
+</section>
+
+<footer style="text-align:center; color:var(--text-mute); padding:30px 20px; font-size:0.85em;">
+  <p>Document de travail — La Traviata, rôle du Marchese d'Obigny<br>
+  Compilation des traductions italien / français avec contexte dramatique pour chaque page de la partition.</p>
+  <p style="color:var(--gold-light); margin-top:10px;">⭐ = passages solo cruciaux à apprendre en priorité par cœur</p>
+</footer>
+
+</main>
+
+</body>
+</html>

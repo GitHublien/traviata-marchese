@@ -1,0 +1,1593 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Traviata · Opéra Nice Côte d'Azur · Mickaël Guedj</title>
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --bg-soft: #14110d;
+    --bg-card: #1a1611;
+    --bg-elev: #221d16;
+    --gold: #c9a961;
+    --gold-bright: #e8c878;
+    --gold-soft: #8a7345;
+    --gold-deep: #6b5836;
+    --ivory: #f5efe0;
+    --ivory-soft: #d8d2c4;
+    --ivory-muted: #9b9588;
+    --line: #2a241b;
+    --line-bright: #3d3424;
+    --rep: #b91c4d;
+    --rep-soft: #6b1230;
+    --musicale: #c9a961;
+    --transport: #5a8c6f;
+    --scene: #b08968;
+    --shadow: 0 6px 24px rgba(0,0,0,0.6);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: "Cormorant Garamond", "EB Garamond", Georgia, "Times New Roman", serif;
+    background: var(--bg);
+    color: var(--ivory);
+    line-height: 1.65;
+    font-size: 17px;
+    background-image:
+      radial-gradient(circle at 20% 0%, rgba(201,169,97,0.04) 0%, transparent 50%),
+      radial-gradient(circle at 80% 100%, rgba(201,169,97,0.03) 0%, transparent 50%);
+    min-height: 100vh;
+  }
+
+  /* ============== TOP BAR ============== */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,10,10,0.94);
+    border-bottom: 1px solid var(--gold-deep);
+    backdrop-filter: blur(12px);
+    padding: 14px 28px;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+
+  .topbar .brand {
+    font-family: "Playfair Display", "Cormorant Garamond", Georgia, serif;
+    font-weight: 700;
+    font-size: 19px;
+    color: var(--gold-bright);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .topbar .brand .accent {
+    color: var(--ivory);
+    font-style: italic;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0;
+    margin-left: 8px;
+  }
+
+  .nav {
+    display: flex;
+    gap: 4px;
+    flex: 1;
+    flex-wrap: wrap;
+  }
+
+  .nav a {
+    padding: 8px 14px;
+    text-decoration: none;
+    color: var(--ivory-muted);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    border-bottom: 1px solid transparent;
+    transition: all 0.25s ease;
+    text-transform: uppercase;
+    font-family: "Cormorant Garamond", Georgia, serif;
+  }
+
+  .nav a:hover {
+    color: var(--gold-bright);
+    border-bottom-color: var(--gold);
+  }
+
+  .nav a.active {
+    color: var(--gold-bright);
+    border-bottom-color: var(--gold);
+  }
+
+  /* ============== HERO ============== */
+  .hero {
+    position: relative;
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 80px 24px;
+    background:
+      linear-gradient(180deg, transparent 0%, rgba(10,10,10,0.6) 60%, var(--bg) 100%),
+      radial-gradient(ellipse at center, rgba(201,169,97,0.08) 0%, transparent 70%);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    max-width: 600px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .hero::after {
+    content: "";
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    max-width: 600px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .hero .opera-mark {
+    font-size: 12px;
+    letter-spacing: 0.4em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    font-family: sans-serif;
+  }
+
+  .hero h1 {
+    font-family: "Playfair Display", "Cormorant Garamond", Georgia, serif;
+    font-size: clamp(3.5rem, 9vw, 7rem);
+    color: var(--ivory);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1;
+    margin-bottom: 14px;
+    letter-spacing: 0.02em;
+  }
+
+  .hero .composer {
+    font-size: 18px;
+    color: var(--gold);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 36px;
+  }
+
+  .hero .role-badge {
+    display: inline-block;
+    padding: 14px 32px;
+    border: 1px solid var(--gold);
+    color: var(--gold-bright);
+    font-size: 15px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-top: 20px;
+    background: rgba(201,169,97,0.05);
+  }
+
+  .hero .role-badge .name {
+    display: block;
+    font-family: "Playfair Display", Georgia, serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--ivory);
+    text-transform: none;
+    letter-spacing: 0;
+    margin-top: 6px;
+  }
+
+  .hero .dates {
+    margin-top: 32px;
+    color: var(--ivory-soft);
+    font-size: 17px;
+    letter-spacing: 0.08em;
+  }
+
+  /* ============== SECTIONS ============== */
+  section {
+    padding: 80px 32px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-title {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 42px;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--gold-bright);
+    text-align: center;
+    margin-bottom: 12px;
+  }
+
+  .section-sub {
+    text-align: center;
+    color: var(--ivory-muted);
+    font-size: 14px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 50px;
+  }
+
+  .ornement {
+    text-align: center;
+    color: var(--gold);
+    font-size: 22px;
+    margin: 30px 0;
+    letter-spacing: 0.5em;
+  }
+
+  /* ============== CARTES BIENVENUE ============== */
+  .welcome-card {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--gold);
+    padding: 40px 48px;
+    margin: 30px auto;
+    max-width: 900px;
+    box-shadow: var(--shadow);
+    position: relative;
+  }
+
+  .welcome-card .signature {
+    margin-top: 24px;
+    text-align: right;
+    font-style: italic;
+    color: var(--gold-bright);
+    font-size: 18px;
+    border-top: 1px solid var(--line);
+    padding-top: 20px;
+  }
+
+  .welcome-card .signature strong {
+    display: block;
+    color: var(--ivory);
+    font-style: normal;
+    margin-top: 4px;
+    letter-spacing: 0.05em;
+  }
+
+  .welcome-card p {
+    margin-bottom: 16px;
+    color: var(--ivory-soft);
+    text-align: justify;
+  }
+
+  /* ============== STATS RAPIDES ============== */
+  .quick-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin: 50px 0;
+  }
+
+  .stat {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    padding: 24px;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+
+  .stat:hover {
+    border-color: var(--gold);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+  }
+
+  .stat .num {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 38px;
+    color: var(--gold-bright);
+    display: block;
+    margin-bottom: 4px;
+    line-height: 1;
+  }
+
+  .stat .label {
+    color: var(--ivory-muted);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+  }
+
+  /* ============== DISTRIBUTION ============== */
+  .distribution-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    margin-top: 30px;
+  }
+
+  .dist-cell {
+    background: var(--bg-card);
+    padding: 20px 24px;
+    transition: background 0.2s;
+  }
+
+  .dist-cell:hover {
+    background: var(--bg-elev);
+  }
+
+  .dist-cell .role {
+    color: var(--gold);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    margin-bottom: 6px;
+  }
+
+  .dist-cell .name {
+    color: var(--ivory);
+    font-size: 18px;
+    font-family: "Playfair Display", Georgia, serif;
+    font-style: italic;
+  }
+
+  .dist-cell.featured {
+    background: linear-gradient(135deg, rgba(201,169,97,0.08) 0%, var(--bg-card) 100%);
+    border: 2px solid var(--gold);
+    grid-column: span 2;
+  }
+
+  .dist-cell.featured .name {
+    color: var(--gold-bright);
+    font-size: 24px;
+  }
+
+  .dist-cell.featured .role {
+    color: var(--ivory);
+  }
+
+  .dist-section-title {
+    font-family: "Playfair Display", Georgia, serif;
+    color: var(--gold-bright);
+    font-size: 22px;
+    font-style: italic;
+    margin: 50px 0 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--gold-deep);
+  }
+
+  /* ============== REPRESENTATIONS HIGHLIGHT ============== */
+  .reps-banner {
+    background: linear-gradient(135deg, rgba(185,28,77,0.12) 0%, rgba(107,18,48,0.08) 100%);
+    border: 1px solid var(--rep-soft);
+    border-left: 3px solid var(--rep);
+    padding: 36px;
+    margin: 40px 0;
+  }
+
+  .reps-banner .title {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 24px;
+    color: var(--ivory);
+    font-style: italic;
+    margin-bottom: 20px;
+  }
+
+  .reps-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin-top: 16px;
+  }
+
+  .rep-item {
+    background: var(--bg);
+    border: 1px solid var(--rep-soft);
+    padding: 14px 18px;
+    text-align: center;
+  }
+
+  .rep-item .num {
+    color: var(--rep);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .rep-item .date {
+    color: var(--ivory);
+    font-size: 16px;
+    font-family: "Playfair Display", Georgia, serif;
+  }
+
+  .rep-item .hour {
+    color: var(--ivory-muted);
+    font-size: 13px;
+    margin-top: 4px;
+  }
+
+  /* ============== PLANNING ============== */
+  .planning-controls {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 30px 0;
+  }
+
+  .filter-btn {
+    background: transparent;
+    border: 1px solid var(--gold-deep);
+    color: var(--ivory-muted);
+    padding: 8px 16px;
+    font-family: inherit;
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .filter-btn:hover, .filter-btn.active {
+    background: var(--gold);
+    color: var(--bg);
+    border-color: var(--gold);
+  }
+
+  .week-block {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    margin: 20px 0;
+    overflow: hidden;
+  }
+
+  .week-header {
+    background: var(--bg-elev);
+    padding: 16px 24px;
+    border-left: 3px solid var(--gold);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .week-header:hover {
+    background: rgba(201,169,97,0.08);
+  }
+
+  .week-header .week-title {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 19px;
+    color: var(--gold-bright);
+    font-style: italic;
+  }
+
+  .week-header .week-count {
+    color: var(--ivory-muted);
+    font-size: 13px;
+    letter-spacing: 0.1em;
+  }
+
+  .week-content {
+    padding: 0;
+  }
+
+  .day-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    border-top: 1px solid var(--line);
+    padding: 16px 24px;
+    transition: background 0.2s;
+  }
+
+  .day-row:hover {
+    background: rgba(201,169,97,0.04);
+  }
+
+  .day-row .day-date {
+    color: var(--gold-bright);
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 17px;
+    font-style: italic;
+  }
+
+  .day-row .day-events {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .event {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 14px;
+    color: var(--ivory-soft);
+  }
+
+  .event .hour {
+    color: var(--gold);
+    min-width: 110px;
+    font-family: "Courier New", monospace;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+  }
+
+  .event .place {
+    color: var(--ivory-muted);
+    min-width: 130px;
+    font-size: 13px;
+    font-style: italic;
+  }
+
+  .event .activity {
+    flex: 1;
+  }
+
+  .event-tag {
+    display: inline-block;
+    padding: 3px 10px;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border-radius: 2px;
+  }
+
+  .tag-musicale { background: rgba(201,169,97,0.15); color: var(--gold-bright); border: 1px solid var(--gold-deep); }
+  .tag-scene { background: rgba(176,137,104,0.15); color: var(--scene); border: 1px solid var(--scene); }
+  .tag-rep { background: rgba(185,28,77,0.18); color: #e96388; border: 1px solid var(--rep); font-weight: 700; }
+  .tag-transport { background: rgba(90,140,111,0.15); color: #8ab39a; border: 1px solid var(--transport); }
+  .tag-mise { background: rgba(154,118,196,0.15); color: #b899d4; border: 1px solid #6a5083; }
+  .tag-lumiere { background: rgba(220,180,80,0.15); color: #e0c060; border: 1px solid #806c30; }
+  .tag-italienne { background: rgba(80,160,180,0.15); color: #80c8d8; border: 1px solid #4a7d8b; }
+  .tag-default { background: rgba(255,255,255,0.05); color: var(--ivory-soft); border: 1px solid var(--line); }
+  .tag-off { background: var(--bg); color: var(--ivory-muted); border: 1px solid var(--line); }
+
+  .day-off { opacity: 0.5; }
+
+  .day-row.is-rep {
+    background: linear-gradient(90deg, rgba(185,28,77,0.06) 0%, transparent 100%);
+    border-left: 3px solid var(--rep);
+  }
+
+  /* ============== CONTACTS ============== */
+  .contacts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 16px;
+    margin-top: 30px;
+  }
+
+  .contact-card {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    padding: 20px 24px;
+    transition: all 0.3s;
+  }
+
+  .contact-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+  }
+
+  .contact-card .role {
+    color: var(--gold);
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .contact-card .name {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 18px;
+    color: var(--ivory);
+    margin-bottom: 12px;
+    font-style: italic;
+  }
+
+  .contact-card a {
+    display: block;
+    color: var(--ivory-soft);
+    text-decoration: none;
+    font-size: 14px;
+    margin-bottom: 4px;
+    transition: color 0.2s;
+  }
+
+  .contact-card a:hover {
+    color: var(--gold-bright);
+  }
+
+  .contact-card .icon {
+    color: var(--gold-soft);
+    margin-right: 8px;
+    font-size: 13px;
+  }
+
+  /* ============== PRATIQUE ============== */
+  .pratique-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    margin-top: 30px;
+  }
+
+  .pratique-card {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--gold);
+    padding: 24px;
+  }
+
+  .pratique-card h3 {
+    font-family: "Playfair Display", Georgia, serif;
+    color: var(--gold-bright);
+    font-size: 20px;
+    font-style: italic;
+    margin-bottom: 16px;
+  }
+
+  .pratique-card ul {
+    list-style: none;
+  }
+
+  .pratique-card li {
+    padding: 8px 0;
+    border-bottom: 1px solid var(--line);
+    color: var(--ivory-soft);
+    font-size: 14px;
+  }
+
+  .pratique-card li:last-child { border-bottom: none; }
+
+  .pratique-card li strong {
+    color: var(--gold-bright);
+    margin-right: 8px;
+  }
+
+  .wifi-card {
+    background: linear-gradient(135deg, rgba(201,169,97,0.1) 0%, var(--bg-card) 100%);
+    border: 1px solid var(--gold);
+    text-align: center;
+  }
+
+  .wifi-card .wifi-info {
+    margin: 16px 0;
+    padding: 12px;
+    background: var(--bg);
+    border: 1px dashed var(--gold-deep);
+    font-family: "Courier New", monospace;
+    color: var(--gold-bright);
+  }
+
+  /* ============== LIENS PARTITION ============== */
+  .resources-section {
+    padding: 60px 32px;
+    background: linear-gradient(180deg, transparent 0%, rgba(201,169,97,0.04) 50%, transparent 100%);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    margin: 50px 0;
+  }
+
+  .resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 30px auto;
+  }
+
+  .resource-link {
+    display: block;
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    padding: 24px;
+    text-decoration: none;
+    color: inherit;
+    text-align: center;
+    transition: all 0.3s;
+  }
+
+  .resource-link:hover {
+    border-color: var(--gold);
+    background: var(--bg-elev);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+  }
+
+  .resource-link .icon {
+    font-size: 36px;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+
+  .resource-link .title {
+    font-family: "Playfair Display", Georgia, serif;
+    font-style: italic;
+    font-size: 19px;
+    color: var(--ivory);
+    margin-bottom: 6px;
+  }
+
+  .resource-link .desc {
+    color: var(--ivory-muted);
+    font-size: 13px;
+    letter-spacing: 0.05em;
+  }
+
+  /* ============== HISTORIQUE ============== */
+  .historique-text {
+    max-width: 800px;
+    margin: 30px auto;
+    color: var(--ivory-soft);
+    font-size: 16px;
+    line-height: 1.85;
+  }
+
+  .historique-text p {
+    margin-bottom: 18px;
+    text-align: justify;
+  }
+
+  .historique-text .lead {
+    font-size: 19px;
+    font-style: italic;
+    color: var(--gold-bright);
+    text-align: center;
+    margin: 30px 0;
+  }
+
+  /* ============== FOOTER ============== */
+  footer {
+    text-align: center;
+    padding: 50px 24px;
+    border-top: 1px solid var(--line);
+    color: var(--ivory-muted);
+    font-size: 13px;
+    letter-spacing: 0.1em;
+  }
+
+  footer .ornement-final {
+    color: var(--gold);
+    font-size: 24px;
+    margin-bottom: 16px;
+    letter-spacing: 0.5em;
+  }
+
+  /* ============== RESPONSIVE ============== */
+  @media (max-width: 768px) {
+    section { padding: 50px 18px; }
+    .section-title { font-size: 32px; }
+    .topbar { padding: 12px 18px; gap: 12px; }
+    .nav { gap: 0; }
+    .nav a { padding: 6px 10px; font-size: 12px; }
+    .day-row {
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+    .event {
+      flex-wrap: wrap;
+    }
+    .event .hour, .event .place {
+      min-width: auto;
+    }
+    .dist-cell.featured {
+      grid-column: span 1;
+    }
+    .welcome-card {
+      padding: 24px;
+    }
+  }
+
+  /* ============== UTILS ============== */
+  .hidden { display: none !important; }
+
+  ::selection {
+    background: var(--gold);
+    color: var(--bg);
+  }
+</style>
+</head>
+<body>
+
+<!-- ============== TOP BAR ============== -->
+<div class="topbar">
+  <div class="brand">Opéra Nice <span class="accent">— La Traviata</span></div>
+  <nav class="nav">
+    <a href="#hero">Accueil</a>
+    <a href="#bienvenue">Bienvenue</a>
+    <a href="#distribution">Distribution</a>
+    <a href="#planning">Planning</a>
+    <a href="#representations">Représentations</a>
+    <a href="#contacts">Contacts</a>
+    <a href="#pratique">Pratique</a>
+    <a href="#travail">Travail du rôle</a>
+  </nav>
+</div>
+
+<!-- ============== HERO ============== -->
+<section class="hero" id="hero">
+  <div class="opera-mark">Opéra Nice Côte d'Azur · Saison 2025-2026</div>
+  <h1>La Traviata</h1>
+  <div class="composer">Giuseppe Verdi</div>
+
+  <div class="role-badge">
+    Mickaël Guedj
+    <span class="name">Marchese d'Obigny</span>
+  </div>
+
+  <div class="dates">27 mai — 6 juin 2026 · 8 représentations</div>
+</section>
+
+<!-- ============== BIENVENUE ============== -->
+<section id="bienvenue">
+  <div class="section-title">Bienvenue</div>
+  <div class="section-sub">Mot du Directeur Général</div>
+
+  <div class="welcome-card">
+    <p>Vous avez répondu à notre invitation pour faire partie de notre Maison pendant quelques semaines de répétitions, de représentations, et je vous remercie d'avoir accepté ce nouveau défi artistique.</p>
+    <p>En tant que Directeur général, je suis heureux de vous accueillir avec mes équipes pour cette nouvelle production de l'Opéra Nice Côte d'Azur, maison de création innovante, rassembleuse de tous les publics, lieu de rencontres où se croisent les artistes de renommée internationale.</p>
+    <p>L'Opéra Nice Côte d'Azur est le premier opéra faisant face à la Méditerranée. Il est situé en plein cœur de notre belle ville de Nice, une ville cosmopolite, accueillante et rayonnante entre mer et montagne, habitée par des personnes généreuses, empreinte d'une culture forte.</p>
+    <p>J'espère que l'aventure que nous allons traverser ensemble à l'Opéra Nice Côte d'Azur tout au long de cette production et les couleurs de la Méditerranée, vous laisseront pour longtemps de beaux souvenirs.</p>
+    <div class="signature">
+      Très cordialement,
+      <strong>Bertrand Rossi · Directeur Général</strong>
+    </div>
+  </div>
+
+  <div class="quick-stats">
+    <div class="stat"><span class="num">8</span><span class="label">Représentations</span></div>
+    <div class="stat"><span class="num">2h50</span><span class="label">Durée + entracte</span></div>
+    <div class="stat"><span class="num">40</span><span class="label">Choristes</span></div>
+    <div class="stat"><span class="num">3</span><span class="label">Actes</span></div>
+    <div class="stat"><span class="num">6</span><span class="label">Danseurs</span></div>
+  </div>
+
+  <div class="ornement">✦ &nbsp; ✦ &nbsp; ✦</div>
+
+  <p style="text-align:center; max-width:800px; margin:0 auto; color:var(--ivory-muted); font-style:italic;">
+    Opéra en trois actes de Giuseppe Verdi, sur un livret de Francesco Maria Piave d'après <em>La Dame aux camélias</em> d'Alexandre Dumas. Création au Teatro La Fenice de Venise le 6 mars 1853.<br><br>
+    <strong style="color:var(--gold);">Nouvelle production —</strong> Coproduction Opéra Nice Côte d'Azur, Angers Nantes Opéra, Opéra de Rennes, Grand Théâtre — Opéra de Tours, Opéra Orchestre National Montpellier Occitanie.
+  </p>
+</section>
+
+<!-- ============== DISTRIBUTION ============== -->
+<section id="distribution">
+  <div class="section-title">Distribution</div>
+  <div class="section-sub">L'équipe artistique</div>
+
+  <div class="dist-section-title">Mise en scène & création</div>
+  <div class="distribution-grid">
+    <div class="dist-cell"><div class="role">Mise en scène</div><div class="name">Silvia Paoli</div></div>
+    <div class="dist-cell"><div class="role">Collaboration artistique</div><div class="name">Tecla Gucci</div></div>
+    <div class="dist-cell"><div class="role">Assistant mise en scène</div><div class="name">Tristan Gouaillier</div></div>
+    <div class="dist-cell"><div class="role">Décors</div><div class="name">Lisetta Buccellato</div></div>
+    <div class="dist-cell"><div class="role">Costumes</div><div class="name">Valeria Donata Bettella</div></div>
+    <div class="dist-cell"><div class="role">Assistante costumes</div><div class="name">Margherita Plate</div></div>
+    <div class="dist-cell"><div class="role">Lumières</div><div class="name">Fiammetta Baldiserri</div></div>
+    <div class="dist-cell"><div class="role">Reprise lumières</div><div class="name">Silvia Vacca</div></div>
+    <div class="dist-cell"><div class="role">Chorégraphie</div><div class="name">Emanuele Rosa</div></div>
+  </div>
+
+  <div class="dist-section-title">Direction musicale</div>
+  <div class="distribution-grid">
+    <div class="dist-cell"><div class="role">Chef d'orchestre</div><div class="name">Andrea Sanguineti</div></div>
+    <div class="dist-cell"><div class="role">Assistant direction musicale</div><div class="name">Frédéric Deloche</div></div>
+    <div class="dist-cell"><div class="role">Chef de chœur</div><div class="name">Giulio Magnanini</div></div>
+    <div class="dist-cell"><div class="role">Chef de chant</div><div class="name">Sébastien Driant</div></div>
+    <div class="dist-cell"><div class="role">Chef de chant</div><div class="name">Thibaud Epp</div></div>
+  </div>
+
+  <div class="dist-section-title">Solistes</div>
+  <div class="distribution-grid">
+    <div class="dist-cell"><div class="role">Violetta Valéry</div><div class="name">Kathryn Lewek</div></div>
+    <div class="dist-cell"><div class="role">Alfredo Germont</div><div class="name">Julien Behr</div></div>
+    <div class="dist-cell"><div class="role">Giorgio Germont</div><div class="name">Jean-Sébastien Bou</div></div>
+    <div class="dist-cell"><div class="role">Flora Bervoix</div><div class="name">Majdouline Zerari</div></div>
+    <div class="dist-cell"><div class="role">Annina</div><div class="name">Cecile Lo Bianco</div></div>
+    <div class="dist-cell"><div class="role">Gastone</div><div class="name">Luca Lombardo</div></div>
+    <div class="dist-cell"><div class="role">Baron Douphol</div><div class="name">Frédéric Cornille</div></div>
+    <div class="dist-cell featured">
+      <div class="role">★ Marchese d'Obigny</div>
+      <div class="name">Mickaël Guedj</div>
+    </div>
+    <div class="dist-cell"><div class="role">Docteur Grenvil</div><div class="name">Wolfgang Rauch</div></div>
+  </div>
+
+  <div class="dist-section-title">Danseurs & danseuses</div>
+  <div class="distribution-grid">
+    <div class="dist-cell"><div class="role">Danseuse</div><div class="name">Rebeca Zucchegni</div></div>
+    <div class="dist-cell"><div class="role">Danseuse</div><div class="name">Melissa Cosseta</div></div>
+    <div class="dist-cell"><div class="role">Danseuse</div><div class="name">Aura Calarco</div></div>
+    <div class="dist-cell"><div class="role">Danseur</div><div class="name">Fabio Caputo</div></div>
+    <div class="dist-cell"><div class="role">Danseur</div><div class="name">Nicola Manzoni</div></div>
+    <div class="dist-cell"><div class="role">Danseur</div><div class="name">Paolo Pisarra</div></div>
+  </div>
+
+  <p style="text-align:center; margin-top:40px; color:var(--ivory-muted); font-style:italic;">
+    Orchestre Philharmonique de Nice · Chœur de l'Opéra de Nice
+  </p>
+</section>
+
+<!-- ============== REPRÉSENTATIONS ============== -->
+<section id="representations">
+  <div class="section-title">Représentations</div>
+  <div class="section-sub">8 dates · Opéra Nice Côte d'Azur</div>
+
+  <div class="reps-banner">
+    <div class="title">Mes 8 représentations</div>
+    <p style="color:var(--ivory-muted); font-style:italic; margin-bottom:8px;">
+      Spectacle en italien, surtitré en français et en anglais. Durée : 2h50 avec entracte.
+    </p>
+    <div class="reps-list">
+      <div class="rep-item"><div class="num">Première</div><div class="date">Mer 27 mai</div><div class="hour">20:00</div></div>
+      <div class="rep-item"><div class="num">N° 2</div><div class="date">Ven 29 mai</div><div class="hour">20:00</div></div>
+      <div class="rep-item"><div class="num">N° 3</div><div class="date">Sam 30 mai</div><div class="hour">20:00</div></div>
+      <div class="rep-item"><div class="num">N° 4 · Matinée</div><div class="date">Dim 31 mai</div><div class="hour">15:00</div></div>
+      <div class="rep-item"><div class="num">N° 5</div><div class="date">Mar 2 juin</div><div class="hour">20:00</div></div>
+      <div class="rep-item"><div class="num">N° 6</div><div class="date">Jeu 4 juin</div><div class="hour">20:00</div></div>
+      <div class="rep-item"><div class="num">N° 7</div><div class="date">Ven 5 juin</div><div class="hour">20:00</div></div>
+      <div class="rep-item"><div class="num">N° 8 · Dernière</div><div class="date">Sam 6 juin</div><div class="hour">20:00</div></div>
+    </div>
+  </div>
+
+  <div style="text-align:center; color:var(--ivory-muted); margin-top:24px;">
+    <p>Pré-générale : <strong style="color:var(--gold-bright);">23 mai à 15h</strong> &nbsp;·&nbsp; Générale : <strong style="color:var(--gold-bright);">24 mai à 15h</strong></p>
+  </div>
+</section>
+
+<!-- ============== PLANNING ============== -->
+<section id="planning">
+  <div class="section-title">Planning de production</div>
+  <div class="section-sub">Du 28 avril au 9 juin 2026</div>
+
+  <div class="planning-controls">
+    <button class="filter-btn active" data-filter="all">Tout</button>
+    <button class="filter-btn" data-filter="rep">Représentations</button>
+    <button class="filter-btn" data-filter="musicale">Musicale & Scène piano</button>
+    <button class="filter-btn" data-filter="scene">Scène</button>
+  </div>
+
+  <div id="planning-container"></div>
+</section>
+
+<!-- ============== TRAVAIL DU RÔLE ============== -->
+<section id="travail" class="resources-section">
+  <div class="section-title">Travail du rôle</div>
+  <div class="section-sub">Outils de mémorisation et de répétition</div>
+
+  <div class="resources-grid">
+    <a href="traviata_studio.html" class="resource-link">
+      <div class="icon">♪</div>
+      <div class="title">Studio de travail</div>
+      <div class="desc">Exercices premières lettres · Solos & ensembles · Partition</div>
+    </a>
+    <a href="Memorisation_Acte2_Marchese.docx" class="resource-link">
+      <div class="icon">✎</div>
+      <div class="title">Mémorisation manuscrite</div>
+      <div class="desc">Acte 2 — 13 sections en Word</div>
+    </a>
+    <a href="Marchese_Role_Complet_V2.pdf" class="resource-link">
+      <div class="icon">📜</div>
+      <div class="title">Rôle complet</div>
+      <div class="desc">Texte italien, traductions, contexte, planning</div>
+    </a>
+    <a href="Verdi traviata piano-vocal ricordi.pdf" class="resource-link">
+      <div class="icon">𝄞</div>
+      <div class="title">Partition Ricordi</div>
+      <div class="desc">Verdi · La Traviata · Piano-vocal</div>
+    </a>
+    <a href="Traductions_Traviata.html" class="resource-link">
+      <div class="icon">🇫🇷</div>
+      <div class="title">Traductions</div>
+      <div class="desc">Italien → Français page par page</div>
+    </a>
+    <a href="Rythme_Syllabes_Marchese.html" class="resource-link">
+      <div class="icon">♩</div>
+      <div class="title">Rythme & Syllabes</div>
+      <div class="desc">Découpage rythmique syllabe par syllabe</div>
+    </a>
+    <a href="Documents_Officiels_Opera_Nice/LA TRAVIATA -Livret d'accueil.pdf" class="resource-link">
+      <div class="icon">📕</div>
+      <div class="title">Livret d'accueil</div>
+      <div class="desc">PDF officiel Opéra de Nice</div>
+    </a>
+    <a href="Documents_Officiels_Opera_Nice/Planning-de-production-LA-TRAVIATA_2026-04-14_17-17-24.pdf" class="resource-link">
+      <div class="icon">📅</div>
+      <div class="title">Planning officiel</div>
+      <div class="desc">PDF officiel — version imprimable</div>
+    </a>
+  </div>
+</section>
+
+<!-- ============== CONTACTS ============== -->
+<section id="contacts">
+  <div class="section-title">Contacts</div>
+  <div class="section-sub">Production et équipe</div>
+
+  <div class="dist-section-title">Direction & administration</div>
+  <div class="contacts-grid">
+    <div class="contact-card">
+      <div class="role">Délégation artistique</div>
+      <div class="name">Daniela Dominutti</div>
+      <a href="tel:+33492174083"><span class="icon">☎</span>04 92 17 40 83</a>
+      <a href="mailto:daniela.dominutti@ville-nice.fr"><span class="icon">✉</span>daniela.dominutti@ville-nice.fr</a>
+    </div>
+    <div class="contact-card">
+      <div class="role">Attachée de production</div>
+      <div class="name">Priscilla Viller</div>
+      <a href="tel:+33642390904"><span class="icon">☎</span>06 42 39 09 04</a>
+      <a href="mailto:priscilla.viller@ville-nice.fr"><span class="icon">✉</span>priscilla.viller@ville-nice.fr</a>
+    </div>
+    <div class="contact-card">
+      <div class="role">Contrats artistes · Paye</div>
+      <div class="name">Sylvie Warin</div>
+      <a href="tel:+33492174037"><span class="icon">☎</span>04 92 17 40 37</a>
+      <a href="mailto:sylvie.warin@ville-nice.fr"><span class="icon">✉</span>sylvie.warin@ville-nice.fr</a>
+    </div>
+    <div class="contact-card">
+      <div class="role">Communication · Invitations</div>
+      <div class="name">Anne-Christel Cook</div>
+      <a href="tel:+33492174017"><span class="icon">☎</span>04 92 17 40 17</a>
+      <a href="mailto:anne-christelle.cook@ville-nice.fr"><span class="icon">✉</span>anne-christelle.cook@ville-nice.fr</a>
+    </div>
+    <div class="contact-card">
+      <div class="role">Régisseur de scène</div>
+      <div class="name">Clovis Bonnaud</div>
+      <a href="tel:+33603199126"><span class="icon">☎</span>06 03 19 91 26</a>
+      <a href="mailto:clovis.bonnaud@ville-nice.fr"><span class="icon">✉</span>clovis.bonnaud@ville-nice.fr</a>
+    </div>
+    <div class="contact-card">
+      <div class="role">Régisseuse de scène</div>
+      <div class="name">Clémence Petiot</div>
+      <a href="tel:+33685177273"><span class="icon">☎</span>06 85 17 72 73</a>
+      <a href="mailto:clemence.petiot@ville-nice.fr"><span class="icon">✉</span>clemence.petiot@ville-nice.fr</a>
+    </div>
+    <div class="contact-card">
+      <div class="role">Directrice technique adjointe</div>
+      <div class="name">Aurélie Le Clech</div>
+      <a href="tel:+33492174046"><span class="icon">☎</span>04 92 17 40 46</a>
+      <a href="mailto:aurelie.le-clech@ville-nice.fr"><span class="icon">✉</span>aurelie.le-clech@ville-nice.fr</a>
+    </div>
+  </div>
+
+  <div class="dist-section-title">Équipe musicale & chef de chant</div>
+  <div class="contacts-grid">
+    <div class="contact-card">
+      <div class="role">Chef d'orchestre</div>
+      <div class="name">Andrea Sanguineti</div>
+      <a href="tel:+491738308338"><span class="icon">☎</span>+49 173 830 8338</a>
+      <a href="mailto:mail@andreasanguineti.de"><span class="icon">✉</span>mail@andreasanguineti.de</a>
+    </div>
+    <div class="contact-card">
+      <div class="role">Assistant direction musicale</div>
+      <div class="name">Frédéric Deloche</div>
+      <a href="tel:+33492174090"><span class="icon">☎</span>17 40 90 (interne)</a>
+      <a href="mailto:frederic.deloche@ville-nice.fr"><span class="icon">✉</span>frederic.deloche@ville-nice.fr</a>
+    </div>
+    <div class="contact-card">
+      <div class="role">Directeur du Chœur</div>
+      <div class="name">Giulio Magnanini</div>
+      <a href="tel:+33492174061"><span class="icon">☎</span>17 40 61 (interne)</a>
+      <a href="mailto:giuliomagnanini@gmail.com"><span class="icon">✉</span>giuliomagnanini@gmail.com</a>
+    </div>
+    <div class="contact-card">
+      <div class="role">Chef de chant</div>
+      <div class="name">Sébastien Driant</div>
+      <a href="tel:+33617014796"><span class="icon">☎</span>06 17 01 47 96</a>
+      <a href="mailto:drikotine@gmail.com"><span class="icon">✉</span>drikotine@gmail.com</a>
+    </div>
+    <div class="contact-card">
+      <div class="role">Chef de chant</div>
+      <div class="name">Thibaud Epp</div>
+      <a href="tel:+33674611878"><span class="icon">☎</span>06 74 61 18 78</a>
+      <a href="mailto:thibaud.epp@gmail.com"><span class="icon">✉</span>thibaud.epp@gmail.com</a>
+    </div>
+  </div>
+
+  <div class="dist-section-title">Mise en scène, décor, costumes, lumières</div>
+  <div class="contacts-grid">
+    <div class="contact-card">
+      <div class="role">Mise en scène</div>
+      <div class="name">Silvia Paoli</div>
+      <a href="tel:+393396921090"><span class="icon">☎</span>+39 339 692 1090</a>
+      <a href="mailto:telespallapaoli@gmail.com"><span class="icon">✉</span>telespallapaoli@gmail.com</a>
+    </div>
+    <div class="contact-card">
+      <div class="role">Assistant mise en scène</div>
+      <div class="name">Tristan Gouaillier</div>
+      <a href="tel:+33618302327"><span class="icon">☎</span>06 18 30 23 27</a>
+      <a href="mailto:tristan_gouaillier@hotmail.fr"><span class="icon">✉</span>tristan_gouaillier@hotmail.fr</a>
+    </div>
+    <div class="contact-card">
+      <div class="role">Décors</div>
+      <div class="name">Lisetta Buccellato</div>
+      <a href="tel:+33625543078"><span class="icon">☎</span>06 25 54 30 78</a>
+      <a href="mailto:lisetta.buccellato@hotmail.it"><span class="icon">✉</span>lisetta.buccellato@hotmail.it</a>
+    </div>
+    <div class="contact-card">
+      <div class="role">Assistante costumes</div>
+      <div class="name">Margherita Plate</div>
+      <a href="tel:+393892678962"><span class="icon">☎</span>+39 389 267 8962</a>
+      <a href="mailto:margheritaplate@gmail.com"><span class="icon">✉</span>margheritaplate@gmail.com</a>
+    </div>
+    <div class="contact-card">
+      <div class="role">Reprise lumières</div>
+      <div class="name">Silvia Vacca</div>
+      <a href="tel:+393403708979"><span class="icon">☎</span>+39 340 370 8979</a>
+      <a href="mailto:silviavacca19@gmail.com"><span class="icon">✉</span>silviavacca19@gmail.com</a>
+    </div>
+    <div class="contact-card">
+      <div class="role">Chorégraphie</div>
+      <div class="name">Emanuele Rosa</div>
+      <a href="tel:+393518987752"><span class="icon">☎</span>+39 351 898 7752</a>
+      <a href="mailto:emanuele.rso@gmail.com"><span class="icon">✉</span>emanuele.rso@gmail.com</a>
+    </div>
+  </div>
+
+  <div class="dist-section-title">Solistes (camarades)</div>
+  <div class="contacts-grid">
+    <div class="contact-card">
+      <div class="role">Violetta</div>
+      <div class="name">Kathryn Lewek</div>
+      <a href="tel:+18603334073"><span class="icon">☎</span>+1 860 333 4073</a>
+      <a href="mailto:kathrynlewek@gmail.com"><span class="icon">✉</span>kathrynlewek@gmail.com</a>
+    </div>
+    <div class="contact-card">
+      <div class="role">Alfredo</div>
+      <div class="name">Julien Behr</div>
+      <a href="tel:+33680650305"><span class="icon">☎</span>06 80 65 03 05</a>
+      <a href="mailto:julienbehr1@gmail.com"><span class="icon">✉</span>julienbehr1@gmail.com</a>
+    </div>
+    <div class="contact-card">
+      <div class="role">Flora</div>
+      <div class="name">Majdouline Zerari</div>
+      <a href="tel:+33689155931"><span class="icon">☎</span>06 89 15 59 31</a>
+      <a href="mailto:majdouline.zerari@gmail.com"><span class="icon">✉</span>majdouline.zerari@gmail.com</a>
+    </div>
+    <div class="contact-card">
+      <div class="role">Annina</div>
+      <div class="name">Cecile Lo Bianco</div>
+      <a href="tel:+33681645965"><span class="icon">☎</span>06 81 64 59 65</a>
+      <a href="mailto:lobiancocecile@gmail.com"><span class="icon">✉</span>lobiancocecile@gmail.com</a>
+    </div>
+    <div class="contact-card">
+      <div class="role">Giorgio Germont</div>
+      <div class="name">Jean-Sébastien Bou</div>
+      <a href="tel:+33634688232"><span class="icon">☎</span>06 34 68 82 32</a>
+      <a href="mailto:boujeanseb@gmail.com"><span class="icon">✉</span>boujeanseb@gmail.com</a>
+    </div>
+    <div class="contact-card">
+      <div class="role">Gastone</div>
+      <div class="name">Luca Lombardo</div>
+      <a href="tel:+33680726136"><span class="icon">☎</span>06 80 72 61 36</a>
+      <a href="mailto:lombardo.luca@wanadoo.fr"><span class="icon">✉</span>lombardo.luca@wanadoo.fr</a>
+    </div>
+    <div class="contact-card">
+      <div class="role">Baron Douphol</div>
+      <div class="name">Frédéric Cornille</div>
+      <a href="tel:+33610475679"><span class="icon">☎</span>06 10 47 56 79</a>
+      <a href="mailto:fredcornille@icloud.com"><span class="icon">✉</span>fredcornille@icloud.com</a>
+    </div>
+    <div class="contact-card">
+      <div class="role">Docteur Grenvil</div>
+      <div class="name">Wolfgang Rauch</div>
+      <a href="tel:+33671357216"><span class="icon">☎</span>06 71 35 72 16</a>
+      <a href="mailto:wolfgang.rauch@hotmail.com"><span class="icon">✉</span>wolfgang.rauch@hotmail.com</a>
+    </div>
+  </div>
+
+  <p style="text-align:center; color:var(--ivory-muted); margin-top:30px; font-style:italic;">
+    Standard Opéra de Nice : <strong style="color:var(--gold-bright);">04 92 17 40 00</strong> &nbsp;·&nbsp; Diacosmie : <strong style="color:var(--gold-bright);">04 92 29 32 93</strong>
+  </p>
+</section>
+
+<!-- ============== PRATIQUE ============== -->
+<section id="pratique">
+  <div class="section-title">Informations pratiques</div>
+  <div class="section-sub">Nice — séjour & vie quotidienne</div>
+
+  <div class="pratique-grid">
+    <div class="pratique-card wifi-card">
+      <h3>Wi-Fi Opéra</h3>
+      <div class="wifi-info">
+        SSID : <strong>OPERA_EVENT</strong><br>
+        MdP : <strong>OPER@!2023</strong>
+      </div>
+      <p style="font-size:13px; color:var(--ivory-muted);">Saison 2025-2026 · "Libres d'esprit"</p>
+    </div>
+
+    <div class="pratique-card">
+      <h3>Urgences</h3>
+      <ul>
+        <li><strong>SAMU</strong> 15 ou 04 93 92 55 55</li>
+        <li><strong>Pompiers</strong> 18</li>
+        <li><strong>Police</strong> 17 ou 112</li>
+        <li><strong>SOS Médecins</strong> 04 93 85 01 01</li>
+        <li><strong>Pharmacie 24h/24</strong> 04 93 87 78 94 (7 rue Masséna)</li>
+        <li><strong>ORL</strong> Dr Léger Guy-Paul · 04 93 62 95 50</li>
+      </ul>
+    </div>
+
+    <div class="pratique-card">
+      <h3>Hôpitaux</h3>
+      <ul>
+        <li><strong>Hôpital Pasteur</strong> 04 92 03 77 77<br>30 voie Romaine</li>
+        <li><strong>Clinique Saint Georges</strong> 04 93 81 71 50<br>2 Av. de Rimiez</li>
+        <li><strong>Hôpital L'Archet</strong> 04 92 03 77 77<br>151 Rte St-Antoine Ginestière</li>
+        <li><strong>Clinique Parc Impérial</strong> 08 20 31 31 31<br>28 Bd du Tzarewitch</li>
+      </ul>
+    </div>
+
+    <div class="pratique-card">
+      <h3>Taxis & Transport</h3>
+      <ul>
+        <li><strong>Allo Taxi Riviera</strong> 04 93 13 78 78</li>
+        <li><strong>Taxis Niçois Indépendants</strong> 04 93 99 25 82</li>
+        <li><strong>SNCF</strong> 36 35</li>
+        <li><strong>Aéroport</strong> 0 820 423 333</li>
+        <li><strong>Air France</strong> 0 820 820 820</li>
+      </ul>
+    </div>
+
+    <div class="pratique-card">
+      <h3>Parkings (à côté de l'Opéra)</h3>
+      <ul>
+        <li><strong>Corvesy</strong> 3 rue Alexandre Mari</li>
+        <li><strong>Sulzer</strong> 103 Quai des États-Unis</li>
+        <li><strong>Saleya</strong> Marché aux fleurs</li>
+        <li><strong>Station essence 24h/24</strong><br>AVIA · 77 Promenade des Anglais<br>TOTAL · 217 Promenade des Anglais</li>
+      </ul>
+    </div>
+
+    <div class="pratique-card">
+      <h3>Restaurants — Vieux-Nice</h3>
+      <ul>
+        <li><strong>Peixes</strong> €€ poisson<br>4 rue de l'Opéra · 04 93 85 96 15</li>
+        <li><strong>Acchiardo</strong> €€ niçois (depuis 1927)<br>38 rue Droite · 04 93 85 51 16</li>
+        <li><strong>Comptoir du Marché</strong> €€<br>8 rue du Marché · 04 93 13 45 01</li>
+        <li><strong>Fine Gueule</strong> €€ méditerranéen<br>2 rue de l'Hôtel de Ville · 04 93 80 21 64</li>
+      </ul>
+    </div>
+
+    <div class="pratique-card">
+      <h3>Près de la Diacosmie</h3>
+      <ul>
+        <li><strong>Class'croute</strong> € rapide<br>61 av. Simone Veil · 04 92 00 77 00</li>
+        <li><strong>Brasserie St Vincent</strong> €€ pizzas/bistro<br>83 av. Simone Veil · 04 92 07 00 69</li>
+        <li><strong>Chez Pipo</strong> € socca (port de Nice, depuis 1923)<br>13 rue Bavastro · 04 93 55 88 82</li>
+      </ul>
+    </div>
+
+    <div class="pratique-card">
+      <h3>Bars & cocktails</h3>
+      <ul>
+        <li><strong>El Merkado</strong> bar à tapas<br>12 rue St-François de Paule</li>
+        <li><strong>Ma Nolan's</strong> pub irlandais<br>2 rue St-François de Paule</li>
+        <li><strong>Distelleries Idéales</strong> décor 1930<br>24 rue de la Préfecture</li>
+        <li><strong>Delano Cocktail Bar</strong> €€€ mixologie<br>16 rue du Maréchal Joffre</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============== HISTORIQUE ============== -->
+<section id="historique">
+  <div class="section-title">L'Opéra de Nice</div>
+  <div class="section-sub">Une histoire qui traverse les siècles</div>
+
+  <div class="historique-text">
+    <p class="lead">"Le premier opéra faisant face à la Méditerranée"</p>
+
+    <p>L'aventure commence en 1776, quand la Marquise Alli-Maccarani obtient d'Amédée III, Roi de Sardaigne, l'autorisation de transformer son ancienne maison d'habitation en théâtre. Ainsi naît le petit Théâtre Maccarani, en bois, sur l'emplacement de l'actuel Opéra.</p>
+
+    <p>En 1826, la Ville de Nice rachète le théâtre et décide de le raser pour construire un grand opéra dans le style italien. C'est Brunati, architecte de la Ville, et Perotti, architecte turinois, qui conçoivent un édifice avec un vaste parterre, quatre étages de loges, et la grande loge royale soutenue par deux cariatides dorées.</p>
+
+    <p>Le mercredi 23 mars 1881, pendant l'ouverture de <em>Lucia di Lammermoor</em>, un terrible incendie — vraisemblablement une fuite de gaz — détruit entièrement le théâtre.</p>
+
+    <p>Le 7 novembre 1882, la municipalité décide de reconstruire le nouveau théâtre. Les plans, dessinés par François Aune (élève de Gustave Eiffel), sont approuvés par Charles Garnier, alors Inspecteur des Bâtiments Civils. Aune bâtit une enveloppe en maçonnerie traditionnelle, à l'intérieur de laquelle il établit une structure de poutrelles métalliques.</p>
+
+    <p>Le plafond, peint par Emmanuel Costa, représente <em>Le Char du Soleil</em>. Les sculptures de Raimondi représentent les Muses : Euterpe (la musique), Melpomène (la tragédie), Thalie (la comédie) et Terpsichore (la danse).</p>
+
+    <p>En 1902, le Théâtre Municipal prend le nom qu'il porte aujourd'hui : <strong style="color:var(--gold-bright);">Opéra de Nice</strong>. Classé "monument historique" en 1993, l'édifice retrouve son identité architecturale en 2000 après plusieurs phases de restauration.</p>
+  </div>
+</section>
+
+<!-- ============== FOOTER ============== -->
+<footer>
+  <div class="ornement-final">✦ &nbsp; ✦ &nbsp; ✦</div>
+  <p>La Traviata · Saison 2025-2026 · Opéra Nice Côte d'Azur</p>
+  <p style="margin-top:8px;">Production personnelle de Mickaël Guedj · Marchese d'Obigny</p>
+</footer>
+
+<!-- ============== JAVASCRIPT ============== -->
+<script>
+// =================== DONNÉES PLANNING ===================
+const PLANNING = [
+  // Semaine 18
+  { week: "S18 — Semaine 18 (avril/mai)", days: [
+    { date: "Mardi 28 avril", events: [
+      { hour: "11:00 – 12:00", place: "Rotonde", activity: "Réunion Production", tag: "musicale" },
+      { hour: "14:00 – 18:00", place: "Rotonde", activity: "Musicale (1ère répétition)", tag: "musicale" }
+    ]},
+    { date: "Mercredi 29 avril", events: [
+      { hour: "13:00 – 14:00", place: "Jedrinsky", activity: "Accord piano 1/4 queue", tag: "default" },
+      { hour: "14:00 – 19:00", place: "Jedrinsky", activity: "Scène piano", tag: "musicale" },
+      { hour: "13:30 – 14:00", place: "Opéra → Diacosmie", activity: "Transport", tag: "transport" }
+    ]},
+    { date: "Jeudi 30 avril", events: [
+      { hour: "10:00 – 13:00", place: "Jedrinsky", activity: "Scène piano", tag: "musicale" },
+      { hour: "14:00 – 17:00", place: "Jedrinsky", activity: "Scène piano", tag: "musicale" }
+    ]},
+    { date: "Vendredi 1er mai", events: [
+      { hour: "—", place: "—", activity: "OFF", tag: "off" }
+    ], off: true },
+    { date: "Samedi 2 mai", events: [
+      { hour: "14:00 – 19:00", place: "Jedrinsky", activity: "Scène piano", tag: "musicale" }
+    ]},
+    { date: "Dimanche 3 mai", events: [
+      { hour: "14:00 – 19:00", place: "Jedrinsky", activity: "Scène piano", tag: "musicale" }
+    ]},
+    { date: "Lundi 4 mai", events: [{ hour: "—", place: "—", activity: "OFF", tag: "off" }], off: true }
+  ]},
+
+  // Semaine 19
+  { week: "S19 — Semaine 19 (mai)", days: [
+    { date: "Mardi 5 mai", events: [
+      { hour: "14:00 – 19:00", place: "Jedrinsky", activity: "Scène piano", tag: "musicale" }
+    ]},
+    { date: "Mercredi 6 mai", events: [
+      { hour: "14:00 – 19:00", place: "Jedrinsky", activity: "Scène piano (chœur 16h-19h)", tag: "musicale" }
+    ]},
+    { date: "Jeudi 7 mai", events: [
+      { hour: "14:00 – 19:00", place: "Jedrinsky", activity: "Scène piano (chœur 16h-19h)", tag: "musicale" }
+    ]},
+    { date: "Vendredi 8 mai", events: [{ hour: "—", place: "—", activity: "OFF", tag: "off" }], off: true },
+    { date: "Samedi 9 mai", events: [
+      { hour: "14:00 – 19:00", place: "Jedrinsky", activity: "Scène piano", tag: "musicale" }
+    ]},
+    { date: "Dimanche 10 mai", events: [
+      { hour: "14:00 – 19:00", place: "Jedrinsky", activity: "Scène piano", tag: "musicale" }
+    ]},
+    { date: "Lundi 11 mai", events: [{ hour: "—", place: "—", activity: "OFF", tag: "off" }], off: true }
+  ]},
+
+  // Semaine 20
+  { week: "S20 — Semaine 20 (mai) — Montage", days: [
+    { date: "Mardi 12 mai", events: [
+      { hour: "08:00 – 12:00", place: "Scène", activity: "Montage", tag: "scene" },
+      { hour: "14:00 – 20:00", place: "Scène", activity: "Montage", tag: "scene" },
+      { hour: "14:00 – 19:00", place: "Jedrinsky", activity: "Scène piano (16h-19h chœur)", tag: "musicale" }
+    ]},
+    { date: "Mercredi 13 mai", events: [
+      { hour: "08:00 – 12:00", place: "Scène", activity: "Montage", tag: "scene" },
+      { hour: "14:00 – 20:00", place: "Scène", activity: "Montage", tag: "scene" },
+      { hour: "14:00 – 19:00", place: "Jedrinsky", activity: "Scène piano (16h-19h chœur)", tag: "musicale" }
+    ]},
+    { date: "Jeudi 14 mai", events: [
+      { hour: "08:00 – 12:00", place: "Scène", activity: "Montage", tag: "scene" },
+      { hour: "14:00 – 20:00", place: "Scène", activity: "Montage", tag: "scene" },
+      { hour: "20:15 – 23:30", place: "Scène", activity: "Lumière — Réglages", tag: "lumiere" },
+      { hour: "14:00 – 19:00", place: "Jedrinsky", activity: "Scène piano (16h-19h chœur)", tag: "musicale" }
+    ]},
+    { date: "Vendredi 15 mai", events: [
+      { hour: "08:00 – 12:00", place: "Scène", activity: "Montage — Présentation tableaux", tag: "scene" },
+      { hour: "14:15 – 19:45", place: "Scène", activity: "Scène piano (arrivée des danseurs)", tag: "musicale" },
+      { hour: "20:15 – 23:30", place: "Scène", activity: "Lumière — Conduite", tag: "lumiere" }
+    ]},
+    { date: "Samedi 16 mai", events: [
+      { hour: "08:00 – 12:00", place: "Scène", activity: "Service technique — Finitions", tag: "scene" },
+      { hour: "14:15 – 19:45", place: "Scène", activity: "Scène piano", tag: "musicale" },
+      { hour: "20:15 – 23:30", place: "Scène", activity: "Lumière — Conduite", tag: "lumiere" },
+      { hour: "09:30 – 12:00", place: "Salle Fourestier", activity: "Lecture", tag: "musicale" },
+      { hour: "20:30 – 22:30", place: "Salle Fourestier", activity: "Enregistrement", tag: "musicale" }
+    ]},
+    { date: "Dimanche 17 mai", events: [
+      { hour: "08:00 – 12:00", place: "Scène", activity: "Filage technique", tag: "scene" },
+      { hour: "14:15 – 19:45", place: "Scène", activity: "Scène piano (chœur 14h15-18h45)", tag: "musicale" }
+    ]}
+  ]},
+
+  // Semaine 21
+  { week: "S21 — Semaine 21 — Pré-générale & Générale", days: [
+    { date: "Lundi 18 mai", events: [
+      { hour: "08:00 – 17:00", place: "Scène", activity: "Service technique — Retouches déco", tag: "scene" }
+    ]},
+    { date: "Mardi 19 mai", events: [
+      { hour: "08:15 – 11:45", place: "Scène", activity: "Lumière — Conduite", tag: "lumiere" },
+      { hour: "14:15 – 19:45", place: "Scène", activity: "Scène piano (chœur · 400 élèves · mécènes)", tag: "musicale" },
+      { hour: "20:15 – 23:30", place: "Scène", activity: "Lumière — Conduite", tag: "lumiere" }
+    ]},
+    { date: "Mercredi 20 mai", events: [
+      { hour: "08:00 – 12:00", place: "Scène", activity: "Service technique — Finitions", tag: "scene" },
+      { hour: "13:00 – 15:00", place: "Pardina", activity: "Convocation Maquillage / Perruque", tag: "default" },
+      { hour: "15:00 – 19:00", place: "Scène", activity: "Générale piano", tag: "musicale" },
+      { hour: "20:15 – 23:30", place: "Scène", activity: "Lumière — Conduite", tag: "lumiere" }
+    ]},
+    { date: "Jeudi 21 mai", events: [
+      { hour: "08:00 – 10:00", place: "Scène", activity: "Service technique", tag: "scene" },
+      { hour: "10:00 – 13:00", place: "Scène", activity: "Italienne", tag: "italienne" },
+      { hour: "15:30 – 18:30", place: "Scène", activity: "Scène orchestre", tag: "musicale" },
+      { hour: "20:15 – 23:30", place: "Scène", activity: "Lumière — Conduite", tag: "lumiere" }
+    ]},
+    { date: "Vendredi 22 mai", events: [
+      { hour: "10:00 – 13:00", place: "Scène", activity: "Scène orchestre", tag: "musicale" },
+      { hour: "15:30 – 18:30", place: "Scène", activity: "Scène orchestre", tag: "musicale" },
+      { hour: "18:30 – 19:00", place: "Scène", activity: "Mise pour conduite lumière", tag: "mise" }
+    ]},
+    { date: "Samedi 23 mai", events: [
+      { hour: "08:15 – 11:45", place: "Scène", activity: "Lumière — Conduite", tag: "lumiere" },
+      { hour: "13:00 – 15:00", place: "Pardina / Loge", activity: "Convocation Maquillage / Perruque", tag: "default" },
+      { hour: "15:00 – 19:00", place: "Scène", activity: "★ Pré-générale", tag: "rep" }
+    ]},
+    { date: "Dimanche 24 mai", events: [
+      { hour: "08:15 – 11:45", place: "Scène", activity: "Lumière — Corrections", tag: "lumiere" },
+      { hour: "13:00 – 15:00", place: "Pardina / Loge", activity: "Convocation Maquillage / Perruque", tag: "default" },
+      { hour: "15:00 – 19:00", place: "Scène", activity: "★ Générale", tag: "rep" }
+    ]}
+  ]},
+
+  // Semaine 22 — Représentations
+  { week: "S22 — Semaine 22 — Représentations 1 à 4", days: [
+    { date: "Lundi 25 mai", events: [{ hour: "—", place: "—", activity: "OFF", tag: "off" }], off: true },
+    { date: "Mardi 26 mai", events: [
+      { hour: "08:00 – 11:00", place: "Scène", activity: "Service technique", tag: "scene" },
+      { hour: "18:00 – 20:00", place: "Théâtre de l'Artistique", activity: "Conférence", tag: "default" }
+    ]},
+    { date: "Mercredi 27 mai", events: [
+      { hour: "14:15 – 16:45", place: "Scène", activity: "Lumière — Corrections si besoin", tag: "lumiere" },
+      { hour: "18:00 – 20:00", place: "Pardina / Loge", activity: "Convocation Maquillage / Perruque", tag: "default" },
+      { hour: "20:00 – 23:59", place: "Scène", activity: "★ REPRÉSENTATION 1 — PREMIÈRE", tag: "rep" }
+    ], isRep: true },
+    { date: "Jeudi 28 mai", events: [{ hour: "—", place: "—", activity: "OFF", tag: "off" }], off: true },
+    { date: "Vendredi 29 mai", events: [
+      { hour: "18:00 – 20:00", place: "Pardina / Loge", activity: "Convocation Maquillage / Perruque", tag: "default" },
+      { hour: "20:00 – 23:59", place: "Scène", activity: "★ REPRÉSENTATION 2", tag: "rep" }
+    ], isRep: true },
+    { date: "Samedi 30 mai", events: [
+      { hour: "18:00 – 20:00", place: "Pardina / Loge", activity: "Convocation Maquillage / Perruque", tag: "default" },
+      { hour: "20:00 – 23:59", place: "Scène", activity: "★ REPRÉSENTATION 3", tag: "rep" }
+    ], isRep: true },
+    { date: "Dimanche 31 mai", events: [
+      { hour: "13:00 – 15:00", place: "Pardina / Loge", activity: "Convocation Maquillage / Perruque", tag: "default" },
+      { hour: "15:00 – 18:59", place: "Scène", activity: "★ REPRÉSENTATION 4 — Matinée", tag: "rep" }
+    ], isRep: true }
+  ]},
+
+  // Semaine 23 — Représentations 5 à 7
+  { week: "S23 — Semaine 23 — Représentations 5 à 7", days: [
+    { date: "Lundi 1er juin", events: [{ hour: "—", place: "—", activity: "OFF", tag: "off" }], off: true },
+    { date: "Mardi 2 juin", events: [
+      { hour: "18:00 – 20:00", place: "Pardina / Loge", activity: "Convocation Maquillage / Perruque", tag: "default" },
+      { hour: "20:00 – 23:59", place: "Scène", activity: "★ REPRÉSENTATION 5", tag: "rep" }
+    ], isRep: true },
+    { date: "Mercredi 3 juin", events: [{ hour: "—", place: "—", activity: "OFF", tag: "off" }], off: true },
+    { date: "Jeudi 4 juin", events: [
+      { hour: "18:00 – 20:00", place: "Pardina / Loge", activity: "Convocation Maquillage / Perruque", tag: "default" },
+      { hour: "20:00 – 23:59", place: "Scène", activity: "★ REPRÉSENTATION 6", tag: "rep" }
+    ], isRep: true },
+    { date: "Vendredi 5 juin", events: [
+      { hour: "18:00 – 20:00", place: "Pardina / Loge", activity: "Convocation Maquillage / Perruque", tag: "default" },
+      { hour: "20:00 – 23:59", place: "Scène", activity: "★ REPRÉSENTATION 7", tag: "rep" }
+    ], isRep: true }
+  ]},
+
+  // Semaine 24 — Dernière + démontage
+  { week: "S24 — Semaine 24 — Dernière & démontage", days: [
+    { date: "Samedi 6 juin", events: [
+      { hour: "18:00 – 20:00", place: "Pardina / Loge", activity: "Convocation Maquillage / Perruque", tag: "default" },
+      { hour: "20:00 – 23:59", place: "Scène", activity: "★ REPRÉSENTATION 8 — DERNIÈRE", tag: "rep" }
+    ], isRep: true },
+    { date: "Dimanche 7 juin", events: [
+      { hour: "08:00 – 12:00", place: "Scène", activity: "Démontage", tag: "scene" },
+      { hour: "14:00 – 20:00", place: "Scène", activity: "Démontage", tag: "scene" }
+    ]},
+    { date: "Lundi 8 juin", events: [{ hour: "—", place: "—", activity: "OFF", tag: "off" }], off: true },
+    { date: "Mardi 9 juin", events: [
+      { hour: "08:00 – 12:00", place: "Scène", activity: "Démontage", tag: "scene" }
+    ]}
+  ]}
+];
+
+// =================== RENDU PLANNING ===================
+function renderPlanning(filter = 'all') {
+  const container = document.getElementById('planning-container');
+  container.innerHTML = '';
+
+  PLANNING.forEach((week, wIdx) => {
+    // Filtrer les jours selon le filtre
+    const visibleDays = week.days.filter(day => {
+      if (filter === 'all') return true;
+      if (filter === 'rep') return day.isRep;
+      if (filter === 'musicale') return day.events.some(e => e.tag === 'musicale' || e.tag === 'italienne');
+      if (filter === 'scene') return day.events.some(e => e.tag === 'scene');
+      return true;
+    });
+
+    if (visibleDays.length === 0) return;
+
+    const weekEl = document.createElement('div');
+    weekEl.className = 'week-block';
+
+    const repCount = week.days.filter(d => d.isRep).length;
+
+    weekEl.innerHTML = `
+      <div class="week-header">
+        <div class="week-title">${week.week}</div>
+        <div class="week-count">${visibleDays.length} jour${visibleDays.length > 1 ? 's' : ''}${repCount ? ' · ' + repCount + ' représentation' + (repCount > 1 ? 's' : '') : ''}</div>
+      </div>
+      <div class="week-content">
+        ${visibleDays.map(day => `
+          <div class="day-row ${day.isRep ? 'is-rep' : ''} ${day.off ? 'day-off' : ''}">
+            <div class="day-date">${day.date}</div>
+            <div class="day-events">
+              ${day.events.map(ev => `
+                <div class="event">
+                  <span class="hour">${ev.hour}</span>
+                  <span class="place">${ev.place}</span>
+                  <span class="activity">
+                    <span class="event-tag tag-${ev.tag}">${ev.activity}</span>
+                  </span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    `;
+
+    container.appendChild(weekEl);
+  });
+}
+
+// Filtres
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderPlanning(btn.dataset.filter);
+  });
+});
+
+// Highlight nav au scroll
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav a');
+window.addEventListener('scroll', () => {
+  const scrollPos = window.scrollY + 120;
+  sections.forEach(sec => {
+    const top = sec.offsetTop;
+    const height = sec.offsetHeight;
+    const id = sec.id;
+    if (scrollPos >= top && scrollPos < top + height) {
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+      });
+    }
+  });
+});
+
+// Init
+renderPlanning('all');
+</script>
+
+</body>
+</html>

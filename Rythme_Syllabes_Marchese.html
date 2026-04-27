@@ -1,0 +1,1629 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Traviata — Syllabes & Rythmes · Marchese d'Obigny</title>
+<style>
+  :root {
+    --bg: #0d0d18;
+    --bg-card: #1a1a2e;
+    --gold: #d4af37;
+    --gold-light: #f4d03f;
+    --pink: #c9a8b8;
+    --marchese: #f39c12;
+    --ensemble: #2ecc71;
+    --text: #f0f0f5;
+    --text-soft: #c9a8b8;
+    --text-mute: #8a8a9a;
+    --syll: #ffffff;
+    --trad: #c9a8b8;
+    --rhythm: #d4af37;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(180deg, #0a0a15 0%, #0d0d18 50%, #100c18 100%);
+    color: var(--text);
+    font-family: 'Lora', 'Georgia', serif;
+    line-height: 1.5;
+    min-height: 100vh;
+  }
+
+  header {
+    padding: 30px 20px 20px;
+    text-align: center;
+    background: rgba(0,0,0,0.5);
+    border-bottom: 2px solid var(--gold);
+  }
+  h1 {
+    font-family: 'Playfair Display', 'Georgia', serif;
+    color: var(--gold);
+    font-size: 2em;
+    margin: 0 0 4px;
+    font-weight: 400;
+  }
+  .subtitle { color: var(--pink); font-style: italic; margin: 4px 0 0; }
+
+  /* ============ LÉGENDE RYTHME ============ */
+  .rhythm-legend {
+    background: rgba(212,175,55,0.1);
+    padding: 14px 20px;
+    margin: 20px auto;
+    max-width: 900px;
+    border: 1px solid var(--gold);
+    border-radius: 8px;
+  }
+  .rhythm-legend h4 {
+    color: var(--gold-light);
+    margin: 0 0 10px;
+    font-family: 'Playfair Display', serif;
+  }
+  .rhythm-legend-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    font-size: 0.9em;
+  }
+  .rhythm-legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .sym {
+    color: var(--rhythm);
+    font-size: 1.3em;
+    font-family: 'Times New Roman', serif;
+  }
+
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px 16px 60px;
+  }
+
+  nav.toc {
+    position: sticky;
+    top: 8px;
+    background: rgba(0,0,0,0.95);
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--gold);
+    margin-bottom: 20px;
+    z-index: 10;
+    font-size: 0.88em;
+  }
+  nav.toc a {
+    color: var(--gold-light);
+    text-decoration: none;
+    margin-right: 12px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    background: rgba(212,175,55,0.1);
+  }
+  nav.toc a:hover { background: rgba(212,175,55,0.3); }
+
+  /* ============ SECTIONS ============ */
+  h2 {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold);
+    font-size: 1.6em;
+    border-bottom: 1px solid var(--gold);
+    padding-bottom: 6px;
+    margin: 40px 0 14px;
+  }
+
+  /* ============ CARTE PAGE ============ */
+  .page {
+    background: var(--bg-card);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    border-left: 4px solid;
+  }
+  .page.marchese { border-left-color: var(--marchese); background: linear-gradient(90deg, rgba(243,156,18,0.1), var(--bg-card)); }
+  .page.ensemble { border-left-color: var(--ensemble); background: linear-gradient(90deg, rgba(46,204,113,0.07), var(--bg-card)); }
+
+  .page-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+    font-size: 0.9em;
+  }
+  .badge {
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.78em;
+    font-weight: bold;
+  }
+  .badge.marchese { background: var(--marchese); color: black; }
+  .badge.ensemble { background: var(--ensemble); color: black; }
+  .page-num { color: var(--text-mute); font-family: monospace; }
+  .page-title { color: var(--gold-light); font-weight: bold; }
+
+  /* ============ LIGNE SYLLABES ============ */
+  .line {
+    margin: 18px 0;
+    padding: 14px 12px;
+    background: rgba(0,0,0,0.3);
+    border-radius: 6px;
+  }
+
+  .syllables {
+    font-family: 'Georgia', serif;
+    font-size: 1.25em;
+    color: var(--syll);
+    letter-spacing: 0.02em;
+    line-height: 2.2;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px 6px;
+    align-items: flex-end;
+  }
+  .syll-block {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 22px;
+  }
+  .syll-block .rhythm {
+    font-size: 0.6em;
+    color: var(--rhythm);
+    line-height: 1;
+    margin-bottom: 2px;
+    height: 14px;
+    font-family: 'Times New Roman', serif;
+  }
+  .syll-block .syll {
+    font-weight: 500;
+  }
+  /* Accent / lien syllabique */
+  .syll-block.tied::after {
+    content: '‿';
+    color: var(--text-mute);
+    margin-left: 2px;
+  }
+  /* Fin de phrase */
+  .syll-block.pause {
+    padding-right: 8px;
+    margin-right: 6px;
+    border-right: 1px dashed rgba(212,175,55,0.3);
+  }
+
+  .translation {
+    margin-top: 10px;
+    color: var(--trad);
+    font-style: italic;
+    font-size: 0.95em;
+    border-top: 1px dotted rgba(212,175,55,0.2);
+    padding-top: 6px;
+  }
+  .translation::before {
+    content: 'FR : ';
+    color: var(--gold);
+    font-weight: bold;
+    font-style: normal;
+  }
+
+  .notes {
+    color: var(--text-mute);
+    font-size: 0.82em;
+    margin-top: 8px;
+    padding: 6px 10px;
+    background: rgba(0,0,0,0.3);
+    border-radius: 4px;
+    font-style: italic;
+  }
+  .notes::before { content: '♪ '; color: var(--gold); }
+
+  /* ============ RÉPÉTITIONS ============ */
+  .repeat {
+    color: var(--pink);
+    font-size: 0.85em;
+    margin: 4px 0;
+    padding-left: 12px;
+    border-left: 2px solid var(--pink);
+  }
+
+  @media (max-width: 600px) {
+    .syllables { font-size: 1.05em; }
+    nav.toc a { display: inline-block; margin-bottom: 4px; font-size: 0.8em; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>La Traviata — Syllabes & Rythmes</h1>
+  <p class="subtitle">Parties du Marchese d'Obigny (solos + ensembles où il chante)</p>
+</header>
+
+<div class="rhythm-legend">
+  <h4>📖 Légende rythmique</h4>
+  <div class="rhythm-legend-items">
+    <span class="rhythm-legend-item"><span class="sym">𝅘𝅥𝅯</span> double croche (1/4 temps)</span>
+    <span class="rhythm-legend-item"><span class="sym">♪</span> croche (1/2 temps)</span>
+    <span class="rhythm-legend-item"><span class="sym">♩</span> noire (1 temps)</span>
+    <span class="rhythm-legend-item"><span class="sym">𝅗𝅥</span> blanche (2 temps)</span>
+    <span class="rhythm-legend-item"><span class="sym">𝅝</span> ronde (4 temps)</span>
+    <span class="rhythm-legend-item"><span class="sym">♩.</span> noire pointée (1,5 temps)</span>
+    <span class="rhythm-legend-item"><span class="sym">‿</span> lien syllabique (liaison)</span>
+  </div>
+  <p style="color:var(--text-mute); font-size:0.82em; margin:10px 0 0;"><strong>⚠️ Important :</strong> les valeurs rythmiques sont indicatives, basées sur la prosodie italienne et la connaissance de l'œuvre. <strong>Valide toujours avec ta partition Ricordi en main.</strong> Le découpage syllabique et l'ordre des mots sont en revanche exacts.</p>
+</div>
+
+<main>
+
+<nav class="toc">
+  <strong>Aller à :</strong>
+  <a href="#acte1-intro">Entrée Marchese</a>
+  <a href="#acte1-alfredo">Caro Alfredo</a>
+  <a href="#acte1-madama">E a madama</a>
+  <a href="#acte1-brindisi">Brindisi</a>
+  <a href="#acte1-malaise">Malaise</a>
+  <a href="#acte1-stretta">Stretta</a>
+  <a href="#acte2-novita">La novità</a>
+  <a href="#acte2-falsita">L'accusa è falsità</a>
+  <a href="#acte2-mattadori">Mattadori</a>
+  <a href="#acte2-cartes">Cartes</a>
+  <a href="#acte2-scandale">Scandale</a>
+  <a href="#acte2-finale">Finale</a>
+</nav>
+
+<!-- ============================ -->
+<!-- ========= ACTE I =========== -->
+<!-- ============================ -->
+<h2 id="acte1">ACTE I — Salon de Violetta</h2>
+
+<!-- Entrée Marchese + Flora -->
+<div class="page marchese" id="acte1-intro">
+  <div class="page-head">
+    <span class="badge marchese">SOLO</span>
+    <span class="page-num">p. 10</span>
+    <span class="page-title">MARCHESE (à Flora)</span>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">E</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">go</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">der</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">voi</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">po</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">tre</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">te?</span></span>
+    </div>
+    <div class="translation">Et vous pourrez en profiter ?</div>
+    <div class="notes">Phrase interrogative courte, rythme léger et mondain.</div>
+  </div>
+</div>
+
+<div class="page ensemble">
+  <div class="page-head">
+    <span class="badge ensemble">ENSEMBLE (avec tous)</span>
+    <span class="page-num">p. 11-12</span>
+    <span class="page-title">TUTTI (réponse collective)</span>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">Sì,</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">la</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">vi</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">ta</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">s'ad</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">dop</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">pia</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">al</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">gio</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">ir.</span></span>
+    </div>
+    <div class="translation">Oui, la vie se double par le plaisir.</div>
+    <div class="notes">Chœur homorythmique, toutes les voix ensemble. Marchese = ligne de basse.</div>
+  </div>
+</div>
+
+<!-- Caro Alfredo -->
+<div class="page marchese" id="acte1-alfredo">
+  <div class="page-head">
+    <span class="badge marchese">SOLO</span>
+    <span class="page-num">p. 14</span>
+    <span class="page-title">MARCHESE (accueil d'Alfredo)</span>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">Ca</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">ro</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">Al</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">fre</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">do!</span></span>
+    </div>
+    <div class="translation">Cher Alfredo !</div>
+    <div class="notes">Exclamation chaleureuse et courte. Très exposée — tout le monde t'entend.</div>
+  </div>
+</div>
+
+<div class="page ensemble">
+  <div class="page-head">
+    <span class="badge ensemble">ENSEMBLE</span>
+    <span class="page-num">p. 15</span>
+    <span class="page-title">TUTTI</span>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">Ben</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">di</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">ce</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">ste...</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">le</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">cu</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">re</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">se</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">gre</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">te</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">fu</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">ga</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">sem</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">pre</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">l'a</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">mi</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">co</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">li</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">cor.</span></span>
+    </div>
+    <div class="translation">Bien dit... les soucis secrets, l'alcool ami les chasse toujours.</div>
+  </div>
+</div>
+
+<div class="page ensemble">
+  <div class="page-head">
+    <span class="badge ensemble">ENSEMBLE</span>
+    <span class="page-num">p. 16</span>
+    <span class="page-title">TUTTI</span>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">E</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">al</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">con</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">vi</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">to</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">che</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">s'a</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">pre</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">o</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">gni</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">cor.</span></span>
+    </div>
+    <div class="translation">C'est au banquet que s'ouvre chaque cœur.</div>
+  </div>
+</div>
+
+<!-- E a madama -->
+<div class="page marchese" id="acte1-madama">
+  <div class="page-head">
+    <span class="badge marchese">SOLO ⭐</span>
+    <span class="page-num">p. 19</span>
+    <span class="page-title">MARCHESE</span>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">E</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">a</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">ma</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">da</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">ma</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">che</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">scuo</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">ter</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">lo</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">toc</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">ca.</span></span>
+    </div>
+    <div class="translation">C'est à madame qu'il revient de le réveiller.</div>
+    <div class="notes">Ton léger, taquin. Parler-chanter presque naturel.</div>
+  </div>
+</div>
+
+<!-- Préparation brindisi -->
+<div class="page ensemble">
+  <div class="page-head">
+    <span class="badge ensemble">ENSEMBLE — Motif répété 3 fois</span>
+    <span class="page-num">p. 20 (partition 16)</span>
+    <span class="page-title">TUTTI + MARCHESE (ligne de basse, M)</span>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">𝅘𝅥𝅯</span><span class="syll">Be</span></span>
+      <span class="syll-block"><span class="rhythm">♩.</span><span class="syll">via</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">mo.</span></span>
+      <span class="syll-block"><span class="rhythm">𝅘𝅥𝅯</span><span class="syll">Be‿</span></span>
+    </div>
+    <div class="translation">Buvons. Bu-</div>
+    <div class="notes">Première occurrence complète puis DÉBUT de la deuxième ("Be-") qui continue sur la page suivante. <strong>Be = double croche (𝅘𝅥𝅯), via = croche pointée (♩.), mo = blanche.</strong> Motif type d'attaque rythmique, toujours le même.</div>
+  </div>
+</div>
+
+<div class="page ensemble">
+  <div class="page-head">
+    <span class="badge ensemble">ENSEMBLE — Suite + 3e répétition</span>
+    <span class="page-num">p. 21 (partition 17)</span>
+    <span class="page-title">TUTTI + MARCHESE (M)</span>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♩.</span><span class="syll">‿via</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">mo,</span></span>
+      <span class="syll-block"><span class="rhythm">𝅘𝅥𝅯</span><span class="syll">be</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">viam.</span></span>
+    </div>
+    <div class="translation">-vons, buvons.</div>
+    <div class="notes">Fin de la 2e occurrence ("-viamo") puis 3e et dernière occurrence TRONQUÉE ("be-viam" sans le "mo" final). Toujours avec <strong>Be = double croche, via = croche pointée, mo/viam = blanche</strong>. Séquence complète sur les 2 pages : <em>"Beviamo. Beviamo, beviam."</em> (3 fois le motif).</div>
+  </div>
+</div>
+
+<div class="page ensemble">
+  <div class="page-head">
+    <span class="badge ensemble">ENSEMBLE</span>
+    <span class="page-num">p. 22</span>
+    <span class="page-title">TUTTI (Gastone + invités)</span>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">Sì,</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">sì,</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">un</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">brin</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">di</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">si!</span></span>
+    </div>
+    <div class="translation">Oui, oui, un chant à boire !</div>
+  </div>
+</div>
+
+<div class="page marchese">
+  <div class="page-head">
+    <span class="badge marchese">SOLO + ENSEMBLE</span>
+    <span class="page-num">p. 23 (partition 19)</span>
+    <span class="page-title">MARCHESE (seul puis avec TUTTI)</span>
+  </div>
+
+  <!-- Partie 1 : SOLO Marchese -->
+  <div class="line" style="border-left: 3px solid var(--marchese); padding-left: 16px;">
+    <div style="color:var(--marchese); font-size:0.85em; font-weight:bold; margin-bottom:4px;">① SOLO (jaune sur la partition)</div>
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">Dun</span></span>
+      <span class="syll-block"><span class="rhythm">𝅘𝅥𝅯</span><span class="syll">que</span></span>
+      <span class="syll-block"><span class="rhythm">𝅗𝅥</span><span class="syll">at</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">ten</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">ti...</span></span>
+    </div>
+    <div class="translation">Alors attention...</div>
+    <div class="notes">Rythme : <strong>croche (Dun) – double croche (que) – blanche (at) – noire (ten) – noire (ti)</strong>.</div>
+  </div>
+
+  <!-- Partie 2 : Marchese avec l'ensemble -->
+  <div class="line" style="border-left: 3px solid var(--ensemble); padding-left: 16px;">
+    <div style="color:var(--ensemble); font-size:0.85em; font-weight:bold; margin-bottom:4px;">② ENSEMBLE (bleu sur la partition) — Marchese chante AVEC le chœur</div>
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">𝅘𝅥𝅯</span><span class="syll">at</span></span>
+      <span class="syll-block"><span class="rhythm">𝅘𝅥𝅯</span><span class="syll">ten</span></span>
+      <span class="syll-block"><span class="rhythm">𝅗𝅥</span><span class="syll">ti</span></span>
+      <span class="syll-block"><span class="rhythm">♩.</span><span class="syll">al</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">can</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅝</span><span class="syll">tor</span></span>
+    </div>
+    <div class="translation">...attention au chanteur !</div>
+    <div class="notes">Rythme : <strong>double croche – double croche – blanche – noire pointée – croche – ronde (tenue longue)</strong>. Les autres voix chantent "<em>Sì, attenti al cantor</em>" (avec le "Sì" en plus au début) ; le Marchese chante juste "<em>attenti al cantor</em>" (sans Sì, car il enchaîne directement depuis son "Dunque attenti..."). La ronde finale sur "tor" est tenue longuement avec point d'orgue.</div>
+  </div>
+</div>
+
+<!-- BRINDISI -->
+<h2 id="acte1-brindisi" style="font-size:1.3em; color:var(--ensemble); border-color:var(--ensemble);">Le Brindisi (p. 26-36) — chœur TUTTI</h2>
+
+<div class="page ensemble">
+  <div class="page-head">
+    <span class="badge ensemble">ENSEMBLE — Refrain TUTTI</span>
+    <span class="page-num">p. 26</span>
+    <span class="page-title">Après le couplet d'Alfredo</span>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">𝅘𝅥𝅯</span><span class="syll">Ah!</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">li</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">biam,</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">a</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">mor</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">fra</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">i</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">ca</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">li</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">ci</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">più</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">cal</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">di</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">ba</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">ci</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">avrà.</span></span>
+    </div>
+    <div class="translation">Ah ! buvons, l'amour dans les coupes aura des baisers plus ardents.</div>
+  </div>
+</div>
+
+<div class="page ensemble">
+  <div class="page-head">
+    <span class="badge ensemble">ENSEMBLE</span>
+    <span class="page-num">p. 27</span>
+    <span class="page-title">Suite du refrain</span>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">cal</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">di</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">ba</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">ci</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅝</span><span class="syll">avrà.</span></span>
+    </div>
+    <div class="translation">...des baisers plus ardents.</div>
+  </div>
+</div>
+
+<div class="page ensemble">
+  <div class="page-head">
+    <span class="badge ensemble">ENSEMBLE — Refrain TUTTI</span>
+    <span class="page-num">p. 29-32</span>
+    <span class="page-title">Après le couplet de Violetta</span>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">𝅘𝅥𝅯</span><span class="syll">Ah!</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">go</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">dia</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">mo,</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">la</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">taz</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">za</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">e</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">il</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">can</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">ti</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">co</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">la</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">not</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">te</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">ab</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">bel</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">la</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">e</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">il</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">ri</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">so;</span></span>
+    </div>
+    <div class="translation">Ah ! profitons, la coupe et le chant embellissent la nuit et le rire ;</div>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">in</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">que</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">sto</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">pa</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">ra</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">di</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">so</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">ne</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">sco</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">pra</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">il</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">nuo</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">vo</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">dì.</span></span>
+    </div>
+    <div class="translation">...dans ce paradis que le jour nouveau nous trouve.</div>
+  </div>
+  <div class="repeat">↺ Ce refrain est repris plusieurs fois avec superpositions et variations (p. 30, 31, 32-36).</div>
+</div>
+
+<div class="page ensemble">
+  <div class="page-head">
+    <span class="badge ensemble">ENSEMBLE — Variante</span>
+    <span class="page-num">p. 32</span>
+    <span class="page-title">Reprise TUTTI</span>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">𝅘𝅥𝅯</span><span class="syll">Ah</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">sì,</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">go</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">dia</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">mo</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">la</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">taz</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">za</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">e</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">il</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">can</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">ti</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">co</span></span>
+    </div>
+    <div class="translation">Ah oui, profitons de la coupe et du chant</div>
+  </div>
+</div>
+
+<div class="page ensemble">
+  <div class="page-head">
+    <span class="badge ensemble">ENSEMBLE — Fin Brindisi</span>
+    <span class="page-num">p. 36</span>
+    <span class="page-title">TUTTI</span>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">...ne</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">sco</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">pra</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">il</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">nuo</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">vo</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅝</span><span class="syll">dì.</span></span>
+    </div>
+    <div class="translation">...que le jour nouveau nous trouve.</div>
+    <div class="notes">Ronde finale tenue sur "dì". Grand accord conclusif avant la valse.</div>
+  </div>
+</div>
+
+<!-- MALAISE DE VIOLETTA -->
+<h2 id="acte1-malaise" style="font-size:1.3em; color:var(--ensemble); border-color:var(--ensemble);">Malaise de Violetta (p. 37-42)</h2>
+
+<div class="page ensemble">
+  <div class="page-head">
+    <span class="badge ensemble">ENSEMBLE</span>
+    <span class="page-num">p. 37</span>
+    <span class="page-title">TUTTI (curieux)</span>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">Che</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">è</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">ciò?</span></span>
+    </div>
+    <div class="translation">Qu'est-ce ?</div>
+  </div>
+</div>
+
+<div class="page ensemble">
+  <div class="page-head">
+    <span class="badge ensemble">ENSEMBLE</span>
+    <span class="page-num">p. 38</span>
+    <span class="page-title">TUTTI</span>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">Oh,</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">il</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">gen</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">til</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">pen</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">sier!</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">Tut</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">ti</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">ac</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">cet</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">tia</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">mo.</span></span>
+    </div>
+    <div class="translation">Oh, la gentille idée ! Nous acceptons tous.</div>
+  </div>
+</div>
+
+<div class="page ensemble">
+  <div class="page-head">
+    <span class="badge ensemble">ENSEMBLE</span>
+    <span class="page-num">p. 39</span>
+    <span class="page-title">TUTTI (inquiets)</span>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">Che</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">a</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">ve</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">te?</span></span>
+    </div>
+    <div class="translation">Qu'avez-vous ?</div>
+  </div>
+</div>
+
+<div class="page ensemble">
+  <div class="page-head">
+    <span class="badge ensemble">ENSEMBLE</span>
+    <span class="page-num">p. 40</span>
+    <span class="page-title">TUTTI</span>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">Che</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">mai</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">v'ar</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">re</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">sta?</span></span>
+    </div>
+    <div class="translation">Qu'est-ce qui vous arrête ?</div>
+  </div>
+</div>
+
+<div class="page ensemble">
+  <div class="page-head">
+    <span class="badge ensemble">ENSEMBLE</span>
+    <span class="page-num">p. 41</span>
+    <span class="page-title">TUTTI (alarmés)</span>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">An</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">co</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">ra!</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">Oh</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">ciel!</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">ch'è</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">que</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">sto?</span></span>
+    </div>
+    <div class="translation">Encore ! Oh ciel ! qu'est-ce ?</div>
+  </div>
+</div>
+
+<div class="page ensemble">
+  <div class="page-head">
+    <span class="badge ensemble">ENSEMBLE — Sortie</span>
+    <span class="page-num">p. 42</span>
+    <span class="page-title">TUTTI</span>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">Co</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">me</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">bra</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">ma</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">te.</span></span>
+    </div>
+    <div class="translation">Comme vous voudrez.</div>
+    <div class="notes">Les invités sortent pour aller danser. Marchese quitte la scène ici. Il ne reviendra qu'à la Stretta (p.56).</div>
+  </div>
+</div>
+
+<!-- STRETTA -->
+<h2 id="acte1-stretta" style="font-size:1.3em; color:var(--ensemble); border-color:var(--ensemble);">La Stretta — Sortie finale (p. 56-68)</h2>
+
+<div class="page ensemble">
+  <div class="page-head">
+    <span class="badge ensemble">ENSEMBLE — Stretta</span>
+    <span class="page-num">p. 56</span>
+    <span class="page-title">TUTTI (Presto)</span>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">Sì,</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">ri</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">de</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">sta</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">in</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">ciel</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">l'au</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">ro</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">ra,</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">e</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">n'è</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">for</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">za</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">ri</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">par</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">tir;</span></span>
+    </div>
+    <div class="translation">Oui, l'aurore se réveille au ciel, il nous faut repartir ;</div>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">mer</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">cé</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">a</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">voi,</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">gen</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">til</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">si</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">gno</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">ra,</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">di</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">sì</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">splen</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">di</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">do</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">gio</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">ir.</span></span>
+    </div>
+    <div class="translation">merci à vous, gentille dame, pour ce si splendide plaisir.</div>
+  </div>
+</div>
+
+<div class="page ensemble">
+  <div class="page-head">
+    <span class="badge ensemble">ENSEMBLE</span>
+    <span class="page-num">p. 57-60</span>
+    <span class="page-title">TUTTI — Suite Stretta</span>
+  </div>
+  <div class="repeat">↺ Reprises et superpositions du texte précédent "merce a voi... di si splendido gioir". Suivre la ligne de basse avec le rythme vif (staccato, presto).</div>
+</div>
+
+<div class="page ensemble">
+  <div class="page-head">
+    <span class="badge ensemble">ENSEMBLE</span>
+    <span class="page-num">p. 61</span>
+    <span class="page-title">TUTTI</span>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">La</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">cit</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">tà</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">di</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">fe</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">ste</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">è</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">pie</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">na,</span></span>
+    </div>
+    <div class="translation">La ville est pleine de fêtes,</div>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">vol</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">ge</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">il</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">tem</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">po</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">dei</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">pia</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">cer;</span></span>
+    </div>
+    <div class="translation">voici le temps des plaisirs ;</div>
+  </div>
+</div>
+
+<div class="page ensemble">
+  <div class="page-head">
+    <span class="badge ensemble">ENSEMBLE</span>
+    <span class="page-num">p. 62</span>
+    <span class="page-title">TUTTI</span>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">nel</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">ri</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">po</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">so</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">an</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">cor</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">la</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">le</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">na</span></span>
+    </div>
+    <div class="translation">dans le repos encore la force</div>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">si</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">ri</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">tem</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">pri</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">per</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">go</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅝</span><span class="syll">der.</span></span>
+    </div>
+    <div class="translation">se retrempera pour jouir.</div>
+  </div>
+</div>
+
+<div class="page ensemble">
+  <div class="page-head">
+    <span class="badge ensemble">ENSEMBLE — Fin Acte I</span>
+    <span class="page-num">p. 63-68</span>
+    <span class="page-title">TUTTI — Reprises et final</span>
+  </div>
+  <div class="repeat">↺ Reprises intensifiées de toute la Stretta avec superpositions riches. Grand accord final tenu en "dì" / "goder". <strong>FIN ACTE I.</strong></div>
+</div>
+
+<!-- ============================ -->
+<!-- ========= ACTE II ========== -->
+<!-- ============================ -->
+<h2 id="acte2">ACTE II, scène 2 — Fête chez Flora</h2>
+
+<!-- La novità -->
+<div class="page marchese" id="acte2-novita">
+  <div class="page-head">
+    <span class="badge marchese">SOLO ⭐⭐ (le plus important)</span>
+    <span class="page-num">p. 143</span>
+    <span class="page-title">MARCHESE</span>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">La</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">no</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">vi</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">tà</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">i</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">gno</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">ra</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">te?</span></span>
+    </div>
+    <div class="translation">Vous ignorez la nouvelle ?</div>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">Vio</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">let</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">ta</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">e</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">Ger</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">mont</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">so</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">no</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">dis</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">giun</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">ti.</span></span>
+    </div>
+    <div class="translation">Violetta et Germont (Alfredo) se sont séparés.</div>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">El</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">la</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">ver</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">rà</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">qui</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">col</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">Ba</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">ro</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">ne.</span></span>
+    </div>
+    <div class="translation">Elle viendra ici avec le Baron.</div>
+    <div class="notes">LA phrase-clé de tout l'acte. Articulation impeccable exigée. Ton mondain, un peu fier d'annoncer la nouvelle.</div>
+  </div>
+</div>
+
+<div class="page ensemble">
+  <div class="page-head">
+    <span class="badge ensemble">ENSEMBLE</span>
+    <span class="page-num">p. 144</span>
+    <span class="page-title">FLORA + invités</span>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">Giun</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">go</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">no</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">gli</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">a</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">mi</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">ci.</span></span>
+    </div>
+    <div class="translation">Les amis arrivent.</div>
+  </div>
+</div>
+
+<div class="page marchese" id="acte2-falsita">
+  <div class="page-head">
+    <span class="badge marchese">SOLO ⭐</span>
+    <span class="page-num">p. 147</span>
+    <span class="page-title">MARCHESE (réponse à Flora)</span>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">Che</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">dian</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">cin</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">vi</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">pen</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">sa</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">te?</span></span>
+    </div>
+    <div class="translation">Que diable pensez-vous ?</div>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">L'ac</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">cu</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">sa</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">è</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">fal</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">si</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">tà!</span></span>
+    </div>
+    <div class="translation">L'accusation est fausse !</div>
+    <div class="notes">Ton indigné mais toujours mondain. Ne pas trop appuyer — le Marchese est un peu ridicule ici.</div>
+  </div>
+</div>
+
+<div class="page ensemble">
+  <div class="page-head">
+    <span class="badge ensemble">ENSEMBLE</span>
+    <span class="page-num">p. 149-151</span>
+    <span class="page-title">TUTTI (transition)</span>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">Su</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">via,</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">si</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">sten</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">da</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">un</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">ve</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">lo</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">sui</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">fat</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">ti</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">del</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">pas</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">sa</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">to;</span></span>
+    </div>
+    <div class="translation">Allez, tirons un voile sur le passé ;</div>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">già</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">quel</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">ch'è</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">sta</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">to</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">è</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">sta</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">to,</span></span>
+    </div>
+    <div class="translation">ce qui est fait est fait,</div>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">ba</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">dia</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">mo</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">all'</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">av</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">ve</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅝</span><span class="syll">nir.</span></span>
+    </div>
+    <div class="translation">pensons à l'avenir.</div>
+  </div>
+</div>
+
+<!-- MATTADORI -->
+<h2 id="acte2-mattadori" style="font-size:1.3em; color:var(--ensemble); border-color:var(--ensemble);">Mattadori (p. 153-163)</h2>
+
+<div class="page ensemble">
+  <div class="page-head">
+    <span class="badge ensemble">ENSEMBLE</span>
+    <span class="page-num">p. 153</span>
+    <span class="page-title">TUTTI (aux Mattadori)</span>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">Sì,</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">sì,</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">bra</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">vi,</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">nar</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">ra</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">te,</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">con</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">pia</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">ce</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">re</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">l'u</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">dre</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">mo.</span></span>
+    </div>
+    <div class="translation">Oui, bravo, racontez, nous écouterons avec plaisir.</div>
+  </div>
+</div>
+
+<div class="page ensemble">
+  <div class="page-head">
+    <span class="badge ensemble">ENSEMBLE</span>
+    <span class="page-num">p. 157-158</span>
+    <span class="page-title">TUTTI (après récit des matadors)</span>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">Bra</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">vo,</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">in</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">ve</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">ro,</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">il</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">mat</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">ta</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">do</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">re,</span></span>
+    </div>
+    <div class="translation">Bravo vraiment, le matador,</div>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">ben</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">ga</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">gliar</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">do</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">si</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">mos</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅝</span><span class="syll">trò!</span></span>
+    </div>
+    <div class="translation">il s'est montré bien vaillant !</div>
+  </div>
+</div>
+
+<div class="page ensemble">
+  <div class="page-head">
+    <span class="badge ensemble">ENSEMBLE</span>
+    <span class="page-num">p. 159</span>
+    <span class="page-title">TUTTI</span>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">Con</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">tai</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">pro</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">ve</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">i</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">mat</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">ta</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">do</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">ri</span></span>
+    </div>
+    <div class="translation">Avec de telles preuves, les matadors</div>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">san</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">le</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">a</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">man</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">ti</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">con</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">qui</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">star!</span></span>
+    </div>
+    <div class="translation">savent conquérir les amantes !</div>
+  </div>
+</div>
+
+<div class="page ensemble">
+  <div class="page-head">
+    <span class="badge ensemble">ENSEMBLE</span>
+    <span class="page-num">p. 160-163</span>
+    <span class="page-title">TUTTI (transition vers les cartes)</span>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">Sì,</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">al</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">le</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">gri...</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">Or</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">pria</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">ten</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">tia</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">mo</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">del</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">la</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">sor</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">te</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">il</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">va</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">rio</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">u</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">mor;</span></span>
+    </div>
+    <div class="translation">Oui, amusons-nous... Essayons d'abord l'humeur variable du sort ;</div>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">la</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">pa</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">le</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">stra</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">dis</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">chiu</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">dia</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">mo</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">a</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">gli</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">au</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">da</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">ci</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">gio</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">ca</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅝</span><span class="syll">tor.</span></span>
+    </div>
+    <div class="translation">ouvrons l'arène aux audacieux joueurs.</div>
+  </div>
+</div>
+
+<!-- Cartes / Arrivée Alfredo -->
+<h2 id="acte2-cartes" style="font-size:1.3em; color:var(--ensemble); border-color:var(--ensemble);">Arrivée Alfredo & jeu de cartes (p. 164-174)</h2>
+
+<div class="page ensemble">
+  <div class="page-head">
+    <span class="badge ensemble">ENSEMBLE</span>
+    <span class="page-num">p. 164</span>
+    <span class="page-title">TUTTI (surpris)</span>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">Al</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">fre</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">do!...</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">Voi!...</span></span>
+    </div>
+    <div class="translation">Alfredo !... Vous !...</div>
+  </div>
+</div>
+
+<div class="page ensemble">
+  <div class="page-head">
+    <span class="badge ensemble">ENSEMBLE</span>
+    <span class="page-num">p. 165</span>
+    <span class="page-title">TUTTI (sarcastiques)</span>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">Ben</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">di</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">sin</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">vol</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">to!...</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">bra</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">vo!...</span></span>
+    </div>
+    <div class="translation">Bien décontracté !... bravo !...</div>
+    <div class="notes">C'est la phrase que tu avais en photo — 2 temps de demi-pause entre "volto!.." et "bravo!..".</div>
+  </div>
+</div>
+
+<div class="page ensemble">
+  <div class="page-head">
+    <span class="badge ensemble">ENSEMBLE</span>
+    <span class="page-num">p. 166</span>
+    <span class="page-title">TUTTI</span>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">...via,</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">giuo</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">car</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">si</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">può.</span></span>
+    </div>
+    <div class="translation">...allez, on peut jouer.</div>
+  </div>
+</div>
+
+<div class="page ensemble">
+  <div class="page-head">
+    <span class="badge ensemble">ENSEMBLE</span>
+    <span class="page-num">p. 169</span>
+    <span class="page-title">TUTTI (pendant le jeu)</span>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">È</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">sem</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">pre</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">vin</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">ci</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">to</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">re!</span></span>
+    </div>
+    <div class="translation">Il gagne toujours !</div>
+  </div>
+</div>
+
+<div class="page ensemble">
+  <div class="page-head">
+    <span class="badge ensemble">ENSEMBLE</span>
+    <span class="page-num">p. 172</span>
+    <span class="page-title">TUTTI</span>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">An</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">co</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">ra!</span></span>
+    </div>
+    <div class="translation">Encore !</div>
+  </div>
+</div>
+
+<div class="page ensemble">
+  <div class="page-head">
+    <span class="badge ensemble">ENSEMBLE</span>
+    <span class="page-num">p. 173</span>
+    <span class="page-title">TUTTI</span>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">Bra</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">vo</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">dav</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">ver!</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">La</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">sor</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">te</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">è</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">tut</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">ta</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">per</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">Al</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">fre</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">do!</span></span>
+    </div>
+    <div class="translation">Bravo vraiment ! La chance est toute pour Alfredo !</div>
+  </div>
+</div>
+
+<div class="page ensemble">
+  <div class="page-head">
+    <span class="badge ensemble">ENSEMBLE</span>
+    <span class="page-num">p. 174</span>
+    <span class="page-title">TUTTI</span>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">An</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">dia</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">mo.</span></span>
+    </div>
+    <div class="translation">Allons-y.</div>
+  </div>
+</div>
+
+<!-- SCANDALE -->
+<h2 id="acte2-scandale" style="font-size:1.3em; color:var(--ensemble); border-color:var(--ensemble);">Le Scandale (p. 182-188)</h2>
+
+<div class="page ensemble">
+  <div class="page-head">
+    <span class="badge ensemble">ENSEMBLE</span>
+    <span class="page-num">p. 182</span>
+    <span class="page-title">TUTTI (appelés par Alfredo)</span>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">Ne</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">ap</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">pel</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">la</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">ste?</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">Che</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">vo</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">le</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">te?</span></span>
+    </div>
+    <div class="translation">Vous nous avez appelés ? Que voulez-vous ?</div>
+  </div>
+</div>
+
+<div class="page ensemble">
+  <div class="page-head">
+    <span class="badge ensemble">ENSEMBLE</span>
+    <span class="page-num">p. 183</span>
+    <span class="page-title">TUTTI</span>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">Chi?</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">Vio</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">let</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">ta?...</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">No.</span></span>
+    </div>
+    <div class="translation">Qui ? Violetta ?... Non.</div>
+  </div>
+</div>
+
+<div class="page ensemble">
+  <div class="page-head">
+    <span class="badge ensemble">ENSEMBLE — Indignation</span>
+    <span class="page-num">p. 185</span>
+    <span class="page-title">TUTTI (après l'humiliation)</span>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">Oh,</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">in</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">fa</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">mia</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">or</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">ri</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">bi</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">le</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">tu</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">com</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">met</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">te</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">sti!</span></span>
+    </div>
+    <div class="translation">Oh, quelle infamie horrible tu as commise !</div>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">Un</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">cor</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">sen</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">si</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">bi</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">le</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">co</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">sì</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">uc</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">ci</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">de</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">sti!</span></span>
+    </div>
+    <div class="translation">Un cœur sensible tu l'as ainsi tué !</div>
+  </div>
+</div>
+
+<div class="page ensemble">
+  <div class="page-head">
+    <span class="badge ensemble">ENSEMBLE</span>
+    <span class="page-num">p. 186-188</span>
+    <span class="page-title">TUTTI</span>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">Di</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">don</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">ne</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">i</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">gno</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">bi</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">le</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">in</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">sul</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">ta</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">tor,</span></span>
+    </div>
+    <div class="translation">Ignoble insulteur de femmes,</div>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">di</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">qua</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">al</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">lon</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">ta</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">na</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">ti,</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">ne</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">de</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">sti</span></span>
+      <span class="syll-block"><span class="rhythm">𝅗𝅥</span><span class="syll">or</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">ror.</span></span>
+    </div>
+    <div class="translation">éloigne-toi d'ici, tu nous fais horreur.</div>
+  </div>
+</div>
+
+<!-- FINALE ACTE II -->
+<h2 id="acte2-finale" style="font-size:1.3em; color:var(--ensemble); border-color:var(--ensemble);">Finale Acte II — "Oh quanto peni! Fa cor!" (p. 191-210)</h2>
+
+<div class="page ensemble">
+  <div class="page-head">
+    <span class="badge ensemble">ENSEMBLE — Consolation de Violetta</span>
+    <span class="page-num">p. 191-192</span>
+    <span class="page-title">TUTTI (hommes et femmes)</span>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">Oh,</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">quan</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">to</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">pe</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">ni!</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">Ma</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">pur</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">fa</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">cor,</span></span>
+    </div>
+    <div class="translation">Oh, combien tu souffres ! Mais prends courage,</div>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">qui</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">sof</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">fre</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">o</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">gnun</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">del</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">tuo</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">do</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅗𝅥</span><span class="syll">lor;</span></span>
+    </div>
+    <div class="translation">ici chacun souffre de ta douleur ;</div>
+  </div>
+</div>
+
+<div class="page ensemble">
+  <div class="page-head">
+    <span class="badge ensemble">ENSEMBLE</span>
+    <span class="page-num">p. 193-195</span>
+    <span class="page-title">TUTTI</span>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">fra</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">ca</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">ri</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">a</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">mi</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">ci</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">qui</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">sei</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">sol</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">tan</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">to;</span></span>
+    </div>
+    <div class="translation">parmi de chers amis tu es seule ici ;</div>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">ras</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">ciu</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">ga</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">il</span></span>
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">pian</span></span>
+      <span class="syll-block pause"><span class="rhythm">♩</span><span class="syll">to</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">che</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">t'i</span></span>
+      <span class="syll-block"><span class="rhythm">♪</span><span class="syll">non</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅝</span><span class="syll">dò.</span></span>
+    </div>
+    <div class="translation">essuie les larmes qui t'ont inondée.</div>
+  </div>
+  <div class="repeat">↺ Ce refrain "Oh quanto peni, fa cor..." est repris plusieurs fois avec variations, superpositions de voix (pages 196-210), et reprise rythmique plus intense vers la fin.</div>
+</div>
+
+<div class="page ensemble">
+  <div class="page-head">
+    <span class="badge ensemble">ENSEMBLE — Reprises</span>
+    <span class="page-num">p. 196-205</span>
+    <span class="page-title">TUTTI (grande architecture)</span>
+  </div>
+  <div class="repeat">↺ Reprises successives du texte :<br>
+  <em>"Ah! quanto peni, ma pur fa core / qui soffre ognun del tuo dolor / fra cari amici tu sei sol / tanto, rasciuga il pianto che t'i non dò."</em><br><br>
+  Les quatre vers s'entrecroisent avec ceux des autres personnages (Violetta, Alfredo, Germont, le Baron). Architecture chorale monumentale. Suivre ta ligne de basse.</div>
+</div>
+
+<div class="page ensemble">
+  <div class="page-head">
+    <span class="badge ensemble">ENSEMBLE — Final</span>
+    <span class="page-num">p. 206-210</span>
+    <span class="page-title">TUTTI — Note finale tenue</span>
+  </div>
+  <div class="line">
+    <div class="syllables">
+      <span class="syll-block"><span class="rhythm">♩</span><span class="syll">...fa</span></span>
+      <span class="syll-block pause"><span class="rhythm">𝅝</span><span class="syll">cor!</span></span>
+    </div>
+    <div class="translation">...courage !</div>
+    <div class="notes">Ronde finale tenue sur "cor" (ou "dò" selon la ligne). Grand accord conclusif. <strong>FIN DE L'ACTE II.</strong></div>
+  </div>
+</div>
+
+<footer style="text-align:center; color:var(--text-mute); padding:30px 20px; font-size:0.85em; border-top:1px solid rgba(212,175,55,0.3); margin-top:40px;">
+  <p>Document de travail — Syllabes, rythmes et traductions des parties chantées par le Marchese d'Obigny<br>
+  Tout a été reconstitué à partir de la partition Ricordi et de ma connaissance de l'œuvre.</p>
+  <p style="color:var(--gold-light); margin-top:10px;">⭐ = passages solos prioritaires · ⭐⭐ = phrase-clé dramatique</p>
+  <p style="color:var(--pink); margin-top:8px; font-style:italic;">Les valeurs rythmiques (noires, blanches...) sont <strong>indicatives</strong> — à valider avec la partition en main.</p>
+</footer>
+
+</main>
+</body>
+</html>

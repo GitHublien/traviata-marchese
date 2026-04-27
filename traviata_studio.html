@@ -1,0 +1,1775 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Traviata · Marchese d'Obigny · Studio de travail</title>
+<style>
+  :root {
+    --bg: #fafaf7;
+    --bg-card: #ffffff;
+    --bg-elev: #f5f3ee;
+    --text: #1a1a1a;
+    --text-muted: #6b6b6b;
+    --border: #e5e2da;
+    --accent: #8b1538;
+    --accent-light: #c42850;
+    --solo: #fff3a3;
+    --solo-border: #d4a017;
+    --solo-text: #6b4c00;
+    --ensemble: #cfe4f7;
+    --ensemble-border: #2b6cb0;
+    --ensemble-text: #1a4270;
+    --didascalie: #c8ebc8;
+    --didascalie-border: #2e7d32;
+    --didascalie-text: #1a5c1f;
+    --pause: #e8e8e8;
+    --pause-border: #999;
+    --pause-text: #555;
+    --shadow: 0 2px 8px rgba(0,0,0,0.06);
+    --shadow-hover: 0 4px 16px rgba(0,0,0,0.1);
+    --radius: 12px;
+    --transition: all 0.2s ease;
+  }
+
+  [data-theme="dark"] {
+    --bg: #0f0f12;
+    --bg-card: #1a1a1f;
+    --bg-elev: #22222a;
+    --text: #f0f0f0;
+    --text-muted: #a0a0a0;
+    --border: #2e2e36;
+    --accent: #e63970;
+    --accent-light: #ff5580;
+    --solo: #5a4500;
+    --solo-border: #d4a017;
+    --solo-text: #ffd966;
+    --ensemble: #1a3a5c;
+    --ensemble-border: #4a90e2;
+    --ensemble-text: #90c4f0;
+    --didascalie: #1a3d1a;
+    --didascalie-border: #4caf50;
+    --didascalie-text: #90d090;
+    --pause: #2a2a30;
+    --pause-border: #555;
+    --pause-text: #999;
+    --shadow: 0 2px 8px rgba(0,0,0,0.3);
+    --shadow-hover: 0 4px 16px rgba(0,0,0,0.5);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  /* ===== TOP BAR ===== */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(10px);
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .logo {
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .logo::before {
+    content: "♪";
+    font-size: 24px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 4px;
+    flex: 1;
+    flex-wrap: wrap;
+  }
+
+  .nav-links a {
+    padding: 8px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 14px;
+    font-weight: 500;
+    transition: var(--transition);
+  }
+
+  .nav-links a:hover {
+    background: var(--bg-elev);
+    color: var(--accent);
+  }
+
+  .nav-links a.active {
+    background: var(--accent);
+    color: white;
+  }
+
+  .top-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .btn-icon {
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    color: var(--text);
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .btn-icon:hover {
+    background: var(--accent);
+    color: white;
+  }
+
+  .search-box {
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    width: 200px;
+    transition: var(--transition);
+  }
+
+  .search-box:focus {
+    outline: none;
+    border-color: var(--accent);
+    width: 250px;
+  }
+
+  /* ===== MAIN ===== */
+  main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 32px 24px 80px;
+  }
+
+  section {
+    margin-bottom: 48px;
+    scroll-margin-top: 80px;
+  }
+
+  h1 {
+    font-size: 36px;
+    margin-bottom: 8px;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  h1 + .subtitle {
+    color: var(--text-muted);
+    margin-bottom: 24px;
+    font-size: 16px;
+  }
+
+  h2 {
+    font-size: 28px;
+    margin-bottom: 16px;
+    color: var(--text);
+    font-weight: 700;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent);
+  }
+
+  h3 {
+    font-size: 20px;
+    margin: 24px 0 12px;
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  /* ===== DASHBOARD ===== */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .stat-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+  }
+
+  .stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+
+  .stat-value {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .stat-sub {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+  .progress-bar {
+    height: 6px;
+    background: var(--bg-elev);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-top: 12px;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent-light));
+    transition: width 0.5s ease;
+  }
+
+  /* ===== CARDS ===== */
+  .replique-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    position: relative;
+  }
+
+  .replique-card:hover {
+    box-shadow: var(--shadow-hover);
+  }
+
+  .replique-card.learned {
+    border-left: 4px solid #2e7d32;
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+
+  .page-ref {
+    font-family: "SF Mono", Monaco, Consolas, monospace;
+    font-size: 13px;
+    background: var(--bg-elev);
+    color: var(--text);
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-weight: 600;
+    border: 1px solid var(--border);
+  }
+
+  .tag {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 1px solid;
+  }
+
+  .tag-solo {
+    background: var(--solo);
+    color: var(--solo-text);
+    border-color: var(--solo-border);
+  }
+
+  .tag-ensemble {
+    background: var(--ensemble);
+    color: var(--ensemble-text);
+    border-color: var(--ensemble-border);
+  }
+
+  .tag-didascalie {
+    background: var(--didascalie);
+    color: var(--didascalie-text);
+    border-color: var(--didascalie-border);
+  }
+
+  .tag-pause {
+    background: var(--pause);
+    color: var(--pause-text);
+    border-color: var(--pause-border);
+  }
+
+  .learn-check {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--text-muted);
+    user-select: none;
+  }
+
+  .learn-check input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--accent);
+    cursor: pointer;
+  }
+
+  .other-char {
+    color: var(--text-muted);
+    font-size: 14px;
+    font-style: italic;
+    padding: 8px 12px;
+    background: var(--bg-elev);
+    border-radius: 6px;
+    margin: 8px 0;
+    border-left: 3px solid var(--pause-border);
+  }
+
+  .didascalie-text {
+    color: var(--didascalie-text);
+    font-size: 13px;
+    font-style: italic;
+    margin: 8px 0;
+    padding-left: 12px;
+    border-left: 3px solid var(--didascalie-border);
+  }
+
+  .italian-text {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text);
+    margin: 12px 0;
+    padding: 12px 16px;
+    background: linear-gradient(to right, rgba(139, 21, 56, 0.05), transparent);
+    border-left: 4px solid var(--accent);
+    border-radius: 6px;
+    white-space: pre-line;
+  }
+
+  .translation {
+    margin-top: 8px;
+    color: var(--text-muted);
+    font-size: 14px;
+    font-style: italic;
+    padding: 8px 12px;
+    background: var(--bg-elev);
+    border-radius: 6px;
+    cursor: pointer;
+    user-select: none;
+    transition: var(--transition);
+  }
+
+  .translation.hidden {
+    filter: blur(5px);
+    opacity: 0.5;
+  }
+
+  .translation.hidden:hover {
+    filter: blur(0);
+    opacity: 1;
+  }
+
+  .translation::before {
+    content: "FR · ";
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .context-text {
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--text-muted);
+    padding: 8px 12px;
+    background: var(--bg-elev);
+    border-radius: 6px;
+    line-height: 1.5;
+  }
+
+  .context-text::before {
+    content: "💡 ";
+  }
+
+  .note-box {
+    background: #fff8e1;
+    border: 1px solid #ffc107;
+    color: #5d4300;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    margin: 12px 0;
+  }
+
+  [data-theme="dark"] .note-box {
+    background: #3a2e00;
+    color: #ffd966;
+  }
+
+  /* ===== AUDIO PLAYER ===== */
+  .audio-section {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow);
+  }
+
+  .audio-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 12px;
+  }
+
+  .audio-item {
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px;
+  }
+
+  .audio-item-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  .audio-item audio {
+    width: 100%;
+    height: 32px;
+  }
+
+  /* ===== EXERCICE ===== */
+  .exercise-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    margin-bottom: 10px;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: 60px 1fr auto;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .exercise-card:hover {
+    box-shadow: var(--shadow-hover);
+    border-color: var(--accent);
+  }
+
+  .exercise-page {
+    font-family: "SF Mono", Monaco, Consolas, monospace;
+    font-size: 13px;
+    background: var(--bg-elev);
+    color: var(--text);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .exercise-clue {
+    font-family: "SF Mono", Monaco, Consolas, monospace;
+    font-size: 14px;
+    color: var(--text);
+  }
+
+  .exercise-answer {
+    font-size: 14px;
+    color: var(--accent);
+    font-weight: 600;
+    display: none;
+  }
+
+  .exercise-card.revealed .exercise-clue {
+    display: none;
+  }
+
+  .exercise-card.revealed .exercise-answer {
+    display: block;
+  }
+
+  .exercise-card .reveal-btn {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+
+  .exercise-card.revealed .reveal-btn {
+    background: var(--bg-elev);
+    color: var(--text-muted);
+  }
+
+  /* ===== PLANNING ===== */
+  .planning-day {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    box-shadow: var(--shadow);
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 16px;
+    align-items: start;
+    transition: var(--transition);
+  }
+
+  .planning-day.done {
+    opacity: 0.6;
+  }
+
+  .planning-day.done .day-title {
+    text-decoration: line-through;
+  }
+
+  .day-check {
+    width: 24px;
+    height: 24px;
+    accent-color: var(--accent);
+    cursor: pointer;
+    margin-top: 4px;
+  }
+
+  .day-content {
+    min-width: 0;
+  }
+
+  .day-title {
+    font-weight: 600;
+    color: var(--accent);
+    font-size: 15px;
+    margin-bottom: 4px;
+  }
+
+  .day-task {
+    font-size: 14px;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .day-detail {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  .day-date {
+    font-size: 12px;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+
+  .phase-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: white;
+    background: var(--accent);
+    padding: 8px 16px;
+    border-radius: 8px;
+    display: inline-block;
+    margin: 24px 0 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* ===== CUTS INFO ===== */
+  .cuts-box {
+    background: linear-gradient(135deg, rgba(139, 21, 56, 0.05), rgba(196, 40, 80, 0.05));
+    border: 2px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin-bottom: 24px;
+  }
+
+  .cuts-box h3 {
+    color: var(--accent);
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .cuts-box p {
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    .topbar {
+      padding: 10px 16px;
+      gap: 12px;
+    }
+
+    .logo {
+      font-size: 16px;
+    }
+
+    .nav-links {
+      order: 10;
+      width: 100%;
+      overflow-x: auto;
+      flex-wrap: nowrap;
+      padding-top: 8px;
+      border-top: 1px solid var(--border);
+    }
+
+    .nav-links a {
+      white-space: nowrap;
+    }
+
+    .search-box {
+      width: 140px;
+    }
+
+    .search-box:focus {
+      width: 180px;
+    }
+
+    main {
+      padding: 20px 16px 60px;
+    }
+
+    h1 { font-size: 28px; }
+    h2 { font-size: 22px; }
+
+    .stat-value { font-size: 26px; }
+
+    .exercise-card {
+      grid-template-columns: 50px 1fr;
+    }
+
+    .exercise-card .reveal-btn {
+      grid-column: 1 / -1;
+      width: 100%;
+    }
+
+    .planning-day {
+      grid-template-columns: auto 1fr;
+    }
+
+    .day-date {
+      grid-column: 2;
+    }
+  }
+
+  /* ===== SEARCH HIGHLIGHT ===== */
+  .search-hidden {
+    display: none !important;
+  }
+
+  mark {
+    background: var(--solo);
+    color: var(--solo-text);
+    padding: 0 2px;
+    border-radius: 2px;
+  }
+
+  /* ===== PRINT ===== */
+  @media print {
+    .topbar, .top-actions, .learn-check, .reveal-btn { display: none !important; }
+    .translation.hidden { filter: none !important; opacity: 1 !important; }
+    .exercise-card .exercise-answer { display: block !important; }
+    .exercise-card .exercise-clue { display: none !important; }
+    .replique-card, .exercise-card, .planning-day { page-break-inside: avoid; }
+  }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  section { animation: fadeIn 0.4s ease; }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="logo">La Traviata</div>
+  <nav class="nav-links">
+    <a href="#dashboard" class="active">Dashboard</a>
+    <a href="#acte1">Acte I</a>
+    <a href="#acte2">Acte II</a>
+    <a href="#exercice">Exercice</a>
+    <a href="#planning">Planning</a>
+    <a href="#audio">Audio</a>
+    <a href="#traductions">Traductions</a>
+    <a href="#coupures">Coupures</a>
+  </nav>
+  <div class="top-actions">
+    <input type="text" class="search-box" id="search" placeholder="🔍 Rechercher...">
+    <button class="btn-icon" id="theme-toggle" title="Mode sombre/clair">🌙</button>
+    <button class="btn-icon" id="reveal-all" title="Tout révéler">👁</button>
+    <button class="btn-icon" id="reset-progress" title="Reset progression">↻</button>
+  </div>
+</header>
+
+<main>
+
+<!-- ========== DASHBOARD ========== -->
+<section id="dashboard">
+  <h1>Marchese d'Obigny</h1>
+  <div class="subtitle">La Traviata · Giuseppe Verdi · Basse · Studio de travail</div>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-label">Jours avant répétitions</div>
+      <div class="stat-value" id="days-left">–</div>
+      <div class="stat-sub">Répétitions le 28 avril 2026</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Répliques apprises</div>
+      <div class="stat-value" id="learned-count">0/0</div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Planning complété</div>
+      <div class="stat-value" id="days-done">0/14</div>
+      <div class="stat-sub">Jours cochés</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Rôle</div>
+      <div class="stat-value" style="font-size:18px;">Comprimario</div>
+      <div class="stat-sub">~22 répliques solo + 4 ensembles</div>
+    </div>
+  </div>
+
+  <div class="note-box">
+    <strong>💡 Comment utiliser ce studio :</strong><br>
+    • Cliquez sur les traductions floutées pour les révéler (entraînement)<br>
+    • Cochez les répliques au fur et à mesure que vous les maîtrisez<br>
+    • Cochez les jours du planning quand ils sont terminés<br>
+    • Votre progression est sauvegardée dans le navigateur<br>
+    • <strong>Page opéra (Daniela) + 4 = Page PDF sur votre tablette</strong>
+  </div>
+</section>
+
+<!-- ========== ACTE I ========== -->
+<section id="acte1">
+  <h2>Acte I · Fête chez Violetta (pages PDF 10-68)</h2>
+
+  <h3>Introduction · Arrivée des invités</h3>
+  <div id="acte1-intro"></div>
+
+  <h3>Dialogue et scène de jeu</h3>
+  <div id="acte1-jeu"></div>
+
+  <h3>Brindisi · "Libiamo ne' lieti calici"</h3>
+  <div class="note-box">
+    Le Brindisi a 2 couplets (Alfredo puis Violetta). Après chaque couplet, TOUS reprennent le refrain. C'est ce refrain que vous chantez.
+  </div>
+  <div id="acte1-brindisi"></div>
+
+  <h3>Valzer · Réactions collectives</h3>
+  <div id="acte1-valzer"></div>
+
+  <h3>Stretta · Retour des invités</h3>
+  <div class="note-box">
+    Ce couplet se répète sur 13 pages avec des variations musicales. Apprenez-le = toute la Stretta.
+  </div>
+  <div id="acte1-stretta"></div>
+</section>
+
+<!-- ========== ACTE II ========== -->
+<section id="acte2">
+  <h2>Acte II scène 2 · Fête chez Flora (pages PDF 142-210)</h2>
+
+  <div class="note-box">
+    ⚠️ <strong>ATTENTION :</strong> Avant votre entrée, il y a 73 pages sans le Marchese (Acte II scène 1). Ne ratez pas votre rentrée page PDF 142 !
+  </div>
+
+  <h3>Arrivée chez Flora · Vos grandes répliques</h3>
+  <div id="acte2-arrivee"></div>
+
+  <h3>Chœur des Zingarelle · Scène de la main</h3>
+  <div id="acte2-zingarelle"></div>
+
+  <h3>Chœur des Mattadori · Scène de jeu</h3>
+  <div id="acte2-mattadori"></div>
+
+  <h3>Le scandale · Grand ensemble final</h3>
+  <div id="acte2-finale"></div>
+</section>
+
+<!-- ========== COUPURES ========== -->
+<section id="coupures">
+  <h2>Coupures de l'Opéra (message de Daniela)</h2>
+
+  <div class="cuts-box">
+    <h3>✅ AUCUNE coupure ne vous concerne</h3>
+    <p>Toutes les coupures envoyées par l'opéra tombent dans :</p>
+    <ul style="margin: 12px 0 12px 24px;">
+      <li>L'aria de Violetta "Ah fors'è lui" (après votre sortie de l'Acte I)</li>
+      <li>L'Acte II scène 1 (Alfredo, Violetta, Germont — pas de Marchese)</li>
+      <li>L'Acte III (chambre de Violetta — pas de Marchese)</li>
+    </ul>
+    <p><strong>Votre rôle reste 100% intact.</strong> Vous chantez toutes vos notes.</p>
+  </div>
+
+  <h3>Correspondance pages opéra ↔ votre PDF</h3>
+  <div class="note-box">
+    <strong>Formule :</strong> Page annoncée par Daniela + 4 = Page dans votre PDF<br>
+    Exemple : "page 67" → regardez la page PDF 71 sur votre tablette
+  </div>
+
+  <div id="cuts-details"></div>
+</section>
+
+<!-- ========== EXERCICE ========== -->
+<section id="exercice">
+  <h2>Exercice des premières lettres</h2>
+  <div class="subtitle">Cliquez sur chaque carte pour révéler la réponse. Faites cet exercice 1×/jour.</div>
+
+  <h3>Acte I</h3>
+  <div id="exercise-acte1"></div>
+
+  <h3>Acte II</h3>
+  <div id="exercise-acte2"></div>
+</section>
+
+<!-- ========== PLANNING ========== -->
+<section id="planning">
+  <h2>Planning 13 jours · 13-25 avril</h2>
+  <div class="subtitle">Répétitions le 28 avril. Méthode : MUSIQUE d'abord, TEXTE après. Cochez chaque jour quand il est terminé.</div>
+
+  <div class="phase-title">Phase 1 · ✅ MUSIQUE Acte I (13-18 avr) — TERMINÉE</div>
+  <div id="planning-phase1"></div>
+
+  <div class="phase-title">Phase 2 · ✅ MUSIQUE Acte II (19-21 avr) — TERMINÉE</div>
+  <div id="planning-phase2"></div>
+
+  <div class="phase-title">Phase 3 · MÉMORISATION + Polissage (21-27 avr) — EN COURS</div>
+  <div id="planning-phase3"></div>
+</section>
+
+<!-- ========== TRADUCTIONS PAGE PAR PAGE ========== -->
+<section id="traductions">
+  <h2>Traductions page par page</h2>
+  <div class="subtitle">Chaque page de la partition avec la traduction de ce que le Marchese chante.</div>
+
+  <h3>ACTE I - Pages 11 à 69 (PDF actuel avec nav)</h3>
+  <div id="trad-acte1"></div>
+
+  <h3>ACTE II scene 2 - Pages 144 à 211 (PDF actuel avec nav)</h3>
+  <div id="trad-acte2"></div>
+</section>
+
+<!-- ========== AUDIO ========== -->
+<section id="audio">
+  <h2>Pistes audio disponibles</h2>
+  <div class="subtitle">Travaillez par-dessus ces enregistrements</div>
+
+  <h3>Pistes piano (accompagnements)</h3>
+  <div class="audio-section">
+    <div class="audio-list" id="audio-piano"></div>
+  </div>
+
+  <h3>Opéra complet</h3>
+  <div class="audio-section">
+    <div class="audio-list" id="audio-opera"></div>
+  </div>
+</section>
+
+</main>
+
+<script>
+// ================ DATA ================
+
+const REPLIQUES = {
+  'acte1-intro': [
+    {
+      pdf: 10, imprime: 6, type: 'solo',
+      avant: 'VIOLETTA : Flora, amici, la notte che resta / d\'altre gioie qui fate brillar...',
+      italien: 'E goder voi potrete?',
+      fr: 'Et vous pourrez en profiter ?',
+      contexte: 'Vous demandez à Violetta si elle sera en état de faire la fête (elle est malade).'
+    },
+    {
+      pdf: 11, imprime: 7, type: 'ensemble',
+      italien: "Sì, la vita s'addoppia al gioir.",
+      fr: 'Oui, la vie se double par le plaisir.',
+      contexte: 'Ensemble avec Flora, Barone, Dottore.'
+    },
+    {
+      pdf: 12, imprime: 8, type: 'ensemble',
+      italien: '(continuation ensemble)',
+      fr: 'Suite de l\'ensemble d\'introduction avec Gastone, Barone, Dottore.',
+      contexte: ''
+    },
+    {
+      pdf: 14, imprime: 10, type: 'solo',
+      didascalie: '(si stringono la mano) — Ils se serrent la main',
+      italien: 'Caro Alfredo!',
+      fr: 'Cher Alfredo !',
+      avant: 'ALFREDO : Marchese...',
+      contexte: 'Alfredo vient d\'arriver. Vous le saluez chaleureusement.'
+    },
+    {
+      pdf: 15, imprime: 11, type: 'ensemble',
+      didascalie: '(siedono in modo che Violetta resti fra Alfredo e Gastone)',
+      italien: "Ben diceste... le cure segrete\nfuga sempre l'amico licor.",
+      fr: 'Bien dit... les soucis secrets, l\'alcool ami les chasse toujours.'
+    },
+    {
+      pdf: 16, imprime: 12, type: 'ensemble',
+      italien: "È al convito che s'apre ogni cor.",
+      fr: 'C\'est au banquet que s\'ouvre chaque cœur.',
+      contexte: 'Ligne commune avec Barone et Dottore (BAR.DOT. e MARC.).'
+    }
+  ],
+
+  'acte1-jeu': [
+    {
+      pdf: 19, imprime: 15, type: 'solo',
+      didascalie: '(a Violetta)',
+      avant: 'GASTONE (à Alfredo) : E tu dunque non apri più bocca?',
+      italien: 'È a madama che scuoterlo tocca.',
+      fr: 'C\'est à madame qu\'il revient de le réveiller.',
+      contexte: 'Vous désignez Violetta : c\'est elle qui doit faire parler Alfredo.'
+    },
+    {
+      pdf: 20, imprime: 16, type: 'ensemble',
+      italien: 'Beviamo.',
+      fr: 'Buvons.'
+    },
+    {
+      pdf: 22, imprime: 18, type: 'ensemble',
+      avant: 'GASTONE : O barone, né un verso... (le Barone fait non) Dunque a te...',
+      italien: 'Sì, sì, un brindisi.',
+      fr: 'Oui, oui, un chant à boire.'
+    },
+    {
+      pdf: 23, imprime: 19, type: 'solo',
+      italien: 'Dunque attenti...\nTUTTI : Sì, attenti al cantor.',
+      fr: 'Alors attention... Oui, attention au chanteur.',
+      contexte: 'Vous invitez tout le monde à écouter Alfredo qui va chanter le Brindisi.'
+    }
+  ],
+
+  'acte1-brindisi': [
+    {
+      pdf: '23-25', imprime: '19-21', type: 'pause',
+      italien: '❌ ALFREDO chante le 1er couplet. Vous écoutez.',
+      avant: 'ALFREDO : Libiam ne\' lieti calici / che la bellezza infiora, / e la fuggevol ora / s\'inebri a voluttà. / Libiam ne\' dolci fremiti / che suscita l\'amore, / poiché quell\'occhio al core / onnipotente va. / Libiamo; amor fra i calici / più caldi baci avrà.'
+    },
+    {
+      pdf: '26-27', imprime: '22-23', type: 'ensemble',
+      italien: 'Ah! libiam, amor fra i calici\npiù caldi baci avrà.',
+      fr: 'Ah ! buvons, l\'amour dans les coupes aura des baisers plus ardents.',
+      contexte: 'REFRAIN TUTTI après le 1er couplet — vous chantez.'
+    },
+    {
+      pdf: '27-28', imprime: '23-24', type: 'pause',
+      italien: '❌ VIOLETTA chante le 2e couplet. Vous écoutez.',
+      avant: 'VIOLETTA : Tra voi saprò dividere / il tempo mio giocondo; / tutto è follia nel mondo / ciò che non è piacer. / Godiam, fugace e rapido...'
+    },
+    {
+      pdf: '29-30', imprime: '25-26', type: 'ensemble',
+      italien: 'Ah! godiamo, la tazza e il cantico\nla notte abbella e il riso;\nin questo paradiso\nne scopra il nuovo dì.',
+      fr: 'Ah ! profitons, la coupe et le chant embellissent la nuit et le rire ; dans ce paradis que le nouveau jour nous surprenne.',
+      contexte: 'REFRAIN TUTTI après le 2e couplet.'
+    },
+    {
+      pdf: '31-36', imprime: '27-32', type: 'ensemble',
+      italien: 'Ah! godiamo, la tazza e il cantico\nla notte abbella e il riso;\nin questo paradiso\nne scopra il nuovo dì.\n\nAh!... Ah!... ne scopra il nuovo dì.',
+      fr: 'Le même texte se répète en boucle. Suivez la ligne de basse.',
+      contexte: 'FINALE du Brindisi — Alfredo, Violetta et tous ensemble.'
+    }
+  ],
+
+  'acte1-valzer': [
+    {
+      pdf: 37, imprime: 33, type: 'ensemble',
+      didascalie: 'On entend de la musique dans l\'autre salle.',
+      italien: 'Che è ciò?',
+      fr: 'Qu\'est-ce que c\'est ?'
+    },
+    {
+      pdf: 38, imprime: 34, type: 'ensemble',
+      avant: 'VIOLETTA : Non gradireste ora le danze?',
+      italien: 'Oh, il gentil pensier!... Tutti accettiamo.',
+      fr: 'Oh, la gentille idée !... Nous acceptons tous.'
+    },
+    {
+      pdf: 39, imprime: 35, type: 'ensemble',
+      didascalie: 'Violetta est prise d\'un malaise.',
+      italien: 'Che avete?',
+      fr: 'Qu\'avez-vous ?'
+    },
+    {
+      pdf: 40, imprime: 36, type: 'ensemble',
+      italien: 'Che mai v\'arresta?',
+      fr: 'Qu\'est-ce qui vous arrête ?'
+    },
+    {
+      pdf: 41, imprime: 37, type: 'ensemble',
+      italien: 'Ancora!... O ciel!... ch\'è questo?',
+      fr: 'Encore !... Oh ciel !... qu\'est-ce que c\'est ?'
+    },
+    {
+      pdf: 42, imprime: 38, type: 'ensemble',
+      didascalie: '(tutti passano nell\'altra sala, meno Alfredo) — SORTIE du Marchese',
+      italien: 'Come bramate.',
+      fr: 'Comme vous voudrez.'
+    }
+  ],
+
+  'acte1-stretta': [
+    {
+      pdf: '56-68', imprime: '52-64', type: 'ensemble',
+      didascalie: 'Violetta et tous les autres reviennent des danses. On remercie Violetta et on s\'en va.',
+      italien: "Si ridesta in ciel l'aurora,\ne n'è forza ripartir;\nmercè a voi, gentil signora,\ndi sì splendido gioir.\n\nLa città di feste è piena,\nvolge il tempo dei piacer;\nnel riposo ancor la lena\nsi ritempri per goder.",
+      fr: 'L\'aurore se réveille au ciel, et il nous faut repartir ; merci à vous, gentille dame, pour ce splendide plaisir. La ville est pleine de fêtes, voici le temps des plaisirs ; dans le repos, que la force se retrempe pour jouir encore.',
+      contexte: 'FIN DE L\'ACTE I pour le Marchese (partono dalla destra).'
+    }
+  ],
+
+  'acte2-arrivee': [
+    {
+      pdf: 142, imprime: 138, type: 'didascalie',
+      didascalie: 'Galleria nel palazzo di Flora. Flora, il Marchese, il Dottore ed altri Invitati entrano dalla sinistra.',
+      italien: '[ENTRÉE EN SCÈNE avec Flora et le Dottore]',
+      contexte: 'Vous entrez en scène après une très longue pause (73 pages). Ne ratez pas votre entrée !'
+    },
+    {
+      pdf: 143, imprime: 139, type: 'solo',
+      avant: 'FLORA : Avrem lieta di maschere la notte; n\'è duce il viscontino... Violetta ed Alfredo anco invitai...',
+      italien: 'La novità ignorate?...\nVioletta e Germont sono disgiunti.',
+      fr: 'Vous ne connaissez pas la nouvelle ?... Violetta et Germont se sont séparés.',
+      contexte: '⭐ VOTRE PLUS GRANDE RÉPLIQUE ⭐ Vous annoncez le scoop de la soirée.'
+    },
+    {
+      pdf: 143, imprime: 139, type: 'solo',
+      avant: 'DOTTORE E FLORA : Fia vero?...',
+      italien: 'Ella verrà qui col Barone.',
+      fr: 'Elle viendra ici avec le Baron.'
+    },
+    {
+      pdf: '143-144', imprime: '139-140', type: 'ensemble',
+      didascalie: 'On entend du bruit à droite.',
+      avant: 'FLORA : Silenzio... udite?...',
+      italien: 'Giungono gli amici.',
+      fr: 'Les amis arrivent.'
+    }
+  ],
+
+  'acte2-zingarelle': [
+    {
+      pdf: '145-146', imprime: '141-142', type: 'pause',
+      italien: '❌ Les Zingarelle chantent. Vous êtes en scène mais ne chantez pas.',
+      avant: 'ZINGARE : Noi siamo zingarelle / venute da lontano... ZINGARE II (au Marchese) : Marchese, voi non siete / model di fedeltà.',
+      contexte: 'On vous dit que vous n\'êtes pas un modèle de fidélité. Réagissez en acteur.'
+    },
+    {
+      pdf: 147, imprime: 143, type: 'solo',
+      avant: 'FLORA (au Marchese) : Fate il galante ancora? Ben, vo\' me la paghiate...',
+      italien: 'Che diancin vi pensate?...\nL\'accusa è falsità!',
+      fr: 'Que diable pensez-vous ?... L\'accusation est fausse !',
+      contexte: 'Scène comique : Flora vous taquine, vous vous défendez.'
+    },
+    {
+      pdf: 148, imprime: 144, type: 'didascalie',
+      avant: 'FLORA : La volpe lascia il pelo, / non abbandona il vizio... / Marchese mio, giudizio, / o vi farò pentir.',
+      italien: '[Flora s\'adresse à vous — vous ne chantez pas]',
+      fr: 'Flora : Le renard perd son poil mais pas son vice... Mon cher Marchese, un peu de jugement.',
+      contexte: 'Réagissez en acteur pendant que Flora vous gronde.'
+    },
+    {
+      pdf: '149-151', imprime: '145-147', type: 'ensemble',
+      didascalie: '(Flora ed il Marchese si stringono la mano) — Réconciliation',
+      italien: "Su via, si stenda un velo\nsui fatti del passato;\ngià quel ch'è stato è stato,\nbadiamo all'avvenir.",
+      fr: 'Allez, tirons un voile sur le passé ; ce qui est fait est fait, pensons à l\'avenir.',
+      contexte: 'TRIO avec Flora et Dottore. Phrase de sagesse.'
+    }
+  ],
+
+  'acte2-mattadori': [
+    {
+      pdf: 153, imprime: 149, type: 'solo',
+      avant: 'GASTONE E MATTADORI : Di Madride noi siam mattadori...',
+      italien: 'Sì, sì, bravi, narrate, narrate,\ncon piacere l\'udremo.',
+      fr: 'Oui, oui, bravo, racontez, racontez, nous vous écouterons avec plaisir.'
+    },
+    {
+      pdf: '157-158', imprime: '153-154', type: 'ensemble',
+      italien: 'Bravo invero il mattadore,\nben gagliardo si mostrò,\nse alla giovane l\'amore\nin tal guisa egli provò!',
+      fr: 'Bravo vraiment le matador, il s\'est montré bien vaillant, si c\'est ainsi qu\'il a prouvé son amour à la jeune fille !',
+      contexte: 'GLI ALTRI = Marchese + Flora + Dottore + invités.'
+    },
+    {
+      pdf: 159, imprime: 155, type: 'ensemble',
+      italien: 'Con tai prove i mattadori\nsan le amanti conquistar!',
+      fr: 'Avec de telles preuves, les matadors savent conquérir les amantes !'
+    },
+    {
+      pdf: '160-163', imprime: '156-159', type: 'ensemble',
+      italien: 'Sì, sì, allegri... Or pria tentiamo\ndella sorte il vario umor;\nla palestra dischiudiamo\nagli audaci giocator.',
+      fr: 'Oui, amusons-nous... Essayons l\'humeur du sort ; ouvrons l\'arène aux audacieux joueurs.',
+      contexte: 'TUTTI — Transition vers le jeu de cartes.'
+    },
+    {
+      pdf: 164, imprime: 160, type: 'ensemble',
+      italien: 'Alfredo!... Voi!...',
+      fr: 'Alfredo !... Vous !...',
+      contexte: 'Alfredo arrive à la fête.'
+    },
+    {
+      pdf: 165, imprime: 161, type: 'ensemble',
+      italien: 'Ben disinvolto!... Bravo!...\nOr via, giocar si può.',
+      fr: 'Bien décontracté !... Bravo !... Allez, on peut jouer.'
+    },
+    {
+      pdf: 168, imprime: 164, type: 'didascalie',
+      didascalie: 'Il Marchese si trattiene a parte col Barone.',
+      italien: '[Vous êtes à l\'écart avec le Barone pendant que les autres jouent]'
+    },
+    {
+      pdf: 169, imprime: 165, type: 'ensemble',
+      italien: 'È sempre vincitore!...',
+      fr: 'Il gagne toujours !...'
+    },
+    {
+      pdf: 172, imprime: 168, type: 'ensemble',
+      italien: 'Ancora!...',
+      fr: 'Encore !...'
+    },
+    {
+      pdf: 173, imprime: 169, type: 'ensemble',
+      italien: 'Bravo davver!... La sorte è tutta per Alfredo!...',
+      fr: 'Bravo vraiment !... La chance est toute pour Alfredo !...'
+    },
+    {
+      pdf: 174, imprime: 170, type: 'ensemble',
+      didascalie: '(Un SERVO : "La cena è pronta" — le souper est servi)',
+      italien: 'Andiamo.',
+      fr: 'Allons-y.'
+    }
+  ],
+
+  'acte2-finale': [
+    {
+      pdf: '175-181', imprime: '171-177', type: 'pause',
+      italien: '❌ PAS DE MARCHESE — Confrontation Alfredo/Violetta seuls.',
+      contexte: 'Alfredo la supplie, elle refuse. Il appelle tout le monde : "Or tutti a me!"'
+    },
+    {
+      pdf: 182, imprime: 178, type: 'ensemble',
+      didascalie: '(Tutti entrano confusamente)',
+      italien: 'Ne appellaste?... Che volete?...',
+      fr: 'Vous nous avez appelés ?... Que voulez-vous ?...'
+    },
+    {
+      pdf: 183, imprime: 179, type: 'ensemble',
+      avant: 'ALFREDO (montrant Violetta) : Questa donna conoscete? Che facesse non sapete?',
+      italien: 'Chi?... Violetta?... No.',
+      fr: 'Qui ?... Violetta ?... Non.',
+      contexte: 'Stupeur collective.'
+    },
+    {
+      pdf: '185-188', imprime: '181-184', type: 'ensemble',
+      italien: 'Oh, infamia orribile\ntu commettesti!...\nUn cor sensibile\ncosì uccidesti!...\n\nDi donne ignobile\ninsultator,\ndi qua allontanati,\nne desti orror.',
+      fr: 'Oh, quelle infamie horrible tu as commise ! Un cœur sensible ainsi tu as tué ! Ignoble insulteur de femmes, éloigne-toi d\'ici, tu nous fais horreur.',
+      contexte: 'BLOC A — Reproche à Alfredo. Vous chantez avec les 2ndes basses.'
+    },
+    {
+      pdf: '191-210', imprime: '187-206', type: 'ensemble',
+      italien: 'Oh, quanto peni!... ma pur fa cor,\nqui soffre ognuno del tuo dolor;\nfra cari amici qui sei soltanto,\nrasciuga il pianto che t\'inondò.',
+      fr: 'Oh, combien tu souffres ! mais prends courage, ici chacun souffre de ta douleur ; parmi de chers amis tu es ici, essuie les larmes qui t\'ont inondée.',
+      contexte: 'BLOC B — Compassion pour Violetta. Se répète sur 20 pages. FIN DU RÔLE.'
+    }
+  ]
+};
+
+// ============================================================
+// EXERCICES DES PREMIERES LETTRES — MIS A JOUR 21 AVRIL 2026
+// Toutes les repetitions de mots sont notees (ex: "Beviamo, Beviamo, Beviamo")
+// Toutes les syllabes sont representees y compris les "Ah!", "Oh!", "Sì"
+// ============================================================
+
+const EXERCISES_SOLO = [
+  // ---------- ACTE I ----------
+  { p: '10', indice: 'E g... v... p... ?', reponse: 'E goder voi potrete?' },
+  { p: '14', indice: 'C... A... !', reponse: 'Caro Alfredo!' },
+  { p: '19', indice: 'E a m... c... s... t... .', reponse: 'È a madama che scuoterlo tocca.' },
+  { p: '23', indice: 'D... a... ... a... a... c... .', reponse: 'Dunque attenti... attenti al cantor.' },
+  { p: '41', indice: 'A... ! O... c... ! c... q... ?', reponse: 'Ancora! O ciel! ch\'è questo?' },
+  { p: '42', indice: 'C... b... .', reponse: 'Come bramate.' },
+  // ---------- ACTE II ----------
+  { p: '143', indice: 'L... n... i... ? V... e G... s... d... .', reponse: 'La novità ignorate? Violetta e Germont sono disgiunti.' },
+  { p: '143', indice: 'E... v... q... c... B... .', reponse: 'Ella verrà qui col Barone.' },
+  { p: '147', indice: 'C... d... v... p... ? L\'a... e f... !', reponse: 'Che diancin vi pensate? L\'accusa è falsità!' },
+  { p: '153', indice: 'S..., s..., b..., n..., n..., c... p... l\'u... .', reponse: 'Sì, sì, bravi, narrate, narrate, con piacere l\'udremo.' },
+  { p: '164', indice: 'A... !... V... !...', reponse: 'Alfredo!... Voi!...' },
+  { p: '165', indice: 'B... d... !... B... !... O... v..., g... s... p... .', reponse: 'Ben disinvolto!... Bravo!... Or via, giocar si può.' },
+  { p: '169', indice: 'E s... v... !...', reponse: 'È sempre vincitore!...' },
+  { p: '172', indice: 'A... !...', reponse: 'Ancora!...' },
+  { p: '174', indice: 'A... . A... .', reponse: 'Andiamo. Andiam.' },
+  { p: '182', indice: 'N... a... ?... C... v... ?...', reponse: 'Ne appellaste?... Che volete?...' },
+  { p: '183', indice: 'C... ? V... ?... N... .', reponse: 'Chi? Violetta?... No.' }
+];
+
+const EXERCISES_ENSEMBLE = [
+  // ===== ACTE I — INTRODUZIONE =====
+  { p: '11', indice: 'S..., l... v... s\'a... a... g... .', reponse: 'Sì, la vita s\'addoppia al gioir.' },
+  { p: '12', indice: 'S..., l... v... s\'a... a... g... .', reponse: 'Sì, la vita s\'addoppia al gioir.' },
+  { p: '15', indice: 'B... d... ... l... c... s... f... s... l\'a... l... .', reponse: 'Ben diceste... le cure segrete fuga sempre l\'amico licor.' },
+  { p: '16', indice: 'È a... c... c... s\'a... o... c... .', reponse: 'È al convito che s\'apre ogni cor.' },
+  // ===== ACTE I — BEVIAMO / BRINDISI =====
+  { p: '20-21', indice: 'B... B... B... (3 fois)', reponse: 'Beviamo. Beviamo. Beviam.' },
+  { p: '22', indice: 'S..., s..., u... b... .', reponse: 'Sì, sì, un brindisi.' },
+  { p: '26', indice: 'A... ! l..., a... f\'i c... / p... c... b... a... . [refrain]', reponse: 'Ah! libiam, amor fra\' i calici / più caldi baci avrà.' },
+  { p: '27', indice: '... p... c... b... a... . ... p... c... b... a... .', reponse: '...più caldi baci avrà. ...più caldi baci avrà.' },
+  { p: '29', indice: 'A... ! g..., l... t... e i... c... / l... n... a... e i... r... ;', reponse: 'Ah! godiamo, la tazza e il cantico / la notte abbella e il riso;' },
+  { p: '30', indice: '... i... q... p... / n... s... i... n... d... .', reponse: '...in questo paradiso / ne scopra il nuovo dì.' },
+  { p: '31', indice: 'A... ! A... ! n... s... i... n... d... .', reponse: 'Ah! Ah! ne scopra il nuovo dì.' },
+  { p: '32', indice: 'A... s... g... l... t... e i... c... .', reponse: 'Ah sì, godiamo la tazza e il cantico.' },
+  { p: '33', indice: 'L... n... a... e i... r... .', reponse: 'La notte abbella e il riso.' },
+  { p: '34', indice: 'I... q... p... / n... s... i... n... d... .', reponse: 'In questo paradiso / ne scopra il nuovo dì.' },
+  { p: '35', indice: 'A... ! A... ! A... ! n... s... i... n... d... .', reponse: 'Ah! Ah! Ah! ne scopra il nuovo dì.' },
+  { p: '36', indice: '... n... s... i... n... d... . (fin Brindisi)', reponse: '...ne scopra il nuovo dì.' },
+  // ===== ACTE I — VALZER / MALAISE =====
+  { p: '37', indice: 'C... e c... ? C... e c... ?', reponse: 'Che è ciò? Che è ciò?' },
+  { p: '38', indice: 'O..., i... g... p... !... T... a... .', reponse: 'Oh, il gentil pensier!... Tutti accettiamo.' },
+  { p: '39', indice: 'C... a... ? C... a... ?', reponse: 'Che avete? Che avete?' },
+  { p: '40', indice: 'C... m... v\'a... ?', reponse: 'Che mai v\'arresta?' },
+  // ===== ACTE I — STRETTA =====
+  { p: '56', indice: 'S... r... i... c... l\'a..., / e n\'è f... r... ; / m... a v..., g... s..., / d... s... s... g... .', reponse: 'Si ridesta in ciel l\'aurora, / e n\'è forza ripartir; / mercè a voi, gentil signora, / di sì splendido gioir.' },
+  { p: '57', indice: 'm... a v..., g... s..., / d... s... s... g... . (repetition)', reponse: 'mercè a voi, gentil signora, / di sì splendido gioir.' },
+  { p: '58', indice: 'S... r... i... c... l\'a... . (repetition)', reponse: 'Si ridesta in ciel l\'aurora.' },
+  { p: '59', indice: 'e n\'è f... r... ; m... a v... . (repetition)', reponse: 'e n\'è forza ripartir; mercè a voi.' },
+  { p: '60', indice: 'd... s... s... g... . (cadence)', reponse: 'di sì splendido gioir.' },
+  { p: '61', indice: 'L... c... d... f... e p..., / v... i... t... d... p... ;', reponse: 'La città di feste è piena, / volge il tempo dei piacer;' },
+  { p: '62', indice: 'n... r... a... l... l... / s... r... p... g... .', reponse: 'nel riposo ancor la lena / si ritempri per goder.' },
+  { p: '63', indice: 'L... c... d... f... e p... . (repetition)', reponse: 'La città di feste è piena.' },
+  { p: '64', indice: 'v... i... t... d... p... . (repetition)', reponse: 'volge il tempo dei piacer.' },
+  { p: '65', indice: 'n... r... a... l... l... . (repetition)', reponse: 'nel riposo ancor la lena.' },
+  { p: '66', indice: 's... r... p... g... . (repetition)', reponse: 'si ritempri per goder.' },
+  { p: '67', indice: 's... r... p... g... . (repetition finale)', reponse: 'si ritempri per goder.' },
+  { p: '68', indice: 'FIN ACTE I — note tenue + sortie.', reponse: '[partono dalla destra]' },
+  // ===== ACTE II sc.2 =====
+  { p: '144', indice: 'G... g... a... . G... g... a... .', reponse: 'Giungono gli amici. Giungono gli amici.' },
+  { p: '149', indice: 'S... v..., s... s... u... v... / s... f... d... p... ;', reponse: 'Su via, si stenda un velo / sui fatti del passato;' },
+  { p: '150', indice: 'g... q... c\'è s... è s..., / b... a... .', reponse: 'già quel ch\'è stato è stato, / badiamo all\'avvenir.' },
+  { p: '151', indice: 'b... a... . b... a... . (repetition)', reponse: 'badiamo all\'avvenir. badiamo all\'avvenir.' },
+  { p: '157', indice: 'B... i... i... m..., / b... g... s... m..., / s\'a... g... l\'a... / i... t... g... e... p... !', reponse: 'Bravo invero il mattadore, / ben gagliardo si mostrò, / se alla giovane l\'amore / in tal guisa egli provò!' },
+  { p: '158', indice: '... i... t... g... e... p... ! (repetition)', reponse: '...in tal guisa egli provò!' },
+  { p: '159', indice: 'C... t... p... i m... / s... l\'a... c... !', reponse: 'Con tai prove i mattadori / san le amanti conquistar!' },
+  { p: '160', indice: 'S..., s..., a... ... O... p... t... / d... s... i... v... u... ;', reponse: 'Sì, sì, allegri... Or pria tentiamo / della sorte il vario umor;' },
+  { p: '161', indice: 'l... p... d... / a... a... g... .', reponse: 'la palestra dischiudiamo / agli audaci giocator.' },
+  { p: '162', indice: 'l... p... d... . (repetition)', reponse: 'la palestra dischiudiamo.' },
+  { p: '163', indice: 'a... a... g... . a... a... g... . (cadence)', reponse: 'agli audaci giocator. agli audaci giocator.' },
+  { p: '166', indice: 'O... v..., g... s... p... . (continuation)', reponse: 'Or via, giocar si può.' },
+  { p: '173', indice: 'B... d... !... L... s... è t... p... A... !...', reponse: 'Bravo davver!... La sorte è tutta per Alfredo!...' },
+  // ===== ACTE II — SCANDALE (Bloc A) =====
+  { p: '185', indice: 'O..., i... o... / t... c... !... / U... c... s... / c... u... !...', reponse: 'Oh, infamia orribile / tu commettesti!... / Un cor sensibile / così uccidesti!...' },
+  { p: '186', indice: 'D... d... i... / i..., / d... q... a..., / n... d... o... .', reponse: 'Di donne ignobile / insultator, / di qua allontanati, / ne desti orror.' },
+  { p: '187', indice: 'i..., / d... q... a..., / n... d... o... . (repetition)', reponse: 'insultator, / di qua allontanati, / ne desti orror.' },
+  { p: '188', indice: 'n... d... o... . n... d... o... . (repetition)', reponse: 'ne desti orror. ne desti orror.' },
+  // ===== ACTE II — FINALE (Bloc B : compassion) =====
+  { p: '191', indice: 'O..., q... p... !... m... p... f... c..., / q... s... o... d... t... d... ;', reponse: 'Oh, quanto peni!... ma pur fa cor, / qui soffre ognuno del tuo dolor;' },
+  { p: '192', indice: 'f... c... a... q... s... s..., / r... i... p... c... t\'i... .', reponse: 'fra cari amici qui sei soltanto, / rasciuga il pianto che t\'inondò.' },
+  { p: '193', indice: 'O..., q... p... !... m... p... f... c... . (repetition)', reponse: 'Oh, quanto peni!... ma pur fa cor.' },
+  { p: '194', indice: 'q... s... o... d... t... d... . (repetition)', reponse: 'qui soffre ognuno del tuo dolor.' },
+  { p: '195', indice: 'f... c... a... q... s... s... . (repetition)', reponse: 'fra cari amici qui sei soltanto.' },
+  { p: '196', indice: 'Q... p... ! f... c... ! Q... p... ! f... c... ! Q... p... ! f... c... !', reponse: 'Quanto peni! fa cor! Quanto peni! fa cor! Quanto peni! fa cor!' },
+  { p: '197', indice: '... d... l... , f... c... a... q... s... s..., r... i... p... c... t\'i... n... .', reponse: '...dolor, fra cari amici qui sei soltanto, rasciuga il pianto che t\'inondò non...' },
+  { p: '198', indice: 'O..., q... p... !... m... p... f... c... . (repetition finale)', reponse: 'Oh, quanto peni!... ma pur fa cor.' },
+  { p: '199', indice: 'q... s... o... d... t... d... . (repetition)', reponse: 'qui soffre ognuno del tuo dolor.' },
+  { p: '200', indice: 'f... c... a... t... s... s... . (repetition)', reponse: 'fra cari amici tu sei soltanto.' },
+  { p: '201', indice: 'r... i... p... c... t\'i... . (repetition)', reponse: 'rasciuga il pianto che t\'inondò.' },
+  { p: '202', indice: 'O..., q... p... ! (repetition)', reponse: 'Oh, quanto peni!' },
+  { p: '203', indice: 'm... p... f... c... . (repetition)', reponse: 'ma pur fa cor.' },
+  { p: '204', indice: 'q... s... o... d... t... d... . (repetition)', reponse: 'qui soffre ognuno del tuo dolor.' },
+  { p: '205', indice: 'f... c... a... ... s... s... . (repetition)', reponse: 'fra cari amici... sei soltanto.' },
+  { p: '206', indice: 'r... i... p... c... t\'i... . (repetition)', reponse: 'rasciuga il pianto che t\'inondò.' },
+  { p: '207', indice: 'O..., q... p... ! m... p... f... c... . (repetition)', reponse: 'Oh, quanto peni! ma pur fa cor.' },
+  { p: '208', indice: 'q... s... o... d... t... d... . (repetition)', reponse: 'qui soffre ognuno del tuo dolor.' },
+  { p: '209', indice: 'f... c... a... ; r... i... p... . (repetition)', reponse: 'fra cari amici; rasciuga il pianto.' },
+  { p: '210', indice: '[FIN ACTE II — derniere note tenue sur "do..."]', reponse: '[Fine dell\'Atto Secondo]' }
+];
+
+const PLANNING = {
+  phase1: [
+    { jour: 1, date: '13-15 avr', titre: '✅ Acte I — Découverte musicale (FAIT)', detail: 'Écoute de l\'Acte I avec la partition, entrées Marchese repérées (p.10, 14, 19, 23, 26-36 Brindisi, 37-42 Valzer, 56-68 Stretta). Terminé jusqu\'au Brindisi le 13, puis Stretta les jours suivants.' },
+    { jour: 2, date: '16-18 avr', titre: '✅ Acte I — Chant par-dessus audio (FAIT)', detail: 'Chant avec partition sur toutes les sections : Intro, Brindisi, Valzer, Stretta. Solos + ensembles. Acte I maîtrisé musicalement.' },
+    { jour: 3, date: '19-20 avr', titre: '✅ Acte I — Run complet + Acte II commencé (FAIT)', detail: 'Acte I enchaîné sans arrêt. Début Acte II : découverte musicale jusqu\'à p.184 (y compris "Infamia orribile" qui était le pic technique).' }
+  ],
+  phase2: [
+    { jour: 4, date: '21 avr (aujourd\'hui)', titre: '✅ Acte II — Finale terminé musicalement (FAIT)', detail: 'Acte II bouclé musicalement, y compris les 20 pages du Bloc B "Oh quanto peni". Travail phonétique fine sur pages 196-197 (mélismes, syllabes sur plusieurs notes).' }
+  ],
+  phase3: [
+    { jour: 5, date: 'mar 21 avr (après-midi/soir)', titre: 'MÉMORISATION — Acte I intensif', detail: 'Acte I déjà presque par cœur. Sessions de répétition en boucle (Reaper) jusqu\'à fluidité totale SANS hésitation. Focus : Brindisi refrain, Stretta couplet, solos "Caro Alfredo" / "È a madama" / "Dunque attenti". Utiliser l\'exercice des premières lettres.' },
+    { jour: 6, date: 'mer 22 avr', titre: 'MÉMORISATION — Acte II (1ère moitié)', detail: 'Fixer par cœur : ★ "La novità ignorate" (p.143) + "L\'accusa è falsità" (p.147) + trio "Su via si stenda velo" (p.149-151) + Mattadori (p.157-163). Méthode : boucle Reaper + exercice premières lettres + voix à voix sans partition.' },
+    { jour: 7, date: 'jeu 23 avr', titre: 'MÉMORISATION — Acte II (finale)', detail: 'Fixer par cœur : Bloc A "Oh infamia orribile" (p.185-188) + Bloc B "Oh quanto peni" (p.191-210). Le Bloc B = 4 phrases qui tournent en boucle sur 20 pages. Attention aux mélismes (pé-é-ni, pu-u-ur, co-o-ré).' },
+    { jour: 8, date: 'ven 24 avr', titre: 'TEST partition fermée — Acte I complet', detail: 'Chanter TOUT l\'Acte I SANS partition, piano dans Reaper. Relever passages qui trébuchent. Deuxième passage en corrigeant. Objectif : Acte I 100% par cœur fluide.' },
+    { jour: 9, date: 'sam 25 avr', titre: 'TEST partition fermée — Acte II complet', detail: 'Chanter TOUT l\'Acte II SANS partition, piano dans Reaper. Focus entrées après silences (73 pages de silence entre Acte I et II). Retravailler passages encore fragiles.' },
+    { jour: 10, date: 'dim 26 avr', titre: 'RUN intégral chronométré + révisions ciblées', detail: 'Run complet Acte I + Acte II d\'affilée, chronométré, comme en situation. Repérer les points faibles et les travailler ciblé. Si possible : run avec l\'opéra complet (pas le piano) pour habituer l\'oreille.' },
+    { jour: 11, date: 'lun 27 avr', titre: 'REPOS ACTIF', detail: 'Une écoute calme de l\'opéra complet en suivant mentalement (pas de chant à fond). Relire les répliques une dernière fois. Hydratation. Dormir tôt.' },
+    { jour: 12, date: 'MAR 28 AVR', titre: '🎭 RÉPÉTITION MUSICALE', detail: 'Jour J. Partition sur pupitre (c\'est normal en 1ère répétition). Objectifs : rentrer au bon moment, bonnes notes, italien clair, être en phase avec les autres. Le par cœur total c\'est pour les répétitions de mise en scène suivantes.' }
+  ]
+};
+
+const CUTS = [
+  { p: 67, pdf: 71, section: 'Ah fors\'è lui', detail: 'Coupure mes.13 → p.69 m.1 ("cor! croce e delizia")' },
+  { p: 86, pdf: 90, section: 'Cabaletta Alfredo', detail: 'Chiffre 4 → p.89 m.1 — cabaletta une seule fois' },
+  { p: 118, pdf: 122, section: 'Duo Violetta/Germont', detail: 'Coupure m.7 → m.13 ("Ed or si scriva a lui")' },
+  { p: 132, pdf: 136, section: 'Cabaletta Germont', detail: 'Coupure m.5 → p.137 m.4 — pas de cabaletta' },
+  { p: 215, pdf: 219, section: 'Addio del passato', detail: 'Coupure m.8 → p.217 m.9 — une seule strophe' },
+  { p: 229, pdf: 233, section: 'Acte III', detail: 'Coupure m.6 → p.231 m.3' },
+  { p: 236, pdf: 240, section: 'Acte III', detail: 'Coupure m.14 → p.238 m.6' },
+  { p: 247, pdf: 251, section: 'Acte III', detail: 'm.7 — ne pas chanter "Che!"' },
+  { p: 248, pdf: 252, section: 'Acte III', detail: 'mes.14-15 — ne pas chanter "Oh cielo!"' },
+  { p: 249, pdf: 253, section: 'Acte III', detail: '"Violetta?...", "Oh Dio soccorrasi...", "Oh mio dolor!" supprimés' }
+];
+
+const TRADUCTIONS_PAGES = [
+  // ACTE I [pdf_actuel, partition, type, italien, francais]
+  {pdf:11, part:6, type:'ensemble', it:"E goder voi potrete?", fr:"Et vous pourrez en profiter ?"},
+  {pdf:12, part:7, type:'ensemble', it:"Si, la vita s'addoppia al gioir.", fr:"Oui, la vie se double par le plaisir."},
+  {pdf:13, part:8, type:'ensemble', it:"(continuation ensemble)", fr:"(suite de l'ensemble d'introduction)"},
+  {pdf:15, part:10, type:'solo', it:"Caro Alfredo!", fr:"Cher Alfredo !"},
+  {pdf:16, part:11, type:'ensemble', it:"Ben diceste... le cure segrete fuga sempre l'amico licor.", fr:"Bien dit... les soucis secrets, l'alcool ami les chasse toujours."},
+  {pdf:17, part:12, type:'ensemble', it:"E al convito che s'apre ogni cor.", fr:"C'est au banquet que s'ouvre chaque coeur."},
+  {pdf:20, part:15, type:'solo', it:"E a madama che scuoterlo tocca.", fr:"C'est a madame qu'il revient de le reveiller."},
+  {pdf:21, part:16, type:'ensemble', it:"Beviamo.", fr:"Buvons."},
+  {pdf:22, part:17, type:'ensemble', it:"...viamo, beviam.", fr:"...buvons, buvons."},
+  {pdf:23, part:18, type:'ensemble', it:"Si, si, un brindisi.", fr:"Oui, oui, un chant a boire."},
+  {pdf:24, part:19, type:'solo', it:"Dunque attenti...", fr:"Alors attention..."},
+  {pdf:27, part:22, type:'ensemble', it:"Ah! libiam, amor fra i calici piu caldi baci avra.", fr:"Ah ! buvons, l'amour dans les coupes aura des baisers plus ardents."},
+  {pdf:28, part:23, type:'ensemble', it:"(suite Brindisi - caldi baci avra)", fr:"(suite du Brindisi - des baisers plus ardents)"},
+  {pdf:30, part:25, type:'ensemble', it:"Ah! godiamo, la tazza e il cantico la notte abbella e il riso; in questo paradiso ne scopra il nuovo di.", fr:"Ah ! profitons, la coupe et le chant embellissent la nuit ; dans ce paradis que le jour nous surprenne."},
+  {pdf:31, part:26, type:'ensemble', it:"Ah! godiamo, la tazza e il cantico la notte abbella e il riso; in questo paradiso ne scopra il nuovo di.", fr:"Ah ! profitons, la coupe et le chant embellissent la nuit ; dans ce paradis que le jour nous surprenne."},
+  {pdf:32, part:27, type:'ensemble', it:"Ah! godiamo, la tazza e il cantico la notte abbella e il riso; in questo paradiso ne scopra il nuovo di.", fr:"Ah ! profitons, la coupe et le chant embellissent la nuit ; dans ce paradis que le jour nous surprenne."},
+  {pdf:33, part:28, type:'ensemble', it:"Ah si godiamo la tazza e il cantico", fr:"Ah profitons la coupe et le chant"},
+  {pdf:34, part:29, type:'ensemble', it:"Ah! godiamo... ne scopra il nuovo di.", fr:"Ah ! profitons... que le jour nous surprenne."},
+  {pdf:35, part:30, type:'ensemble', it:"Ah! godiamo... ne scopra il nuovo di.", fr:"Ah ! profitons... que le jour nous surprenne."},
+  {pdf:36, part:31, type:'ensemble', it:"Ah! godiamo... ne scopra il nuovo di.", fr:"Ah ! profitons... que le jour nous surprenne."},
+  {pdf:37, part:32, type:'ensemble', it:"...ne scopra il nuovo di.", fr:"...que le jour nous surprenne."},
+  {pdf:38, part:33, type:'ensemble', it:"Che e cio?", fr:"Qu'est-ce ?"},
+  {pdf:39, part:34, type:'ensemble', it:"Oh, il gentil pensier! Tutti accettiamo.", fr:"Oh, la gentille idee ! Nous acceptons tous."},
+  {pdf:40, part:35, type:'ensemble', it:"Che avete?", fr:"Qu'avez-vous ?"},
+  {pdf:41, part:36, type:'ensemble', it:"Che mai v'arresta?", fr:"Qu'est-ce qui vous arrete ?"},
+  {pdf:42, part:37, type:'ensemble', it:"Ancora! Oh ciel! ch'e questo?", fr:"Encore ! Oh ciel ! qu'est-ce ?"},
+  {pdf:43, part:38, type:'ensemble', it:"Come bramate.", fr:"Comme vous voudrez. [SORTIE]"},
+  {pdf:57, part:52, type:'ensemble', it:"Si ridesta in ciel l'aurora, e n'e forza ripartir; merce a voi, gentil signora, di si splendido gioir.", fr:"L'aurore se reveille au ciel, il faut repartir ; merci a vous, gentille dame, pour ce splendide plaisir."},
+  {pdf:58, part:53, type:'ensemble', it:"La citta di feste e piena, volge il tempo dei piacer; nel riposo ancor la lena si ritempri per goder.", fr:"La ville est pleine de fetes, voici le temps des plaisirs ; dans le repos, que la force se retrempe pour jouir."},
+  {pdf:59, part:54, type:'ensemble', it:"Si ridesta in ciel l'aurora, e n'e forza ripartir; merce a voi, gentil signora, di si splendido gioir.", fr:"L'aurore se reveille au ciel, il faut repartir ; merci a vous, gentille dame, pour ce splendide plaisir."},
+  {pdf:60, part:55, type:'ensemble', it:"Si ridesta in ciel l'aurora... di si splendido gioir.", fr:"L'aurore se reveille... pour ce splendide plaisir."},
+  {pdf:61, part:56, type:'ensemble', it:"Si ridesta in ciel l'aurora... di si splendido gioir.", fr:"L'aurore se reveille... pour ce splendide plaisir."},
+  {pdf:62, part:57, type:'ensemble', it:"La citta di feste e piena, volge il tempo dei piacer.", fr:"La ville est pleine de fetes, voici le temps des plaisirs."},
+  {pdf:63, part:58, type:'ensemble', it:"nel riposo ancor la lena si ritempri per goder.", fr:"dans le repos, que la force se retrempe pour jouir."},
+  {pdf:64, part:59, type:'ensemble', it:"Si ridesta... merce a voi... la citta di feste...", fr:"L'aurore se reveille... merci a vous... la ville pleine de fetes..."},
+  {pdf:65, part:60, type:'ensemble', it:"Si ridesta... merce a voi... la citta di feste...", fr:"L'aurore se reveille... merci a vous... la ville pleine de fetes..."},
+  {pdf:66, part:61, type:'ensemble', it:"Si ridesta... merce a voi... la citta di feste...", fr:"L'aurore se reveille... merci a vous... la ville pleine de fetes..."},
+  {pdf:67, part:62, type:'ensemble', it:"Si ridesta... merce a voi... la citta di feste...", fr:"L'aurore se reveille... merci a vous... la ville pleine de fetes..."},
+  {pdf:68, part:63, type:'ensemble', it:"Si ridesta... merce a voi... la citta di feste...", fr:"L'aurore se reveille... merci a vous... la ville pleine de fetes..."},
+  {pdf:69, part:64, type:'ensemble', it:"(Stretta - derniere note)", fr:"[FIN ACTE I - SORTIE]"},
+  // ACTE II scene 2
+  {pdf:144, part:139, type:'solo', it:"La novita ignorate? Violetta e Germont sono disgiunti. Ella verra qui col Barone.", fr:"Vous ne connaissez pas la nouvelle ? Violetta et Germont se sont separes. Elle viendra ici avec le Baron."},
+  {pdf:145, part:140, type:'ensemble', it:"Giungono gli amici.", fr:"Les amis arrivent."},
+  {pdf:148, part:143, type:'solo', it:"Che diancin vi pensate? L'accusa e falsita!", fr:"Que diable pensez-vous ? L'accusation est fausse !"},
+  {pdf:150, part:145, type:'ensemble', it:"Su via, si stenda un velo sui fatti del passato;", fr:"Allez, tirons un voile sur le passe ;"},
+  {pdf:151, part:146, type:'ensemble', it:"gia quel ch'e stato e stato,", fr:"ce qui est fait est fait,"},
+  {pdf:152, part:147, type:'ensemble', it:"badiamo all'avvenir.", fr:"pensons a l'avenir."},
+  {pdf:154, part:149, type:'ensemble', it:"Si, si, bravi, narrate, narrate, con piacere l'udremo.", fr:"Oui, bravo, racontez, nous ecouterons avec plaisir."},
+  {pdf:158, part:153, type:'ensemble', it:"Bravo invero il mattadore, ben gagliardo si mostro, se alla giovane l'amore in tal guisa egli provo!", fr:"Bravo le matador, il s'est montre vaillant, si c'est ainsi qu'il a prouve son amour a la jeune fille !"},
+  {pdf:159, part:154, type:'ensemble', it:"(Mattadori - suite)", fr:"(suite Mattadori)"},
+  {pdf:160, part:155, type:'ensemble', it:"Con tai prove i mattadori san le amanti conquistar!", fr:"Avec de telles preuves, les matadors savent conquerir les amantes !"},
+  {pdf:161, part:156, type:'ensemble', it:"Si, si, allegri... Or pria tentiamo della sorte il vario umor;", fr:"Oui, amusons-nous... Essayons l'humeur du sort ;"},
+  {pdf:162, part:157, type:'ensemble', it:"la palestra dischiudiamo agli audaci giocator.", fr:"ouvrons l'arene aux audacieux joueurs."},
+  {pdf:163, part:158, type:'ensemble', it:"(suite ensemble)", fr:"(suite)"},
+  {pdf:164, part:159, type:'ensemble', it:"...agli audaci giocator.", fr:"...aux audacieux joueurs."},
+  {pdf:165, part:160, type:'ensemble', it:"Alfredo!... Voi!...", fr:"Alfredo !... Vous !..."},
+  {pdf:166, part:161, type:'ensemble', it:"Ben disinvolto!... Bravo!", fr:"Bien decontracte !... Bravo !"},
+  {pdf:167, part:162, type:'ensemble', it:"...via, giuocar si puo.", fr:"...allez, on peut jouer."},
+  {pdf:170, part:165, type:'ensemble', it:"E sempre vincitore!", fr:"Il gagne toujours !"},
+  {pdf:173, part:168, type:'ensemble', it:"Ancora!", fr:"Encore !"},
+  {pdf:174, part:169, type:'ensemble', it:"Bravo davver! La sorte e tutta per Alfredo!", fr:"Bravo vraiment ! La chance est toute pour Alfredo !"},
+  {pdf:175, part:170, type:'ensemble', it:"Andiamo. Andiam.", fr:"Allons-y."},
+  {pdf:183, part:178, type:'ensemble', it:"Ne appellaste? Che volete?", fr:"Vous nous avez appeles ? Que voulez-vous ?"},
+  {pdf:184, part:179, type:'ensemble', it:"Chi? Violetta?... No.", fr:"Qui ? Violetta ?... Non."},
+  {pdf:186, part:181, type:'ensemble', it:"Oh, infamia orribile tu commettesti! Un cor sensibile cosi uccidesti!", fr:"Oh, quelle infamie horrible tu as commise ! Un coeur sensible tu as tue !"},
+  {pdf:187, part:182, type:'ensemble', it:"Di donne ignobile insultator, di qua allontanati, ne desti orror.", fr:"Ignoble insulteur de femmes, eloigne-toi, tu nous fais horreur."},
+  {pdf:188, part:183, type:'ensemble', it:"Oh, infamia orribile tu commettesti! Un cor sensibile cosi uccidesti! Di donne ignobile insultator, di qua allontanati, ne desti orror.", fr:"Oh, quelle infamie horrible ! Un coeur sensible tu as tue ! Ignoble insulteur de femmes, eloigne-toi, tu nous fais horreur."},
+  {pdf:189, part:184, type:'ensemble', it:"Oh, infamia orribile... Di donne ignobile insultator... ne desti orror.", fr:"Oh infamie horrible... Ignoble insulteur... tu nous fais horreur."},
+  {pdf:192, part:187, type:'ensemble', it:"Oh, quanto peni! ma pur fa cor, qui soffre ognuno del tuo dolor;", fr:"Oh, combien tu souffres ! Mais prends courage, chacun souffre de ta douleur ;"},
+  {pdf:193, part:188, type:'ensemble', it:"fra cari amici qui sei soltanto, rasciuga il pianto che t'inondo.", fr:"parmi de chers amis, essuie les larmes qui t'ont inondee."},
+  {pdf:194, part:189, type:'ensemble', it:"Oh, quanto peni! ma pur fa cor, qui soffre ognuno del tuo dolor; fra cari amici qui sei soltanto, rasciuga il pianto che t'inondo.", fr:"Oh, combien tu souffres ! Mais courage, chacun souffre de ta douleur ; parmi de chers amis, essuie les larmes."},
+  {pdf:195, part:190, type:'ensemble', it:"Oh, quanto peni! ma pur fa cor... fra cari amici... rasciuga il pianto...", fr:"Oh, combien tu souffres ! Courage... parmi de chers amis... essuie les larmes..."},
+  {pdf:196, part:191, type:'ensemble', it:"Quanto peni! fa cor!", fr:"Combien tu souffres ! Courage !"},
+  {pdf:197, part:192, type:'ensemble', it:"Oh, quanto peni! ma pur fa cor... rasciuga il pianto che t'inondo.", fr:"Oh, combien tu souffres ! Courage... essuie les larmes."},
+  {pdf:198, part:193, type:'ensemble', it:"Oh, quanto peni! ma pur fa cor... rasciuga il pianto che t'inondo.", fr:"Oh, combien tu souffres ! Courage... essuie les larmes."},
+  {pdf:199, part:194, type:'ensemble', it:"Oh, quanto peni! ma pur fa cor... rasciuga il pianto che t'inondo.", fr:"Oh, combien tu souffres ! Courage... essuie les larmes."},
+  {pdf:200, part:195, type:'ensemble', it:"Oh, quanto peni! ma pur fa cor... rasciuga il pianto che t'inondo.", fr:"Oh, combien tu souffres ! Courage... essuie les larmes."},
+  {pdf:201, part:196, type:'ensemble', it:"Oh, quanto peni! ma pur fa cor... rasciuga il pianto che t'inondo.", fr:"Oh, combien tu souffres ! Courage... essuie les larmes."},
+  {pdf:202, part:197, type:'ensemble', it:"Oh, quanto peni! ma pur fa cor... rasciuga il pianto che t'inondo.", fr:"Oh, combien tu souffres ! Courage... essuie les larmes."},
+  {pdf:203, part:198, type:'ensemble', it:"Oh, quanto peni! ma pur fa cor... rasciuga il pianto che t'inondo.", fr:"Oh, combien tu souffres ! Courage... essuie les larmes."},
+  {pdf:204, part:199, type:'ensemble', it:"Oh, quanto peni! ma pur fa cor... rasciuga il pianto che t'inondo.", fr:"Oh, combien tu souffres ! Courage... essuie les larmes."},
+  {pdf:205, part:200, type:'ensemble', it:"Oh, quanto peni! ma pur fa cor... rasciuga il pianto che t'inondo.", fr:"Oh, combien tu souffres ! Courage... essuie les larmes."},
+  {pdf:206, part:201, type:'ensemble', it:"Oh, quanto peni! ma pur fa cor... rasciuga il pianto che t'inondo.", fr:"Oh, combien tu souffres ! Courage... essuie les larmes."},
+  {pdf:207, part:202, type:'ensemble', it:"Oh, quanto peni! ma pur fa cor... rasciuga il pianto che t'inondo.", fr:"Oh, combien tu souffres ! Courage... essuie les larmes."},
+  {pdf:208, part:203, type:'ensemble', it:"Oh, quanto peni! ma pur fa cor... rasciuga il pianto che t'inondo.", fr:"Oh, combien tu souffres ! Courage... essuie les larmes."},
+  {pdf:209, part:204, type:'ensemble', it:"Oh, quanto peni! ma pur fa cor... rasciuga il pianto che t'inondo.", fr:"Oh, combien tu souffres ! Courage... essuie les larmes."},
+  {pdf:210, part:205, type:'ensemble', it:"Oh, quanto peni! ma pur fa cor... rasciuga il pianto che t'inondo.", fr:"Oh, combien tu souffres ! Courage... essuie les larmes."},
+  {pdf:211, part:206, type:'ensemble', it:"(Finale - derniere note)", fr:"[FIN ACTE II]"},
+];
+
+const AUDIO_PIANO = [
+  { title: '01 · Acte I Introduction (p.6-19)', file: 'Piano/01_PIANO_Acte1_Introduction_p6-19.mp3' },
+  { title: '02 · Acte I Brindisi (p.21-32)', file: 'Piano/02_PIANO_Acte1_Brindisi_p21-32.mp3' },
+  { title: '03 · Acte I Valzer / Malaise (p.33-38)', file: 'Piano/03_PIANO_Acte1_Valzer_Malaise_p33-38.mp4' },
+  { title: '04 · Acte I Stretta (p.52-64)', file: 'Piano/04_PIANO_Acte1_Stretta_p52-64.mp4' },
+  { title: '07 · Acte II Scandale (p.178)', file: 'Piano/07_PIANO_Acte2_Scandale_p178.mp3' },
+  { title: '08 · Acte II Finale (p.186)', file: 'Piano/08_PIANO_Acte2_Finale_p186.mp3' }
+];
+
+const AUDIO_OPERA = [
+  { title: 'Verdi · La Traviata · Opéra complet', file: 'Verdi_ La Traviata – Complete Opera.mp3' }
+];
+
+// ================ RENDERING ================
+
+function renderReplique(r) {
+  const tag = `tag-${r.type}`;
+  const tagLabel = { solo: 'SOLO', ensemble: 'ENSEMBLE', didascalie: 'SCÈNE', pause: 'PAUSE' }[r.type];
+  const id = `r-${r.pdf}-${Math.random().toString(36).slice(2, 7)}`;
+  return `
+    <div class="replique-card" data-id="${id}">
+      <div class="card-header">
+        <span class="page-ref">PDF p.${r.pdf} · imp. ${r.imprime}</span>
+        <span class="tag ${tag}">${tagLabel}</span>
+        ${r.type !== 'pause' && r.type !== 'didascalie' ? `
+        <label class="learn-check">
+          <input type="checkbox" class="learn-cb" data-id="${id}">
+          <span>Appris</span>
+        </label>` : ''}
+      </div>
+      ${r.didascalie ? `<div class="didascalie-text">${r.didascalie}</div>` : ''}
+      ${r.avant ? `<div class="other-char">${r.avant}</div>` : ''}
+      ${r.italien ? `<div class="italian-text">${r.italien}</div>` : ''}
+      ${r.fr ? `<div class="translation hidden">${r.fr}</div>` : ''}
+      ${r.contexte ? `<div class="context-text">${r.contexte}</div>` : ''}
+    </div>
+  `;
+}
+
+function renderSection(containerId, repliques) {
+  document.getElementById(containerId).innerHTML = repliques.map(renderReplique).join('');
+}
+
+function renderExercises(containerId, exercises) {
+  document.getElementById(containerId).innerHTML = exercises.map((e, i) => `
+    <div class="exercise-card" data-idx="${containerId}-${i}">
+      <div class="exercise-page">p.${e.p}</div>
+      <div>
+        <div class="exercise-clue">${e.indice}</div>
+        <div class="exercise-answer">${e.reponse}</div>
+      </div>
+      <button class="reveal-btn">Révéler</button>
+    </div>
+  `).join('');
+}
+
+function renderPlanning(containerId, days) {
+  document.getElementById(containerId).innerHTML = days.map(d => `
+    <div class="planning-day" data-jour="${d.jour}">
+      <input type="checkbox" class="day-check" data-jour="${d.jour}">
+      <div class="day-content">
+        <div class="day-title">Jour ${d.jour} · ${d.titre}</div>
+        <div class="day-detail">${d.detail}</div>
+      </div>
+      <div class="day-date">${d.date}</div>
+    </div>
+  `).join('');
+}
+
+function renderCuts() {
+  document.getElementById('cuts-details').innerHTML = `
+    <table style="width:100%; border-collapse: collapse; margin-top: 12px;">
+      <thead>
+        <tr style="background: var(--bg-elev);">
+          <th style="padding: 12px; text-align: left; border: 1px solid var(--border);">Page opéra</th>
+          <th style="padding: 12px; text-align: left; border: 1px solid var(--border);">Votre PDF</th>
+          <th style="padding: 12px; text-align: left; border: 1px solid var(--border);">Section</th>
+          <th style="padding: 12px; text-align: left; border: 1px solid var(--border);">Détail</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${CUTS.map(c => `
+          <tr>
+            <td style="padding: 12px; border: 1px solid var(--border); font-family: monospace;">p.${c.p}</td>
+            <td style="padding: 12px; border: 1px solid var(--border); font-family: monospace; color: var(--accent); font-weight: 600;">PDF p.${c.pdf}</td>
+            <td style="padding: 12px; border: 1px solid var(--border);">${c.section}</td>
+            <td style="padding: 12px; border: 1px solid var(--border); font-size: 13px; color: var(--text-muted);">${c.detail}</td>
+          </tr>
+        `).join('')}
+      </tbody>
+    </table>
+  `;
+}
+
+function renderTraductions() {
+  const acte1 = TRADUCTIONS_PAGES.filter(t => t.pdf <= 69);
+  const acte2 = TRADUCTIONS_PAGES.filter(t => t.pdf > 69);
+
+  function tradCard(t) {
+    const tag = t.type === 'solo' ? 'tag-solo' : 'tag-ensemble';
+    const label = t.type === 'solo' ? 'SOLO' : 'ENSEMBLE';
+    return `
+      <div class="replique-card" style="padding:14px 18px; margin-bottom:10px;">
+        <div class="card-header" style="margin-bottom:8px;">
+          <span class="page-ref" style="background:#ffb6c1; color:#6a0028;">PDF ${t.pdf}</span>
+          <span class="page-ref" style="background:#90ee90; color:#1a5c1a;">Part. ${t.part}</span>
+          <span class="tag ${tag}">${label}</span>
+        </div>
+        <div class="italian-text" style="font-size:15px; padding:8px 12px; margin-bottom:6px;">${t.it}</div>
+        <div class="translation" style="filter:none; opacity:1; font-size:14px;">${t.fr}</div>
+      </div>
+    `;
+  }
+
+  document.getElementById('trad-acte1').innerHTML = acte1.map(tradCard).join('');
+  document.getElementById('trad-acte2').innerHTML = acte2.map(tradCard).join('');
+}
+
+function renderAudio() {
+  document.getElementById('audio-piano').innerHTML = AUDIO_PIANO.map(a => `
+    <div class="audio-item">
+      <div class="audio-item-title">${a.title}</div>
+      <audio controls preload="none" src="${a.file}"></audio>
+    </div>
+  `).join('');
+
+  document.getElementById('audio-opera').innerHTML = AUDIO_OPERA.map(a => `
+    <div class="audio-item">
+      <div class="audio-item-title">${a.title}</div>
+      <audio controls preload="none" src="${a.file}"></audio>
+    </div>
+  `).join('');
+}
+
+// ================ INTERACTIVITY ================
+
+function initRender() {
+  Object.keys(REPLIQUES).forEach(k => renderSection(k, REPLIQUES[k]));
+  // Fusionner solo + ensemble et trier par page
+  const ALL_EXERCISES = [...EXERCISES_SOLO, ...EXERCISES_ENSEMBLE].sort((a, b) => parseInt(a.p) - parseInt(b.p));
+  const EX_ACTE1 = ALL_EXERCISES.filter(e => parseInt(e.p) <= 68);
+  const EX_ACTE2 = ALL_EXERCISES.filter(e => parseInt(e.p) > 68);
+  renderExercises('exercise-acte1', EX_ACTE1);
+  renderExercises('exercise-acte2', EX_ACTE2);
+  renderPlanning('planning-phase1', PLANNING.phase1);
+  renderPlanning('planning-phase2', PLANNING.phase2);
+  renderPlanning('planning-phase3', PLANNING.phase3);
+  renderCuts();
+  renderTraductions();
+  renderAudio();
+}
+
+function loadState() {
+  const state = JSON.parse(localStorage.getItem('traviata-state') || '{}');
+  return {
+    learned: state.learned || {},
+    days: state.days || {},
+    theme: state.theme || 'light'
+  };
+}
+
+function saveState(state) {
+  localStorage.setItem('traviata-state', JSON.stringify(state));
+}
+
+let state = loadState();
+
+function updateStats() {
+  // Days left until April 28
+  const target = new Date('2026-04-28');
+  const today = new Date();
+  const diff = Math.ceil((target - today) / (1000 * 60 * 60 * 24));
+  document.getElementById('days-left').textContent = Math.max(0, diff);
+
+  // Learned count
+  const allCbs = document.querySelectorAll('.learn-cb');
+  const learnedCount = document.querySelectorAll('.learn-cb:checked').length;
+  document.getElementById('learned-count').textContent = `${learnedCount}/${allCbs.length}`;
+  const pct = allCbs.length ? (learnedCount / allCbs.length * 100) : 0;
+  document.getElementById('progress-fill').style.width = pct + '%';
+
+  // Days done
+  const daysDone = document.querySelectorAll('.day-check:checked').length;
+  document.getElementById('days-done').textContent = `${daysDone}/14`;
+}
+
+function bindEvents() {
+  // Translation toggle (click to reveal)
+  document.addEventListener('click', e => {
+    if (e.target.classList.contains('translation')) {
+      e.target.classList.toggle('hidden');
+    }
+  });
+
+  // Learn checkbox
+  document.querySelectorAll('.learn-cb').forEach(cb => {
+    const id = cb.dataset.id;
+    if (state.learned[id]) {
+      cb.checked = true;
+      cb.closest('.replique-card').classList.add('learned');
+    }
+    cb.addEventListener('change', () => {
+      state.learned[id] = cb.checked;
+      cb.closest('.replique-card').classList.toggle('learned', cb.checked);
+      saveState(state);
+      updateStats();
+    });
+  });
+
+  // Exercise reveal
+  document.querySelectorAll('.exercise-card').forEach(card => {
+    card.addEventListener('click', () => {
+      card.classList.toggle('revealed');
+      const btn = card.querySelector('.reveal-btn');
+      btn.textContent = card.classList.contains('revealed') ? 'Cacher' : 'Révéler';
+    });
+  });
+
+  // Planning days
+  document.querySelectorAll('.day-check').forEach(cb => {
+    const jour = cb.dataset.jour;
+    if (state.days[jour]) {
+      cb.checked = true;
+      cb.closest('.planning-day').classList.add('done');
+    }
+    cb.addEventListener('change', () => {
+      state.days[jour] = cb.checked;
+      cb.closest('.planning-day').classList.toggle('done', cb.checked);
+      saveState(state);
+      updateStats();
+    });
+  });
+
+  // Theme toggle
+  document.getElementById('theme-toggle').addEventListener('click', () => {
+    const current = document.documentElement.getAttribute('data-theme');
+    const next = current === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    document.getElementById('theme-toggle').textContent = next === 'dark' ? '☀️' : '🌙';
+    state.theme = next;
+    saveState(state);
+  });
+
+  // Reveal all translations
+  document.getElementById('reveal-all').addEventListener('click', () => {
+    document.querySelectorAll('.translation').forEach(t => t.classList.remove('hidden'));
+  });
+
+  // Reset progress
+  document.getElementById('reset-progress').addEventListener('click', () => {
+    if (confirm('Réinitialiser toute la progression (répliques apprises + planning) ?')) {
+      state.learned = {};
+      state.days = {};
+      saveState(state);
+      document.querySelectorAll('.learn-cb').forEach(cb => cb.checked = false);
+      document.querySelectorAll('.day-check').forEach(cb => cb.checked = false);
+      document.querySelectorAll('.replique-card').forEach(c => c.classList.remove('learned'));
+      document.querySelectorAll('.planning-day').forEach(c => c.classList.remove('done'));
+      updateStats();
+    }
+  });
+
+  // Search
+  document.getElementById('search').addEventListener('input', e => {
+    const q = e.target.value.toLowerCase().trim();
+    document.querySelectorAll('.replique-card').forEach(card => {
+      const text = card.textContent.toLowerCase();
+      card.classList.toggle('search-hidden', q && !text.includes(q));
+    });
+    document.querySelectorAll('.exercise-card').forEach(card => {
+      const text = card.textContent.toLowerCase();
+      card.classList.toggle('search-hidden', q && !text.includes(q));
+    });
+  });
+
+  // Nav highlight on scroll
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const sections = [...document.querySelectorAll('main > section')];
+
+  function updateNav() {
+    const scrollPos = window.scrollY + 120;
+    let current = sections[0];
+    sections.forEach(s => { if (s.offsetTop <= scrollPos) current = s; });
+    navLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current.id);
+    });
+  }
+  window.addEventListener('scroll', updateNav);
+}
+
+// ================ INIT ================
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Apply theme
+  document.documentElement.setAttribute('data-theme', state.theme);
+  document.getElementById('theme-toggle').textContent = state.theme === 'dark' ? '☀️' : '🌙';
+
+  initRender();
+  bindEvents();
+  updateStats();
+});
+</script>
+
+</body>
+</html>

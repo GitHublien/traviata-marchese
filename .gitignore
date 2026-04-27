@@ -1,0 +1,27 @@
+# Fichiers de travail temporaires
+_*.png
+_*.py
+*.OLD
+*.new
+*BACKUP*
+
+# Dossier Reaper (gros fichiers audio)
+Reaper_Traviata/
+
+# Dossiers de travail intermédiaires
+Pages_pour_Catherine/
+studio/
+
+# Scripts de génération
+generer_pdf.py
+_generer_memorisation_docx.py
+_extraire_mattadori.py
+_verif_mattadori_suite.py
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Notes texte
+Nouveau Document texte.txt
